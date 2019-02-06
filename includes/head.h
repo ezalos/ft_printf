@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/24 22:01:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:11:05 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 # define HEAD_H
 
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include <stdio.h>
+# include "../../libft/libft.h"
 
-typedef struct			s_print
+typedef struct			s_printf
 {
 	const char 			*format;
 	va_list 			ap;
 	char 				*backup_format;
 	char				*printf;
 	size_t				size;
-	t_all_types			*all;
-}						t_print;
+	struct s_all_types	*all;
+}						t_printf;
+
+# define M_PRTC(x) 		if (!x) return (NULL);
 
 typedef struct			s_all_types
 {
@@ -38,9 +41,9 @@ typedef struct			s_all_types
 	unsigned short		my_u_short;
 	unsigned long		my_u_long;
 	char				my_char;
-	win_t				my_multi_char;
+	//win_t				my_multi_char;
 	char				*my_str;
-	wchar_t				*my_multi_str;
+	//wchar_t				*my_multi_str;
 	void				*my_ptr;
 }						t_all_types;
 
@@ -69,6 +72,11 @@ typedef struct			s_all_types
 #  define _RESET	""
 # endif
 
-int		ft_printf(const char *format, ...);
+//PRINTF
+int			ft_printf(const char *format, ...);
+
+//INIT
+int			init_all_types(t_all_types *all);
+t_printf	*init_struct(const char *format);
 
 #endif

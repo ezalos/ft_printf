@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/24 22:00:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/06 15:25:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./head.h"
+#include "./../includes/head.h"
 
 int		main(int ac, char **av)
 {
@@ -27,5 +27,11 @@ int		main(int ac, char **av)
 	printf("--tru r_val: %d\n", r_valu);
 	printf("--ft_ r_val: %d\n", r_v);
 
+
+	float lol;
+
+	lol = 1/3;
+	r_valu = printf("->truprintf: %f\n", lol);
+	r_v = ft_printf("->ft_printf: %f\n", lol);
 	return (0);
 }

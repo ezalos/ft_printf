@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/06 14:08:58 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/06 16:10:42 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ft_printf
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
@@ -39,140 +39,29 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 ##############################################################################
 
-IFORDER		= $(shell ls | grep ft_printf)
-IFPUSH		= $(shell ls | grep srcs)
+SRCS		= main ft_printf init
 
-SRCS		= $(SRCS0) $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6)
-SRCS0		= main
-SRCS1		= ft_printf
-#SRCS2		= setup_struct setup_pieces setup_binary
-#SRCS3		= solve
-#SRCS4		= printing_the_result
-#SRCS5		= free_all free_pieces free_sols
-#SRCS6		= binary_str find_struct j_and_maths
+SRC_PATH	= ./srcs
 
-FOLD0		= ./#fill_it_files
+DIR_OBJ 	= ./objs/
 
-#MSRC_PATH	= ./srcs
-#SRC_PATH0 	= $(MSRC_PATH)/main
-#SRC_PATH1 	= $(MSRC_PATH)/read
-#SRC_PATH2 	= $(MSRC_PATH)/setup
-#SRC_PATH3 	= $(MSRC_PATH)/solve
-#SRC_PATH4 	= $(MSRC_PATH)/print
-#SRC_PATH5 	= $(MSRC_PATH)/free
-#SRC_PATH6 	= $(MSRC_PATH)/logistics
-A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
- 				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
-
-DIR_OBJ = ./objs/
-IFOBJDIR	= $(shell ls | grep objs)
-
-ifeq ("$(IFOBJDIR)","")
-DIR_OBJ		=
-endif
-
-CC_SECU		= 0
 ##########################
 ##						##
 ##	   ARCHITECTURE		##
 ##						##
 ##########################
-NPUH		:= $(wildcard ./srcs/main/main.c)
-##################
-##	   PUSH		##
-##################
-ifeq ("$(NPUH)","")
-
-SRC_PATH	= $(FOLD0)
-NSRC_PATH  	= srcs
 
 A_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
-NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
-								$(addprefix $(SRC_PATH1)/, $(SRCS1))\
-								$(addprefix $(SRC_PATH2)/, $(SRCS2))\
-								$(addprefix $(SRC_PATH3)/, $(SRCS3))\
-								$(addprefix $(SRC_PATH4)/, $(SRCS4))\
-								$(addprefix $(SRC_PATH5)/, $(SRCS5))\
-								$(addprefix $(SRC_PATH6)/, $(SRCS6)))
+A_OBJ		= $(patsubst %,$(DIR_OBJ)%.o,$(SRCS))
 
-LIB_PATH	= ./../libft
-NLIB_PATH	= ./.annex/libft
-HEAD_PATH	= $(SRC_PATH)
-HEAD_DIR	= $(SRC_PATH)
-NHEAD_PATH	= ./includes
-NALL_PATH	= ./$(FOLD0)
-HEAD_		= $(HEAD_PATH)/head.h
+OBJ 		= $(patsubst %,%.o,$(SRCS))
 
-#PROTEC_rsbs		:= $(shell grep print_soltion_link $(FOLD0)/solve.c)
+LIB_DIR		= ./../libft
+HEAD		= head.h
+HEAD_DIR	= ./includes
+HEAD_PATH	= $(HEAD_DIR)/$(HEAD)
 
-OBJS = $(A_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
-##################
-##	  ORDER		##
-##################
-else
-
-LIB_PATH	= ./.annex/libft
-NLIB_PATH	= ./libft
-HEAD_PATH	= ./includes
-HEAD_DIR	= $(HEAD_PATH)
-HEAD_		= $(HEAD_PATH)
-NHEAD_PATH	= ./$(FOLD0)
-NALL_PATH	= ./$(FOLD0)
-
-SRC_PATH  	= ./srcs
-NSRC_PATH	= ./$(FOLD0)
-
-A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
-								$(addprefix $(SRC_PATH1)/, $(SRCS1))\
-								$(addprefix $(SRC_PATH2)/, $(SRCS2))\
-								$(addprefix $(SRC_PATH3)/, $(SRCS3))\
-								$(addprefix $(SRC_PATH4)/, $(SRCS4))\
-								$(addprefix $(SRC_PATH5)/, $(SRCS5))\
-								$(addprefix $(SRC_PATH6)/, $(SRCS6)))
-NA_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
-
-OBJS = $(NA_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
-
-CC_SECU		= 1
-endif
-
-PROTEC		:= $(wildcard ./.annex)
-ifneq ("$(PROTEC)","")
-NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
-##################
-##	  W/_OPT	##
-##################
-ifeq ("$(NOPT)","")
-TIME_EXE 	= 	./.annex/time/time_exe.c
-TIME_EXE_H	= 	./.annex/time/time_exe.h
-PRINT_DBG	=	./.annex/printing/print_debug.c
-PRINT_R		=	./.annex/printing/print_r_in_color.c
-PRINT		= 	$(PRINT_DBG) $(PRINT_R)
-
-P_SRC 		= $(TIME_EXE) $(PRINT)
-NP_SRC 		= time_exe.c print_debug.c print_r_in_color.c
-
-CFLAGS		=
-
-CC_SECU		= 1
-##################
-##	  NO_OPT	##
-##################
-else
-TIME_EXE	= 	./.annex/time/time_exe.c.old
-TIME_EXE_H	= 	./.annex/time/time_exe.h.old
-PRINT_DBG	=	./.annex/printing/print_debug.c.old
-PRINT_R		=	./.annex/printing/print_r_in_color.c.old
-PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
-
-endif
-PIECE = ./.annex/tests/good/fit/7_0
-endif
-
-
-LIB			= $(LIB_PATH)/libft.a
-HEAD		= $(HEAD_PATH)/head.h
-
+LIB			= $(LIB_DIR)/libft.a
 
 ##########################
 ##						##
@@ -208,6 +97,8 @@ ERROR_STRING = [ERROR]
 WARN_STRING  = [WARNING]
 COM_STRING   = Compiling
 
+MSG ?= Makefile automated push
+
 define run_and_test
 printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
 	$(1) 2> $@.log; \
@@ -242,189 +133,44 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(OBJS) $(HEAD_)
-		@$(MAKE) -C $(LIB_PATH)
-		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(OBJS) $(NP_SRC:%.c=%.o) $(LIB) -o $(NAME))
+$(NAME): $(A_OBJ) $(HEAD_PATH)
+		@$(MAKE) -C $(LIB_DIR)
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(A_OBJ) $(LIB) -o $(NAME))
 
-ifeq ($(CC_SECU), 0)
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -o $@ -c $<)
-else
-$(OBJS):
-		@$(CC) $(CFLAGS) -I./$(HEAD_DIR) -c $(P_SRC) $(A_SRC)
-ifneq ("$(IFOBJDIR)","")
-		@mv $(P_SRC:%.c=%.o) $(SRCS:%=%.o) $(DIR_OBJ)
-endif
-		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
-endif
 
 clean :
-		@$(MAKE) clean -C $(LIB_PATH)
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
-		@rm -f $(OBJS)
-ifeq ("$(NOPT)","")
-		@rm -f $(NP_SRC:%.c=%.o)
-endif
+		@rm -f $(A_OBJ)
 
 fclean : clean
-		@$(MAKE) fclean -C $(LIB_PATH)
 		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
-		@rm -rf $(NAME) fillit.dSYM
+		@rm -rf $(NAME)
+
+aclean : clean
+		@$(MAKE) clean -C $(LIB_DIR)
+
+afclean : aclean fclean
+		@$(MAKE) fclean -C $(LIB_DIR)
 
 re :	fclean all
+
+are :	afclean all
 
 git :
 		@git add -A
 		@git status
-		@git commit -am "Makefile automated push"
+		git commit -am "$(MSG)"
 		@git push
 
-print : all
-		./$(NAME) $(arg0) $(arg1) $(arg2) $(arg3) $(arg4) $(arg5)
+t	:	all
+		./$(NAME) "$(MSG)"
 
-ifneq ("$(PROTEC)","")
-##########################
-##						##
-##		  TESTS			##
-##						##
-##########################
-
-teste : all
-		./$(NAME) ./.annex/tests/bad/err0
-		./$(NAME) ./.annex/tests/bad/err1
-		./$(NAME) ./.annex/tests/bad/err2
-		./$(NAME) ./.annex/tests/bad/err3
-		./$(NAME) ./.annex/tests/bad/err4
-		./$(NAME) ./.annex/tests/bad/err5
-		./$(NAME) ./.annex/tests/bad/err6
-		./$(NAME) ./.annex/tests/bad/err7
-		./$(NAME)
-		./$(NAME) ./.annex/test lol
-		./$(NAME) ./.annex
-		./$(NAME) ./.annex/tests/bad/otherTest/binary1.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/binary2.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/binary3.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/eof.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/twentyseven.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/twentysix.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot1.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot2.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot3.txt
-
-testv :	all
-		$(VALGRIND) ./$(NAME) $(PIECE)
-
-
-testp :	all
-		./$(NAME) $(PIECE)
-
-check :
-		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
-
-##############################################################################
-##############################################################################
-##																			##
-##									-----									##
-##									BONUS									##
-##									-----									##
-##																			##
-##############################################################################
-##############################################################################
-
-##########################
-##						##
-##		AUTO-TEST		##
-##						##
-##########################
-
-testa : all
-ifneq ("$(p)", "")
-ifneq ("$(n)", "")
-ifneq ("$(PROTEC_rsbs)","")
-		@bash ./.annex/training_set/make_tests.sh $(p) 1
-		@bash ./.annex/tests/launch_tests.sh $(NAME) 1
-else
-		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
-		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
-		@cat ./.annex/tests/last_test
-		@rm -rf ./.annex/tests/random_generated/*
-endif
-endif
-else
-		@echo 'usage: make test a=x p=y'
-		@echo 'for (p >= 1 && n >= 1)'
-endif
-
-##########################
-##						##
-##		ARCHITECT		##
-##						##
-##########################
-
-order :
-ifneq ($(IFORDER), )
-ifeq ("$(NOPT)","")
-	@$(MAKE) offption
-endif
-		@$(MAKE) fclean
-		@sed -i '' "s~./head.h~../../includes/head.h~g" $(A_SRC)
-		@sed -i '' "s~../libft/libft.h~../.annex/libft/libft.h~g" $(HEAD)
-		@mkdir $(A_SRC_P) $(NHEAD_PATH)
-		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
-		@mv -f $(LIB_PATH) $(NLIB_PATH)
-		@mkdir ./objs ./.annex/libft/objs
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS0)) $(SRC_PATH0)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS1)) $(SRC_PATH1)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS2)) $(SRC_PATH2)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS3)) $(SRC_PATH3)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS4)) $(SRC_PATH4)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS5)) $(SRC_PATH5)
-		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS6)) $(SRC_PATH6)
-		@rm -rf libft fill_it_files
-endif
-
-push :
-ifneq ($(IFPUSH), )
-ifeq ("$(NOPT)","")
-	@$(MAKE) offption
-endif
-		@$(MAKE) fclean
-		@sed -i '' "s~../../includes/head.h~./head.h~g" $(A_SRC)
-		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
-		@rm -rf ./objs ./.annex/libft/objs
-		@mkdir $(NALL_PATH)
-		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
-		@mv -f $(A_SRC) $(NALL_PATH)
-		@mv -f $(LIB_PATH) ./
-		@rm -rf $(SRC_PATH) $(HEAD_PATH)
-endif
-
-malloc_check :
-		sh ./.annex/find_text.sh malloc
-		sh ./.annex/find_text.sh ft_memalloc
-		sh ./.annex/find_text.sh ft_strdup
-		sh ./.annex/find_text.sh ft_strjojn
-		sh ./.annex/find_text.sh ft_strnew
-
-##########################
-##						##
-##		  SHOW			##
-##						##
-##########################
-
-show_ :
-			bash ./.annex/show/.show.sh
-grep_ :
-		grep -n -e printf -e time_exe $(A_SRC) >> ./.annex/show/.gres.txt
-
-hide_ :
-		sed -i '' '/printf/d' $(A_SRC)
-		sed -i '' '/time/d' $(A_SRC)
-endif
 ##########################
 ##						##
 ##		 .PHONY			##
 ##						##
 ##########################
 
-.PHONY : clean fclean re all d git check show_ grep_ hide_ malloc_check onption offption push order testa testv teste testp
+.PHONY : clean fclean re all git aclean afclean are
