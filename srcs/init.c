@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 16:01:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 16:26:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/07 18:21:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ t_printf	*init_struct(const char *format)
 		return (NULL);
 	if (!(print->format = ft_strdup(format)))
 		return (NULL);
-	if (!(print->backup_format = ft_strdup(format)))
-		return (NULL);
-	if (!(print->all = (t_all_types*)malloc(sizeof(t_all_types))))
-		return (NULL);
+//	if (!(print->backup_format = ft_strdup(format)))
+//		return (NULL);
+//	if (!(print->all = (t_all_types*)malloc(sizeof(t_all_types))))
+//		return (NULL);
 	print->printf = NULL;
 	print->size_all = 0;
 	print->last_type = NULL;
-	print->size_type = 0;
+//	print->size_type = 0;
 	print->lets_print = 0;
-	print->complete = 0;
-	init_all_types(print->all);
+//	print->complete = 0;
+//	init_all_types(print->all);
 	return (print);
 }
