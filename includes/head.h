@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/06 16:11:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:36:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ typedef struct			s_printf
 	va_list 			ap;
 	char 				*backup_format;
 	char				*printf;
-	size_t				size;
+	char				*last_type;
+	size_t				size_type;
+	size_t				size_all;
+	char				complete;
+	char				lets_print;
 	struct s_all_types	*all;
 }						t_printf;
 
@@ -78,5 +82,24 @@ int			ft_printf(const char *format, ...);
 //INIT
 int			init_all_types(t_all_types *all);
 t_printf	*init_struct(const char *format);
+
+//OPTIONS
+int			printf_minlength_and_precision(t_printf *print, int i);
+int			printf_flags(t_printf *print, int i);
+int			printf_options(t_printf *print, int i);
+
+
+//TYPES
+int			print_unsigned_integer(t_printf *print, unsigned long long nb);
+int			print_pointer(t_printf *print, void* ptr);
+int			print_float(t_printf *print, long double nb);
+int			print_string(t_printf *print, char *str);
+int			print_integer(t_printf *print, long long nb);
+
+//MALLOC AND MOVE
+int			complete_string(t_printf *print);
+
+//OUTPUT
+int			output_string(t_printf *print);
 
 #endif
