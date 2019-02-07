@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 18:26:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/07 21:54:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,34 @@
 # include <stdio.h>
 # include "../../libft/libft.h"
 
+typedef struct		s_arg
+{
+	char			type;
+	int				minimum_width;
+	int				ajust_left;
+	char			space_filled;
+	int				sign;
+	int				htag;
+	int				precision;
+	int				modifier_h;
+	int				modifier_l;
+	int				modifier_L;
+}					t_arg;
+
 typedef struct			s_printf
 {
 	const char 			*format;
+	char				*start_format;
 	va_list 			ap;
-//	char 				*backup_format;
 	char				*printf;
 	char				*last_type;
-//	size_t				size_type;
-//	size_t				size_all;
-//	char				complete;
 	char				lets_print;
-	t_arg				*option
-//	struct s_all_types	*all;
+	int					i;
+	size_t				size_all;
+	t_arg				arg[1];
 }						t_printf;
 
 # define M_PRTC(x) 		if (!x) return (NULL);
-
-typedef struct			s_all_types
-{
-	int					my_int;
-	short				my_short;
-	long				my_long;
-	double		 		my_double;
-	long double 		my_long_double;
-	float				my_float;
-	unsigned int		my_u_int;
-	unsigned short		my_u_short;
-	unsigned long		my_u_long;
-	char				my_char;
-	//win_t				my_multi_char;
-	char				*my_str;
-	//wchar_t				*my_multi_str;
-	void				*my_ptr;
-}						t_all_types;
 
 # define OFFPTION
 
@@ -81,8 +75,8 @@ typedef struct			s_all_types
 int			ft_printf(const char *format, ...);
 
 //INIT
-int			init_all_types(t_all_types *all);
-t_printf	*init_struct(const char *format);
+void		init_struct_arg(t_printf *print, const char *format);
+int			init_struct(t_printf *print, const char *format);
 
 //OPTIONS
 int			printf_minlength_and_precision(t_printf *print, int i);
@@ -98,7 +92,14 @@ int			print_string(t_printf *print, char *str);
 int			print_integer(t_printf *print, long long nb);
 
 //MALLOC AND MOVE
-int			complete_string(t_printf *print);
+int			paste_format_in_printf(t_printf *print);
+int			paste_type_in_printf(t_printf *print, char *str);
+
+//CHEACK_ARGS
+void		check_flags(const char c, t_arg *arg);
+void		check_minimum_width_or_precision(const char **f, t_arg *arg);
+void		check_modifier(const char **f, t_arg *arg);
+void		check_arg(const char **f, t_arg *arg);
 
 //OUTPUT
 int			output_string(t_printf *print);
