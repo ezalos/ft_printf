@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 18:14:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/07 18:26:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			print_integer(t_printf *print, long long nb)
 	tmp = print->printf;
 	print->last_type = ft_nb_to_a(nb);
 	print->printf = ft_strjoin(print->printf, print->last_type);
-	ft_strdel(print->last_type)
-	ft_strdel(tmp);
+	ft_strdel(&print->last_type);
+	ft_strdel(&tmp);
 	return (0);
 }

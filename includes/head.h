@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 16:36:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/07 18:26:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ typedef struct			s_printf
 {
 	const char 			*format;
 	va_list 			ap;
-	char 				*backup_format;
+//	char 				*backup_format;
 	char				*printf;
 	char				*last_type;
-	size_t				size_type;
-	size_t				size_all;
-	char				complete;
+//	size_t				size_type;
+//	size_t				size_all;
+//	char				complete;
 	char				lets_print;
-	struct s_all_types	*all;
+	t_arg				*option
+//	struct s_all_types	*all;
 }						t_printf;
 
 # define M_PRTC(x) 		if (!x) return (NULL);
