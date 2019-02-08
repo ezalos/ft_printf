@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 21:55:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:07:36 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 void	check_flags(const char c, t_arg *arg)
 {
-	printf("%s\n", __func__);
 	if (c == '0')
-		arg->space_filled = '0';
+	{
+		if (!arg->ajust_left || !arg->precision)
+			arg->space_filled = '0';
+	}
 	else if (c == '+')
 		arg->sign = 1;
 	else if (c == '-')
+	{
 		arg->ajust_left = 1;
+		arg->space_filled = ' ';
+	}
 	else if (c == '#')
 		arg->htag = 1;
 }
 
 void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 {
-	printf("%s\n", __func__);
 	int		*tmp;
 	if (**f == '.')
 	{
@@ -40,11 +44,12 @@ void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 		tmp = &arg->minimum_width;
 	while (**f >= '0' && **f<= '9')
 		*tmp = *tmp * 10 + *(*f)++ - 48;
+	if (arg->precision)
+		arg->space_filled = ' ';
 }
 
 void	check_modifier(const char **f, t_arg *arg)
 {
-	printf("%s\n", __func__);
 	if (**f == 'h')
 		arg->modifier_h++;
 	else if (**f == 'l')
@@ -55,9 +60,7 @@ void	check_modifier(const char **f, t_arg *arg)
 }
 
 void	check_arg(const char **f, t_arg *arg)
-{
-	printf("%s\n", __func__);
-	printf("%s\n", *f);
+{ 
 	while (!arg->type)
 	{
 		if (**f == '#' || **f == '-' || **f == '+' || **f == '0')
@@ -70,6 +73,9 @@ void	check_arg(const char **f, t_arg *arg)
 		**f == 'o' || **f == 'u' || **f == 'x' || **f == 'X' || **f == 'f')
 			arg->type = *(*f)++;
 		else
+		{
+			arg->type = *(*f);
 			break;
+		}
 	}
 }

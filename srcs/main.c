@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 21:05:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 19:38:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int		main(int ac, char **av)
 	int r_v;
 	int r_valu;
 
+	printf("->tstprintf: |%-.10d\n\n\n", 100);
 	if (ac <= 1)
 		return (0);
 	nb = atoi(av[1]);
-	r_v = ft_printf("->ft_printf: %d\n", nb);
-	r_valu = printf("->truprintf: %d\n", nb);
+	r_valu = printf("->truprintf: |%X|\n", nb);
+	r_v = ft_printf("->ft_printf: |%X|\n", nb);
 
 	printf("--ft_ r_val: %d\n", r_v);
 	printf("--tru r_val: %d\n", r_valu);

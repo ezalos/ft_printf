@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 21:54:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 18:57:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,15 @@ int			printf_minlength_and_precision(t_printf *print, int i);
 int			printf_flags(t_printf *print, int i);
 int			printf_options(t_printf *print, int i);
 
+//PARSING
+int			parsing(t_printf *print, va_list ap);
 
 //TYPES
-int			print_unsigned_integer(t_printf *print, unsigned long long nb);
+int			print_unsigned_integer(t_printf *print, uintmax_t nb);
 int			print_pointer(t_printf *print, void* ptr);
 int			print_float(t_printf *print, long double nb);
 int			print_string(t_printf *print, char *str);
-int			print_integer(t_printf *print, long long nb);
+int			print_integer(t_printf *print, intmax_t nb);
 
 //MALLOC AND MOVE
 int			paste_format_in_printf(t_printf *print);

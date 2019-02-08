@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/07 18:58:38 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/08 18:41:17 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 
 SRCS		=	main ft_printf init output ft_printf_options type_float\
 				type_integer type_pointer type_string type_unsigned_integer\
-				malloc_and_move check_arg
+				malloc_and_move check_arg parsing
 
 SRC_PATH	= ./srcs
 

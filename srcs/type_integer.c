@@ -6,66 +6,80 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/07 21:28:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 18:58:33 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-size_t		ft_nb_len(long long n)
+size_t		ft_nb_len(intmax_t n, size_t base)
 {
 	size_t size;
+	uintmax_t nb;
 
 	if (n == 0)
 		return (1);
 	size = 0;
 	if (n < 0)
-		size++;
-	while (n != 0)
 	{
-		n /= 10;
+		size++;
+		nb = -n;
+	}
+	else
+		nb = n;
+	while (nb != 0)
+	{
+		nb /= base;
 		size++;
 	}
 	return (size);
 }
 
-static void	ft_putnbr_str(int i, long long n, char *nb)
+static void	ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
 {
+	char	*base_smbl;
+
+	base_smbl = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOQRSTUVWXYZ";
 	while (i >= 0 && nb[i] != '-')
 	{
-		nb[i] = (n % 10) + '0';
-		n /= 10;
+		nb[i] = base_smbl[n % base];
+		n /= base;
 		i--;
 	}
 }
 
-char		*ft_nb_to_a(long long n)
+static char		*ft_nb_to_a(intmax_t n, size_t base)
 {
-	char	*nb;
-	int		size;
+	char	*nb_str;
+	size_t	size;
 	int		neg;
+	uintmax_t nb;
 	int		i;
 
 	neg = 1;
 	if (n >= 0)
 		neg = 0;
-	size = ft_nb_len(n);
-	if (!(nb = ft_strnew(size)))
+	size = ft_nb_len(n, base);
+	if (!(nb_str = ft_strnew(size)))
 		return (NULL);
 	if (neg == 1)
 	{
-		nb[0] = '-';
-		n = -n;
+		nb_str[0] = '-';
+		nb = -n;
 	}
+	else
+		nb = n;
 	i = size;
-	ft_putnbr_str(i - 1, n, nb);
-	return (nb);
+	ft_putnbr_str(i - 1, nb, nb_str, base);
+	return (nb_str);
 }
 
-int			print_integer(t_printf *print, long long nb)
+int			print_integer(t_printf *print, intmax_t nb)
 {
-	print->last_type = ft_nb_to_a(nb);
+	int	base;
+
+	base = 10;
+	print->last_type = ft_nb_to_a(nb, base);
 	paste_type_in_printf(print, print->last_type);
-	print->lets_print = 1;
 	return (0);
 }
