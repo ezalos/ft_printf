@@ -6,11 +6,34 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 18:35:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 19:59:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
+
+int			paste_format_in_printf(t_printf *print)
+{
+	char	*tmp;
+	char	*tmp2;
+
+	if (print->i <= 0 || !(tmp = ft_strsub(print->format, 0, print->i)))
+		return (0);
+	tmp2 = print->printf;
+	if (tmp2)
+	{
+		if (!(print->printf = ft_strjoin(tmp2, tmp)))
+			return (0);
+		ft_strdel(&tmp2);
+		ft_strdel(&tmp);
+	}
+	else
+		print->printf = tmp;
+	print->format += print->i;
+	print->size_all += print->i;
+	print->i = 0;
+	return (1);
+}
 
 int			ft_printf(const char *format, ...)
 {

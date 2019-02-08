@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:52:49 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 19:38:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 20:03:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int				print_unsigned_integer(t_printf *print, uintmax_t nb)
 	if (print->arg->type == 'X')
 		while (print->last_type[++i])
 			print->last_type[i] = ft_toupper(print->last_type[i]);
-	paste_type_in_printf(print, print->last_type);
+	paste_int_in_printf(print, print->last_type);
 	return (0);
 }

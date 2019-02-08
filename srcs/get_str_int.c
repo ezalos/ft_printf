@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_and_move.c                                  :+:      :+:    :+:   */
+/*   get_str_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 18:22:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 20:00:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			paste_format_in_printf(t_printf *print)
-{
-	char	*tmp;
-	char	*tmp2;
-
-	if (print->i <= 0 || !(tmp = ft_strsub(print->format, 0, print->i)))
-		return (0);
-	tmp2 = print->printf;
-	if (tmp2)
-	{
-		if (!(print->printf = ft_strjoin(tmp2, tmp)))
-			return (0);
-		ft_strdel(&tmp2);
-		ft_strdel(&tmp);
-	}
-	else
-		print->printf = tmp;
-	print->format += print->i;
-	print->size_all += print->i;
-	print->i = 0;
-	return (1);
-}
-
-
-int			add_precision_minwidth(t_printf *print, char **str)
+static int			add_precision_minwidth(t_printf *print, char **str)
 {
 	size_t		size_m;
 	size_t		size_p;
@@ -102,7 +78,7 @@ int			add_precision_minwidth(t_printf *print, char **str)
 	return (len_str + size_m + size_p);
 }
 
-int			paste_type_in_printf(t_printf *print, char *str)
+int			paste_int_in_printf(t_printf *print, char *str)
 {
 	char	*tmp;
 	char	*tmp2;

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 18:58:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 20:03:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int			print_integer(t_printf *print, intmax_t nb)
 
 	base = 10;
 	print->last_type = ft_nb_to_a(nb, base);
-	paste_type_in_printf(print, print->last_type);
+	paste_int_in_printf(print, print->last_type);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 18:57:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/08 20:05:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,13 @@ int			print_pointer(t_printf *print, void* ptr);
 int			print_float(t_printf *print, long double nb);
 int			print_string(t_printf *print, char *str);
 int			print_integer(t_printf *print, intmax_t nb);
+int			print_character(t_printf *print, char str);
+int			print_others(t_printf *print, void *str);
 
 //MALLOC AND MOVE
 int			paste_format_in_printf(t_printf *print);
-int			paste_type_in_printf(t_printf *print, char *str);
+int			paste_int_in_printf(t_printf *print, char *str);
+int			paste_str_in_printf(t_printf *print, char *str);
 
 //CHEACK_ARGS
 void		check_flags(const char c, t_arg *arg);
