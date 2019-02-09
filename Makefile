@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/08 20:02:28 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/09 14:45:22 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,12 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 ##############################################################################
 
-SRCS		=	main ft_printf init output ft_printf_options type_float\
-				type_integer type_pointer type_string type_unsigned_integer\
-				check_arg parsing type_others type_character\
+SRCS		=	main\
+				ft_printf\
+				ft_printf_options parsing check_arg\
+				init output\
+				type_float type_integer type_pointer type_string\
+				type_unsigned_integer type_others type_character\
 				get_str_int get_str_str
 
 SRC_PATH	= ./srcs
@@ -148,7 +151,7 @@ clean :
 		@rm -f $(A_OBJ)
 
 fclean : clean
-		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@echo "\$(YELLOW)$(NAME) \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -rf $(NAME)
 
 aclean : clean

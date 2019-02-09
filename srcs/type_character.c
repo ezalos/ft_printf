@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 19:44:23 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 19:47:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:44:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			print_character(t_printf *print, char str)
+int			print_character(t_printf *print, char *str)
 {
 	return (0);
 }
