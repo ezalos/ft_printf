@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 20:03:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:58:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ size_t		ft_nb_len(intmax_t n, size_t base)
 	}
 	else
 		nb = n;
+	if (base == 0)
+		base = 10;
 	while (nb != 0)
 	{
 		nb /= base;
@@ -35,11 +37,13 @@ size_t		ft_nb_len(intmax_t n, size_t base)
 	return (size);
 }
 
-static void	ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
+static void		ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
 {
 	char	*base_smbl;
 
 	base_smbl = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOQRSTUVWXYZ";
+	if (base > 62)
+		base = 62;
 	while (i >= 0 && nb[i] != '-')
 	{
 		nb[i] = base_smbl[n % base];
@@ -48,7 +52,7 @@ static void	ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
 	}
 }
 
-static char		*ft_nb_to_a(intmax_t n, size_t base)
+char		*ft_nb_to_a(intmax_t n, size_t base)
 {
 	char	*nb_str;
 	size_t	size;

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/09 14:44:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/09 18:08:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int			printf_flags(t_printf *print, int i);
 int			printf_options(t_printf *print, int i);
 
 //PARSING
-int			parsing(t_printf *print, va_list ap);
+int			parsing(t_printf *print);
 
 //TYPES
 int			print_unsigned_integer(t_printf *print, uintmax_t nb);

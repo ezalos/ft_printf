@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 19:59:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/09 18:09:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			paste_format_in_printf(t_printf *print)
 {
-	char	*tmp;
-	char	*tmp2;
+	char			*tmp;
+	char			*tmp2;
 
 	if (print->i <= 0 || !(tmp = ft_strsub(print->format, 0, print->i)))
 		return (0);
@@ -37,9 +37,7 @@ int			paste_format_in_printf(t_printf *print)
 
 int			ft_printf(const char *format, ...)
 {
-	static t_printf	print;
-	char			*tmp;
-	int				precision;
+	static t_printf		print;
 
 	if (!(init_struct(&print, format)))
 		return (-1);
@@ -54,14 +52,14 @@ int			ft_printf(const char *format, ...)
 			init_struct_arg(&print, format);
 			print.format += print.i + 1;
 			check_arg(&print.format , print.arg);
-			parsing(&print, print.ap);
+			parsing(&print);
 		}
 		print.i++;
 	}
 	if(!(paste_format_in_printf(&print)))
 		return (-1);
 	//if (print.lets_print)
-		output_string(&print);
+	output_string(&print);
 //	free_all(print);
 	return (print.size_all);
 }

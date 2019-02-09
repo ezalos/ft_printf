@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:35:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/09 14:44:20 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/09 18:08:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			parsing_integer(t_printf *print, va_list ap)
+int			parsing_integer(t_printf *print)
 {
 	if (print->arg->modifier_l == 1)
 		print_integer(print, va_arg(print->ap, long));
@@ -27,7 +27,7 @@ int			parsing_integer(t_printf *print, va_list ap)
 	return (0);
 }
 
-int			parsing_unsigned_integer(t_printf *print, va_list ap)
+int			parsing_unsigned_integer(t_printf *print)
 {
 	if (print->arg->modifier_l == 1)
 		print_unsigned_integer(print, va_arg(print->ap, unsigned long));
@@ -42,20 +42,21 @@ int			parsing_unsigned_integer(t_printf *print, va_list ap)
 	return (0);
 }
 
-int			parsing_float(t_printf *print, va_list ap)
+int			parsing_float(t_printf *print)
 {
-	print_float(print, va_arg(print->ap, long double));
+	if (print->arg->type == 'f')
+		print_float(print, va_arg(print->ap, double));
 	return (0);
 }
 
-int			parsing(t_printf *print, va_list ap)
+int			parsing(t_printf *print)
 {
 	if (ft_char_srch(print->arg->type, "di"))
-		parsing_integer(print, ap);
+		parsing_integer(print);
 	else if (ft_char_srch(print->arg->type, "ouxX"))
-		parsing_unsigned_integer(print, ap);
+		parsing_unsigned_integer(print);
 	else if (ft_char_srch(print->arg->type, "feEgG"))
-		parsing_float(print, ap);
+		parsing_float(print);
 	else if (print->arg->type == 's')
 		print_string(print, va_arg(print->ap, char*));
 	else if (print->arg->type == 'c')
