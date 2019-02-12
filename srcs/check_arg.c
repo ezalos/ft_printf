@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/08 16:07:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:53:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 	if (**f == '.')
 	{
 		tmp = &arg->precision;
+		arg->precision_exist = 1;
 		(*f)++;
 		if (**f == '0')
 			return ;
@@ -60,7 +61,7 @@ void	check_modifier(const char **f, t_arg *arg)
 }
 
 void	check_arg(const char **f, t_arg *arg)
-{ 
+{
 	while (!arg->type)
 	{
 		if (**f == '#' || **f == '-' || **f == '+' || **f == '0')

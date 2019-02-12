@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   get_printf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 16:01:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 14:49:23 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/02/12 14:18:43 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/02/12 14:21:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			init_for_new_turn(t_printf *print, int i)
+int			get_printf(t_printf *print, char **str)
 {
-	return (0);
-}
+	char	*tmp;
 
-void		init_struct_arg(t_printf *print, const char *format)
-{
-	ft_bzero(print->arg, sizeof(t_arg));
-	print->arg->space_filled = ' ';
-}
-
-int			init_struct(t_printf *print, const char *format)
-{
-	if (print->start_format)
-		ft_strdel(&print->start_format);
-	if (!(print->format = ft_strdup(format)))
+	tmp = print->printf;
+	if (tmp)
 	{
-		print->start_format = (char*)print->format;
-		return (0);
+		if (!(print->printf = ft_strjoin(tmp, *str)))
+			return (0);
+		ft_strdel(&tmp);
+		print->size_all += ft_strlen(*str);
+		ft_strdel(str);
 	}
+	else
+		print->printf = *str;
 	return (1);
 }

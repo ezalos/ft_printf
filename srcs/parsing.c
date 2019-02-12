@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:35:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/09 18:08:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:37:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			parsing_integer(t_printf *print)
 	else if (print->arg->modifier_h == 2)
 		print_integer(print, (char)va_arg(print->ap, int));
 	else
-		print_integer(print, va_arg(print->ap, int));
+		print_integer(print, (int)va_arg(print->ap, int));
 	return (0);
 }
 
@@ -38,14 +38,14 @@ int			parsing_unsigned_integer(t_printf *print)
 	else if (print->arg->modifier_h == 2)
 		print_unsigned_integer(print, (unsigned char)va_arg(print->ap, unsigned int));
 	else
-		print_unsigned_integer(print, va_arg(print->ap, unsigned int));
+		print_unsigned_integer(print, (unsigned int)va_arg(print->ap, unsigned int));
 	return (0);
 }
 
 int			parsing_float(t_printf *print)
 {
 	if (print->arg->type == 'f')
-		print_float(print, va_arg(print->ap, double));
+		print_float(print, (double)va_arg(print->ap, double));
 	return (0);
 }
 

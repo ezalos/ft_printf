@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/09 18:08:15 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:43:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_arg
 	int				sign;
 	int				htag;
 	int				precision;
+	int				precision_exist;
 	int				modifier_h;
 	int				modifier_l;
 	int				modifier_L;
@@ -89,13 +90,15 @@ int			parsing(t_printf *print);
 //TYPES
 int			print_unsigned_integer(t_printf *print, uintmax_t nb);
 int			print_pointer(t_printf *print, void* ptr);
-int			print_float(t_printf *print, long double nb);
+int			print_float(t_printf *print, double nb);
 int			print_string(t_printf *print, char *str);
+char		*ft_nb_to_a(intmax_t n, size_t base);
 int			print_integer(t_printf *print, intmax_t nb);
 int			print_character(t_printf *print, char *str);
 int			print_others(t_printf *print, void *str);
 
 //MALLOC AND MOVE
+int			get_printf(t_printf *print, char **str);
 int			paste_format_in_printf(t_printf *print);
 int			paste_int_in_printf(t_printf *print, char *str);
 int			paste_str_in_printf(t_printf *print, char *str);
