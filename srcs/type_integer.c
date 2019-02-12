@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 15:00:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/12 20:20:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char		*ft_nb_to_a(intmax_t n, size_t base)
 	size_t	size;
 	int		neg;
 	uintmax_t nb;
-	int		i;
 
 	neg = 1;
 	if (n >= 0)
@@ -73,8 +72,7 @@ char		*ft_nb_to_a(intmax_t n, size_t base)
 	}
 	else
 		nb = n;
-	i = size;
-	ft_putnbr_str(i - 1, nb, nb_str, base);
+	ft_putnbr_str(size - 1, nb, nb_str, base);
 	return (nb_str);
 }
 
