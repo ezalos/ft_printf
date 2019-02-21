@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 19:45:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/21 14:29:38 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int		main(int ac, char **av)
 	int		r_v;
 	int		r_valu;
 	char	*str;
+	long double x = 145634135843541100000000000000.01;
 
 	str = ft_memalloc(3);
 	str[0] = 'B';
 	str[1] = 'A';
 	str[2] = 'C';
-	printf("->tstprintf: |%s|\n\n\n", str);
+	printf("->tstprintf: |%s|%Lf|\n\n\n", str, x);
 	ft_strdel(&str);
 	if (ac <= 1)
 		return (0);

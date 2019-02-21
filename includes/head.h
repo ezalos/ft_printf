@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 16:43:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/21 18:45:38 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct			s_printf
 	size_t				size_all;
 	t_arg				arg[1];
 }						t_printf;
+
+typedef struct		s_float
+{
+	unsigned char	sign[1 + 1];
+	unsigned char	exposant[8 * 3 + 1];
+	unsigned char	mantisse[5 * 8];
+}					t_float;
 
 # define M_PRTC(x) 		if (!x) return (NULL);
 
