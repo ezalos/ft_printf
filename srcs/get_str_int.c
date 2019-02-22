@@ -6,76 +6,71 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 14:18:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:03:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-static int			add_precision_minwidth(t_printf *print, char **str)
+int			get_sizes_precision_minwidth(t_printf *print, char **str, t_pre_min *box)
 {
-	size_t		size_m;
-	size_t		size_p;
-	size_t		len_str;
-	int			neg;
-	char		*tmp;
-
-	if (!print->arg->precision && !print->arg->minimum_width)
-		return (-1);
-
-
-
-
-	len_str = ft_strlen(*str);
-	neg = 0;
+	box->len_str = ft_strlen(*str);
+	box->neg = 0;
 	if (*str[0] == '-')
 	{
-		len_str--;
-		neg = 1;
+		box->len_str--;
+		box->neg = 1;
 	}
-	if (len_str >= print->arg->precision)
-		size_p = 0;
+	if ((int)box->len_str >= print->arg->precision)
+		box->size_p = 0;
 	else
-		size_p = print->arg->precision - len_str;
+		box->size_p = print->arg->precision - box->len_str;
 
-	if (len_str + size_p >= print->arg->minimum_width)
-		size_m = 0;
+	if ((int)box->len_str + (int)box->size_p >= print->arg->minimum_width)
+		box->size_m = 0;
 	else
-		size_m = print->arg->minimum_width - (len_str + size_p);
+		box->size_m = print->arg->minimum_width - (box->len_str + box->size_p);
+	return (1);
+}
+
+int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_min *box)
+{
+	char		*tmp;
 
 
-
-
-	if (!(tmp = ft_memalloc(len_str + size_m + size_p + neg)))
+	if (!(tmp = ft_memalloc(box->len_str + box->size_m + box->size_p + box->neg)))
 		return (0);
-	ft_memset(tmp, (int)'0', len_str + size_m + size_p + neg);
-
-
-
-
+	ft_memset(tmp, (int)'0', box->len_str + box->size_m + box->size_p + box->neg);
 	if (print->arg->ajust_left)
 	{
-		//ft_strcpy(tmp + size_p + neg, *str + neg); //add nbr
-		ft_memmove(tmp + size_p + neg,  *str + neg, len_str); //add nbr
-		ft_memset(tmp + len_str + size_p + neg, (int)print->arg->space_filled, size_m); //add minimum_width
-		if (neg)
+		ft_memmove(tmp + box->size_p + box->neg,  *str + box->neg, box->len_str); //add nbr
+		ft_memset(tmp + box->len_str + box->size_p + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+		if (box->neg)
 			tmp[0] = '-';
 		ft_strdel(str);
 		*str = tmp;
-		return (len_str + size_m + size_p);
+		return (box->len_str + box->size_m + box->size_p);
 	}
-	ft_memset(tmp + neg, (int)print->arg->space_filled, size_m); //add minimum_width
-	ft_memmove(tmp + size_m + size_p + neg,  *str + neg, len_str); //add nbr
-	//ft_strcpy(tmp + size_m + size_p + neg, *str + neg)
-	if (neg)
+	ft_memset(tmp + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+	ft_memmove(tmp + box->size_m + box->size_p + box->neg,  *str + box->neg, box->len_str); //add nbr
+	if (box->neg)
 		tmp[0] = '-';
 	ft_strdel(str);
 	*str = tmp;
+	return (1);
 
 
+}
 
+static int	add_precision_minwidth(t_printf *print, char **str)
+{
+	t_pre_min	box;
 
-	return (len_str + size_m + size_p);
+	if (!print->arg->precision && !print->arg->minimum_width)
+		return (-1);
+	get_sizes_precision_minwidth(print, str, &box);
+	adjust_string_with_precision_minwidth(print, str, &box);
+	return (box.len_str + box.size_m + box.size_p);
 }
 
 int			paste_int_in_printf(t_printf *print, char *str)

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:35:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 16:37:15 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:35:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			parsing_unsigned_integer(t_printf *print)
 int			parsing_float(t_printf *print)
 {
 	if (print->arg->type == 'f')
-		print_float(print, (double)va_arg(print->ap, double));
+		print_float(print, va_arg(print->ap, double));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 14:53:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/22 17:37:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	check_flags(const char c, t_arg *arg)
 	}
 	else if (c == '#')
 		arg->htag = 1;
+	if (arg->ajust_left && arg->space_filled == '0')
+		arg->space_filled = ' ';
 }
 
 void	check_minimum_width_or_precision(const char **f, t_arg *arg)
