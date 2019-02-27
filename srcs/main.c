@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 18:08:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 18:48:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,29 @@ int		main(int ac, char **av)
 		return (0);
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
-	r_valu = printf("->truprintf: |%c|%d|%s|%f|%c|%p|\n", '\0', nb, av[1], nd, av[1][0], av);
-	r_v = ft_printf("->ft_printf: |%c|%d|%s|%f|%c|%p|\n", '\0', nb, av[1], nd, av[1][0], av);
+	// r_valu = printf("->truprintf: %d%d\n", nb, nb);
+	// r_v = ft_printf("->ft_printf: %d%d\n", nb, nb);
+	r_valu = printf("->truprintf: |%c|%d%d|%s|%fcoucou|%c|%p|%c%d\n", '\0', nb, nb, av[1], nd, av[1][0], av, '\0', '\0');
+	r_v = ft_printf("->ft_printf: |%c|%d%d|%s|%fcoucou|%c|%p|%c%d\n", '\0', nb, nb, av[1], nd, av[1][0], av, '\0', '\0');
 
+	printf("\n");
 	printf("--ft_ r_val: %d\n", r_v);
 	printf("--tru r_val: %d\n", r_valu);
 
 	return (0);
 }
+
+
+/*
+**	BUGS :
+**
+**	Termine par %* : size trop petite de 1;
+**	avoir %*%* sans rien entre : ecrit litteralement, ou segfault
+**
+**
+**
+**
+**
+**
+**
+*/

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 18:12:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 18:48:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int			paste_format_in_printf(t_printf *print)
 	char			*tmp;
 	char			*tmp2;
 
-	if (print->i <= 0 || !(tmp = ft_strsub(print->format, 0, print->i)))
+ 	if (print->i <= 0)
+		return (1);
+	if (!(tmp = ft_strsub(print->format, 0, print->i)))
 		return (0);
 	tmp2 = print->printf;
 	if (tmp2)
@@ -47,6 +49,8 @@ int			ft_printf(const char *format, ...)
 	{
 		if (ft_char_srch(print.format[print.i], "%"))
 		{
+			//ft_putchar(print.format[print.i + 1]);
+			//ft_putendl("");
 			if(!(paste_format_in_printf(&print)))
 				return (-1);
 			init_struct_arg(&print, format);
@@ -54,7 +58,8 @@ int			ft_printf(const char *format, ...)
 			check_arg(&print.format , print.arg);
 			parsing(&print);
 		}
-		print.i++;
+		if (print.format[print.i] != '%')
+			print.i++;
 	}
 	if(!(paste_format_in_printf(&print)))
 		return (-1);
