@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:18:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 17:22:48 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:26:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 
 	tmp = print->printf;
 	(void)content_size;
+	if (**str == 0)
+	{
+		output_string(print);
+		write(1, "\0", 1);
+		print->size_all++;
+		return (1);
+	}
 	if (tmp)
 	{
 		if (!(print->printf = ft_strjoin(tmp, *str)))

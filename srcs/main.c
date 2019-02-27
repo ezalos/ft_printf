@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 16:03:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:26:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int		main(int ac, char **av)
 		return (0);
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
-	r_valu = printf("->truprintf: |%d|%s|%f|%c|\n", nb, av[1], nd, av[1][0]);
-	r_v = ft_printf("->ft_printf: |%d|%s|%f|%c|\n", nb, av[1], nd, av[1][0]);
+	r_valu = printf("->truprintf: |%d|%s|%f|%c|\n", nb, av[1], nd, '\0');
+	r_v = ft_printf("->ft_printf: |%d|%s|%f|%c|\n", nb, av[1], nd, '\0');
 
 	printf("--ft_ r_val: %d\n", r_v);
 	printf("--tru r_val: %d\n", r_valu);
