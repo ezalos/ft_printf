@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/22 17:12:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 18:06:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int			print_float(t_printf *print, long double ldb)
 	char		*int_part;
 	char		*decimal_part;
 
-	C_GREEN
-	printf("%Lf\n", ldb);
-	C_RESET
+	// C_GREEN
+	// printf("%Lf\n", ldb);
+	// C_RESET
 	neg = 0;
 	if (ldb < 0)
 	{

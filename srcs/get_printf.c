@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:18:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 17:26:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 18:13:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 		output_string(print);
 		write(1, "\0", 1);
 		print->size_all++;
+//		ft_strdel(&print->printf);
+		ft_strdel(str);
 		return (1);
 	}
 	if (tmp)

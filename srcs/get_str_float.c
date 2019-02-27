@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:10:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 17:18:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 18:10:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			paste_float_in_printf(t_printf *print, char *str)
 		if (!(fill_str = ft_strnew(fill)))
 			return (-1);
 		ft_memset(fill_str, (int) print->arg->space_filled, fill);
-		printf("%s\n", fill_str);
+		//printf("%s\n", fill_str);
 		tmp = str;
 		if (print->arg->ajust_left)
 		{
