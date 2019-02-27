@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/22 16:05:55 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/27 16:05:51 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS		=	main\
 				init output\
 				type_float type_integer type_pointer type_string\
 				type_unsigned_integer type_others type_character\
-				get_str_int get_str_str get_str_float get_printf
+				get_str_int get_str_str get_str_float get_printf\
+				get_str_char
 
 SRC_PATH	= ./srcs
 

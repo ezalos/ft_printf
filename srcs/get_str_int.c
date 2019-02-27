@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/22 16:03:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:22:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			paste_int_in_printf(t_printf *print, char *str)
 {
 	if (!(add_precision_minwidth(print, &str)))
 		return (-1);
-	if (!(get_printf(print, &str)))
+	if (!(get_printf(print, &str, ft_strlen(str))))
 		return (-1);
 	return (1);
 }

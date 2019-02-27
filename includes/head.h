@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/22 16:05:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:06:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_arg
 
 typedef struct			s_printf
 {
+	t_list				*lst_to_print;
 	const char 			*format;
 	char				*start_format;
 	va_list 			ap;
@@ -109,15 +110,16 @@ int			print_float(t_printf *print, long double ldb);
 int			print_string(t_printf *print, char *str);
 char		*ft_nb_to_a(intmax_t n, size_t base);
 int			print_integer(t_printf *print, intmax_t nb);
-int			print_character(t_printf *print, char *str);
+int			print_character(t_printf *print, char str);
 int			print_others(t_printf *print, void *str);
 
 //MALLOC AND MOVE
-int			get_printf(t_printf *print, char **str);
+int			get_printf(t_printf *print, char **str, size_t content_size);
 int			paste_format_in_printf(t_printf *print);
 int			paste_int_in_printf(t_printf *print, char *str);
 int			paste_str_in_printf(t_printf *print, char *str);
 int			paste_float_in_printf(t_printf *print, char *str);
+int			paste_char_in_printf(t_printf *print, char str);
 
 //CHEACK_ARGS
 void		check_flags(const char c, t_arg *arg);
