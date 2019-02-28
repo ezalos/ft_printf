@@ -6,11 +6,13 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/27 16:05:51 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/28 12:11:08 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
+NAME = libftprintf.a
+
+EXEC = ft_printf
 
 CC = gcc
 
@@ -39,14 +41,15 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 ##############################################################################
 
-SRCS		=	main\
-				ft_printf\
+SRCS		=	ft_printf\
 				ft_printf_options parsing check_arg\
 				init output\
 				type_float type_integer type_pointer type_string\
 				type_unsigned_integer type_others type_character\
 				get_str_int get_str_str get_str_float get_printf\
 				get_str_char
+
+MAIN		= main.c
 
 SRC_PATH	= ./srcs
 
@@ -142,7 +145,9 @@ all :	$(NAME)
 
 $(NAME): $(A_OBJ) $(HEAD_PATH)
 		@$(MAKE) -C $(LIB_DIR)
-		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(A_OBJ) $(LIB) -o $(NAME))
+		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(MAIN) $(LIB) -o $(EXEC))
+
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -o $@ -c $<)
@@ -153,7 +158,7 @@ clean :
 
 fclean : clean
 		@echo "\$(YELLOW)$(NAME) \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
-		@rm -rf $(NAME)
+		@rm -rf $(NAME) $(EXEC)
 
 aclean : clean
 		@$(MAKE) clean -C $(LIB_DIR)
@@ -172,10 +177,10 @@ git :
 		@git push
 
 t	:	all
-		./$(NAME) "$(MSG)"
+		./$(EXEC) "$(MSG)"
 
 tv	:	all
-		$(VALGRIND) ./$(NAME) "$(MSG)"
+		$(VALGRIND) ./$(EXEC) "$(MSG)"
 
 
 ##########################
