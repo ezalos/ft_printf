@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/28 12:11:08 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/28 12:47:48 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,7 +143,7 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(A_OBJ) $(HEAD_PATH)
+$(NAME): $(A_OBJ) $(HEAD_PATH) $(MAIN)
 		@$(MAKE) -C $(LIB_DIR)
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(MAIN) $(LIB) -o $(EXEC))
@@ -177,7 +177,9 @@ git :
 		@git push
 
 t	:	all
-		./$(EXEC) "$(MSG)"
+		./$(EXEC) "$(MSG)" 0
+		./$(EXEC) "$(MSG)" 1
+		./$(EXEC) "$(MSG)" 2
 
 tv	:	all
 		$(VALGRIND) ./$(EXEC) "$(MSG)"
