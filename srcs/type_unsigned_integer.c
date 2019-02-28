@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:52:49 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 20:20:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/28 18:04:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,23 @@ char			*ft_u_nb_to_a(uintmax_t n, size_t base)
 
 int				print_unsigned_integer(t_printf *print, uintmax_t nb)
 {
+	//char	*tmp;
 	int 	base;
 	int		i;
 
 	base = 10;
 	if (print->arg->type == 'o')
 		base = 8;
-	else if (print->arg->type == 'x')
-		base = 16;
-	else if (print->arg->type == 'X')
+	else if (print->arg->type == 'x' || print->arg->type == 'X')
 		base = 16;
 	print->last_type = ft_u_nb_to_a(nb, base);
 	i = -1;
 	if (print->arg->type == 'X')
 		while (print->last_type[++i])
 			print->last_type[i] = ft_toupper(print->last_type[i]);
+	//printf("|%s|\n", print->last_type);
+	//print->last_type[i] = 0;
+	//printf("MINW: %d\n", print->arg->minimum_width);
 	paste_int_in_printf(print, print->last_type);
 	return (0);
 }

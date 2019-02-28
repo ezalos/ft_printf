@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:35:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 17:56:48 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:04:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ int			parsing(t_printf *print)
 	else if (print->arg->type == 'p')
 		print_pointer(print, va_arg(print->ap, void*));
 	else
-		print_others(print, va_arg(print->ap, void*));
+	{
+		print->format++;
+		print_character(print, print->arg->type);
+	}
+	//	print_others(print, va_arg(print->ap, void*));
 	return (0);
 }

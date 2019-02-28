@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_str_int.c                                      :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 17:50:19 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 17:10:46 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/11/22 14:54:21 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "libft.h"
 
-int			paste_int_in_printf(t_printf *print, char *str)
+int		ft_toupper(int c)
 {
-
-	if (!(add_precision_minwidth(print, &str, 0)))
-		return (-1);
-	if (!(get_printf(print, &str, ft_strlen(str))))
-		return (-1);
-	return (1);
+	if (ft_islower(c))
+		c = c - 'a' + 'A';
+	return (c);
 }

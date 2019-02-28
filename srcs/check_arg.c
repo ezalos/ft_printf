@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/22 17:37:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/28 19:04:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	check_flags(const char c, t_arg *arg)
 	}
 	else if (c == '#')
 		arg->htag = 1;
+	else if (c == ' ')
+		arg->space_filled = ' ';
 	if (arg->ajust_left && arg->space_filled == '0')
 		arg->space_filled = ' ';
 }
@@ -66,7 +68,7 @@ void	check_arg(const char **f, t_arg *arg)
 {
 	while (!arg->type)
 	{
-		if (**f == '#' || **f == '-' || **f == '+' || **f == '0')
+		if (**f == '#' || **f == '-' || **f == '+' || **f == '0' || **f == ' ')
 			check_flags(*(*f)++, arg);
 		else if (ft_isdigit(**f) || **f == '.')
 			check_minimum_width_or_precision(f, arg);

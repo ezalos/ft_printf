@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 17:06:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:49:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,11 @@ int			printf_options(t_printf *print, int i);
 
 //PARSING
 int			parsing(t_printf *print);
+
+//PRECISION WIDTH
+int			get_sizes_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
+int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
+int			add_precision_minwidth(t_printf *print, char **str, int type);
 
 //TYPES
 int			print_unsigned_integer(t_printf *print, uintmax_t nb);

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/28 12:47:48 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/28 17:48:05 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,13 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 
 SRCS		=	ft_printf\
-				ft_printf_options parsing check_arg\
+				ft_printf_options parsing check_arg precision_minwidth\
 				init output\
 				type_float type_integer type_pointer type_string\
 				type_unsigned_integer type_others type_character\
 				get_str_int get_str_str get_str_float get_printf\
-				get_str_char
+				get_str_char\
+				ft_bzero ft_char_srch ft_isdigit ft_memalloc ft_memmove ft_memset ft_strdel  ft_strdup ft_strjoin ft_strlen ft_strnew ft_strsub ft_islower ft_toupper
 
 MAIN		= main.c
 
@@ -143,9 +144,11 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(A_OBJ) $(HEAD_PATH) $(MAIN)
+$(NAME): $(A_OBJ) $(HEAD_PATH)
 		@$(MAKE) -C $(LIB_DIR)
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
+
+$(EXEC): $(NAME) $(MAIN)
 		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(MAIN) $(LIB) -o $(EXEC))
 
 
@@ -176,12 +179,18 @@ git :
 		git commit -am "$(MSG)"
 		@git push
 
-t	:	all
+t	:	$(EXEC)
 		./$(EXEC) "$(MSG)" 0
 		./$(EXEC) "$(MSG)" 1
 		./$(EXEC) "$(MSG)" 2
+		./$(EXEC) "$(MSG)" 3
+		./$(EXEC) "$(MSG)" 4
+		./$(EXEC) "$(MSG)" 5
+		./$(EXEC) "$(MSG)" 6
+		./$(EXEC) "$(MSG)" 7
+		./$(EXEC) "$(MSG)" 8
 
-tv	:	all
+tv	:	$(EXEC)
 		$(VALGRIND) ./$(EXEC) "$(MSG)"
 
 

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_str_int.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 17:50:19 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 17:11:48 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/02/15 13:38:47 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "libft.h"
 
-int			paste_int_in_printf(t_printf *print, char *str)
+char	*ft_strdup(const char *src)
 {
+	char	*dest;
+	int		i;
+	int		size;
 
-	if (!(add_precision_minwidth(print, &str, 0)))
-		return (-1);
-	if (!(get_printf(print, &str, ft_strlen(str))))
-		return (-1);
-	return (1);
+	size = ft_strlen(src);
+	if (!(dest = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	dest[size] = '\0';
+	i = -1;
+	while (++i < size)
+		dest[i] = src[i];
+	return (dest);
 }

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_str_int.c                                      :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 17:50:19 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 11:12:32 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/12/04 11:34:58 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "libft.h"
 
-int			paste_int_in_printf(t_printf *print, char *str)
+char	*ft_strnew(size_t size)
 {
+	char	*exact;
 
-	if (!(add_precision_minwidth(print, &str, 0)))
-		return (-1);
-	if (!(get_printf(print, &str, ft_strlen(str))))
-		return (-1);
-	return (1);
+	if (!(exact = (char*)malloc(sizeof(char) * (++size))))
+		return (NULL);
+	while (size > 0)
+		exact[--size] = '\0';
+	exact[0] = '\0';
+	return (exact);
 }
