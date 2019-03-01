@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 19:04:49 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/01 15:59:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_flags(const char c, t_arg *arg)
 	else if (c == '#')
 		arg->htag = 1;
 	else if (c == ' ')
-		arg->space_filled = ' ';
+		arg->space = 1;
 	if (arg->ajust_left && arg->space_filled == '0')
 		arg->space_filled = ' ';
 }

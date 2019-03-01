@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precision_minwidth.c                               :+:      :+:    :+:   */
+/*   ajust_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:45:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 19:15:49 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/01 16:49:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ int			get_sizes_precision_minwidth(t_printf *print, char **str, t_pre_min *box)
 {
 	box->len_str = ft_strlen(*str);
 	box->neg = 0;
+
 	if (*str[0] == '-')
-	{
-//		box->len_str--;
 		box->neg = 1;
-	}
+	else if (print->arg->sign)
+		box->neg = 1;
+
+
 	if ((int)box->len_str >= print->arg->precision)
 		box->size_p = 0;
 	else
 		box->size_p = print->arg->precision - box->len_str;
+	if (print->arg->space && print->arg->space_filled == '0')
+		box->size_p++;
+
 
 	if ((int)box->len_str + (int)box->size_p >= print->arg->minimum_width)
 		box->size_m = 0;
@@ -63,6 +68,26 @@ int			get_sizes_precision_minwidth_str(t_printf *print, char **str, t_pre_min *b
 	return (1);
 }
 
+void		add_sign_option_space(t_printf *print, char *tmp, t_pre_min *box)
+{
+	if (print->arg->space_filled == '0')
+	{
+		if (print->arg->space)
+			tmp[0] = ' ';
+		if (print->arg->sign)
+			tmp[print->arg->space] = '+';
+		else if (box->neg)
+			tmp[print->arg->space] = '-';
+	}
+	else
+	{
+		if (print->arg->sign)
+			tmp[0] = '+';
+		else if (box->neg)
+			tmp[0] = '-';
+	}
+}
+
 int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_min *box)
 {
 	char		*tmp;
@@ -71,33 +96,24 @@ int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_m
 	if (!(tmp = ft_strnew(box->len_str + box->size_m + box->size_p + box->neg)))
 		return (0);
 	ft_memset(tmp, (int)'0', box->len_str + box->size_m + box->size_p + box->neg);
-	//printf("~->%s\n", tmp);
 	if (print->arg->ajust_left)
 	{
-		//printf("%d\n", box->neg);
-		//printf("~->%s\n", tmp);
 		ft_memmove(tmp + box->size_p + box->neg,  *str + box->neg, box->len_str); //add nbr
-		//printf("~->%s\n", tmp);
 		ft_memset(tmp + box->len_str + box->size_p + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
-		//printf("~->%s\n", tmp);
-		if (box->neg)
-			tmp[0] = '-';
+		add_sign_option_space(print, tmp, box);
 		ft_strdel(str);
 		*str = tmp;
-		//printf("~->%s\n", tmp);
 		return (box->len_str + box->size_m + box->size_p);
 	}
 	ft_memset(tmp + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
 	ft_memmove(tmp + box->size_m + box->size_p + box->neg,  *str + box->neg, box->len_str); //add nbr
-	if (box->neg)
-		tmp[0] = '-';
+	add_sign_option_space(print, tmp, box);
 	ft_strdel(str);
 	*str = tmp;
 	return (1);
-
-
 }
-int		adjust_htag(t_printf *print, char **str)
+
+int		add_htag(t_printf *print, char **str)
 {
 	char	*tmp;
 
@@ -106,55 +122,65 @@ int		adjust_htag(t_printf *print, char **str)
 		tmp = *str;
 
 		if (print->arg->type == 'o')
-			*str = ft_strjoin("0", tmp);
+		{
+			if (!(*str = ft_strjoin("0", tmp)))
+				return (-1);
+		}
 		else if (print->arg->type == 'X')
-			*str = ft_strjoin("0X", tmp);
+		{
+			if (!(*str = ft_strjoin("0X", tmp)))
+				return (-1);
+		}
 		else if (print->arg->type == 'x')
-			*str = ft_strjoin("0x", tmp);
+			if (!(*str = ft_strjoin("0x", tmp)))
+				return (-1);
 		ft_strdel(&tmp);
 	}
 	return (0);
 }
 
-int			add_precision_minwidth(t_printf *print, char **str, int type)
+int		adjust_htag(t_printf *print, char **str, t_pre_min *box)
 {
-	t_pre_min	box;
-
 	if (!print->arg->precision && !print->arg->minimum_width)
 	{
-		adjust_htag(print, str);
-		return (-1);
+		if (add_htag(print, str) == -1)
+			return (-1);
+		return (1);
 	}
-	if (!type)
+	if (print->arg->space_filled == ' ')
+		if (add_htag(print, str) == -1)
+			return (-1);
+	get_sizes_precision_minwidth(print, str, box);
+	if (print->arg->htag && print->arg->space_filled == '0')
 	{
-		if (print->arg->space_filled == '0')
-		{
-			get_sizes_precision_minwidth(print, str, &box);
-			if (print->arg->htag)
-			{
-				if (print->arg->type == 'o')
-					box.size_m -= 1;
-				else if (print->arg->type == 'x')
-					box.size_m -= 2;
-				else if (print->arg->type == 'X')
-					box.size_m -= 2;
-			}
-			adjust_string_with_precision_minwidth(print, str, &box);
-			adjust_htag(print, str);
-			return (1);
-		}
-		else if (print->arg->space_filled == ' ')
-		{
-			adjust_htag(print, str);
-			get_sizes_precision_minwidth(print, str, &box);
-			adjust_string_with_precision_minwidth(print, str, &box);
-			return (1);
-		}
+		if (print->arg->type == 'o')
+			box->size_m -= 1;
+		else if (ft_char_srch(print->arg->type, "xX"))
+			box->size_m -= 2;
 	}
-	else if (type == 1)
+	adjust_string_with_precision_minwidth(print, str, box);
+	if (print->arg->space_filled == '0')
+		if (add_htag(print, str) == -1)
+			return (-1);
+	return (1);
+}
+
+int			add_precision_minwidth(t_printf *print, char **str)
+{
+//	char		*tmp;
+	t_pre_min	box;
+
+	ft_bzero(&box, sizeof(box));
+	if (ft_char_srch(print->arg->type, "ouxX") && adjust_htag(print, str, &box))
+		return (box.len_str + box.size_m + box.size_p);
+	else if (ft_char_srch(print->arg->type, "dic"))
 		get_sizes_precision_minwidth(print, str, &box);
-	else if (type == -1)
+	else if (ft_char_srch(print->arg->type, "sc"))
 		return (1);
 	adjust_string_with_precision_minwidth(print, str, &box);
 	return (box.len_str + box.size_m + box.size_p);
 }
+
+
+
+//int			ajust_flags(t_printf *print, char **str)

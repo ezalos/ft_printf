@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 19:41:20 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/01 16:00:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,11 +371,20 @@ int		main(int ac, char **av)
 	if (ac <= 1)
 		return (0);
 	test = atoi(av[2]);
+	//test = -1;
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
 
 	printf("\n");
 	printf("\n");
+
+
+
+
+
+
+	printf("|% 020.5d|\n", 5);
+
 
 	ft_rgb_color(ft_random(200, 255, test + 10, nb + 5), ft_random(200, 255, test + 1, (nb + 1) / 2), ft_random(200, 255, (test + 1) * 2, (nb + 3)));
 	if (test == 0)

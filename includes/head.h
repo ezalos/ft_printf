@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 16:49:13 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/01 15:44:11 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_arg
 	char			space_filled;
 	int				sign;
 	int				htag;
+	int				space;
 	int				precision;
 	int				precision_exist;
 	int				modifier_h;
@@ -106,7 +107,7 @@ int			parsing(t_printf *print);
 //PRECISION WIDTH
 int			get_sizes_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
 int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
-int			add_precision_minwidth(t_printf *print, char **str, int type);
+int			add_precision_minwidth(t_printf *print, char **str);
 
 //TYPES
 int			print_unsigned_integer(t_printf *print, uintmax_t nb);
