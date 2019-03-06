@@ -19,6 +19,7 @@
 
 typedef struct		s_arg
 {
+	int				neg;
 	char			type;
 	int				minimum_width;
 	int				ajust_left;
@@ -105,9 +106,7 @@ int			printf_options(t_printf *print, int i);
 int			parsing(t_printf *print);
 
 //PRECISION WIDTH
-int			get_sizes_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
-int			adjust_string_with_precision_minwidth(t_printf *print, char **str, t_pre_min *box);
-int			add_precision_minwidth(t_printf *print, char **str);
+int			ajust_flags(t_printf *print, char **str);
 
 //TYPES
 int			print_unsigned_integer(t_printf *print, uintmax_t nb);

@@ -24,7 +24,7 @@ int			paste_char_in_printf(t_printf *print, char str)
 		get_printf(print, &my_char, 1);
 		return (1);
 	}
-	add_precision_minwidth(print, &my_char);
+	ajust_flags(print, &my_char);
 	get_printf(print, &my_char, ft_strlen(my_char));
 	return (1);
 }

@@ -19,7 +19,7 @@ int			print_string(t_printf *print, char *str)
 		paste_str_in_printf(print, ft_strdup("(null)"));
 		return (0);
 	}
-	add_precision_minwidth(print, &str);
+	ajust_flags(print, &str);
 	paste_str_in_printf(print, ft_strdup(str));
 	return (0);
 }

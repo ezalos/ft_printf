@@ -1,0 +1,121 @@
+./srcs/ajust_flags.c:31:// 	else if (print->arg->sign)
+./srcs/ajust_flags.c:35:// 	if ((int)box->len_str >= print->arg->precision)
+./srcs/ajust_flags.c:38:// 		box->size_p = print->arg->precision - box->len_str;
+./srcs/ajust_flags.c:39:// 	if (print->arg->space && print->arg->space_filled == '0')
+./srcs/ajust_flags.c:43:// 	if ((int)box->len_str + (int)box->size_p >= print->arg->minimum_width)
+./srcs/ajust_flags.c:46:// 		box->size_m = print->arg->minimum_width - (box->len_str + box->size_p);
+./srcs/ajust_flags.c:56:// 	if ((int)box->len_str >= print->arg->precision)
+./srcs/ajust_flags.c:59:// 		box->len_str = print->arg->precision;
+./srcs/ajust_flags.c:62:// 		box->size_p = print->arg->precision - box->len_str;
+./srcs/ajust_flags.c:64:// 	if ((int)box->len_str + (int)box->size_p >= print->arg->minimum_width)
+./srcs/ajust_flags.c:67:// 		box->size_m = print->arg->minimum_width - (box->len_str + box->size_p);
+./srcs/ajust_flags.c:73:// 	if (print->arg->space_filled == '0')
+./srcs/ajust_flags.c:75:// 		if (print->arg->space)
+./srcs/ajust_flags.c:77:// 		if (print->arg->sign)
+./srcs/ajust_flags.c:78:// 			tmp[print->arg->space] = '+';
+./srcs/ajust_flags.c:80:// 			tmp[print->arg->space] = '-';
+./srcs/ajust_flags.c:84:// 		if (print->arg->sign)
+./srcs/ajust_flags.c:99:// 	if (print->arg->ajust_left)
+./srcs/ajust_flags.c:102:// 		ft_memset(tmp + box->len_str + box->size_p + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+./srcs/ajust_flags.c:108:// 	ft_memset(tmp + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+./srcs/ajust_flags.c:120:// 	if (!print->arg->precision && !print->arg->minimum_width)
+./srcs/ajust_flags.c:126:// 	if (print->arg->space_filled == ' ')
+./srcs/ajust_flags.c:130:// 	if (print->arg->htag && print->arg->space_filled == '0')
+./srcs/ajust_flags.c:132:// 		if (print->arg->type == 'o')
+./srcs/ajust_flags.c:134:// 		else if (ft_char_srch(print->arg->type, "xX"))
+./srcs/ajust_flags.c:138:// 	if (print->arg->space_filled == '0')
+./srcs/ajust_flags.c:150:// 	if (ft_char_srch(print->arg->type, "ouxX") && print->arg->htag)
+./srcs/ajust_flags.c:155:// 	else if (ft_char_srch(print->arg->type, "dicouxX"))
+./srcs/ajust_flags.c:157:// 	else if (ft_char_srch(print->arg->type, "sc"))
+./srcs/ajust_flags.c:193:		if (print->arg->type == 'x')
+./srcs/ajust_flags.c:195:		else if (print->arg->type == 'X')
+./srcs/ajust_flags.c:209:	if (print->arg->minimum_width > len)
+./srcs/ajust_flags.c:211:		if (!(tmp = ft_strnew(print->arg->minimum_width - len)))
+./srcs/ajust_flags.c:213:		ft_memset(tmp, print->arg->space_filled, print->arg->minimum_width - len);
+./srcs/ajust_flags.c:215:	if (print->arg->ajust_left && tmp)
+./srcs/ajust_flags.c:218:	if (!print->arg->ajust_left && tmp)
+./srcs/ajust_flags.c:239:	if (print->arg->precision > len)
+./srcs/ajust_flags.c:241:		if (!(tmp = ft_strnew(print->arg->precision - len)))
+./srcs/ajust_flags.c:243:		ft_memset(tmp, '0', print->arg->precision - len);
+./srcs/ajust_flags.c:256:	if (print->arg->htag)
+./srcs/ajust_flags.c:259:		if (print->arg->type == 'o')
+./srcs/ajust_flags.c:264:		else if (print->arg->type == 'X')
+./srcs/ajust_flags.c:269:		else if (print->arg->type == 'x')
+./srcs/ajust_flags.c:301:	if (!print->arg->precision_exist && !print->arg->minimum_width)
+./srcs/ajust_flags.c:308:		if (print->arg->precision_exist)
+./srcs/ajust_flags.c:315:		if (print->arg->space_filled == '0' && print->arg->htag && ft_char_srch(print->arg->type, "xX"))
+./srcs/ajust_flags.c:323:	if (print->arg->precision_exist)
+./srcs/ajust_flags.c:326:	if (print->arg->sign && print->arg->type != 'c')
+./srcs/ajust_flags.c:331:	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' ' && *str[0] != '-')
+./srcs/ajust_flags.c:345:	if (print->arg->minimum_width)
+./srcs/ajust_flags.c:347:		if (!(tmp = ft_strnew(print->arg->minimum_width)))
+./srcs/ajust_flags.c:349:		ft_memset(tmp, print->arg->space_filled, print->arg->minimum_width);
+./srcs/ajust_flags.c:353:	//printf("\nspace_filled : %c\n", print->arg->space_filled);
+./srcs/ajust_flags.c:359:	if (!print->arg->precision && print->arg->precision_exist && *str[0] == '0')
+./srcs/ajust_flags.c:365:	else if (ft_char_srch(print->arg->type, "ouxX"))
+./srcs/ajust_flags.c:370:	else if (ft_char_srch(print->arg->type, "dic"))
+./srcs/check_arg.c:19:		if (!arg->ajust_left || !arg->precision)
+./srcs/check_arg.c:20:			arg->space_filled = '0';
+./srcs/check_arg.c:24:		arg->sign = 1;
+./srcs/check_arg.c:25:		arg->space = 0;
+./srcs/check_arg.c:29:		arg->ajust_left = 1;
+./srcs/check_arg.c:30:		arg->space_filled = ' ';
+./srcs/check_arg.c:33:		arg->htag = 1;
+./srcs/check_arg.c:34:	else if (c == ' ' && !arg->sign)
+./srcs/check_arg.c:35:		arg->space = 1;
+./srcs/check_arg.c:36:	if (arg->ajust_left && arg->space_filled == '0')
+./srcs/check_arg.c:37:		arg->space_filled = ' ';
+./srcs/check_arg.c:45:		tmp = &arg->precision;
+./srcs/check_arg.c:46:		arg->precision_exist = 1;
+./srcs/check_arg.c:55:		tmp = &arg->minimum_width;
+./srcs/check_arg.c:58:	if (arg->precision)
+./srcs/check_arg.c:59:		arg->space_filled = ' ';
+./srcs/check_arg.c:65:		arg->modifier_h++;
+./srcs/check_arg.c:67:		arg->modifier_l++;
+./srcs/check_arg.c:69:		arg->modifier_L++;
+./srcs/check_arg.c:75:	while (!arg->type)
+./srcs/check_arg.c:85:			arg->modifier_l = 2;
+./srcs/check_arg.c:90:			arg->type = *(*f)++;
+./srcs/check_arg.c:93:			arg->type = *(*f);
+./srcs/get_str_float.c:23:	if (len_str < (size_t)print->arg->minimum_width)
+./srcs/get_str_float.c:25:		fill = (size_t)print->arg->minimum_width - len_str;
+./srcs/get_str_float.c:28:		ft_memset(fill_str, (int) print->arg->space_filled, fill);
+./srcs/get_str_float.c:31:		if (print->arg->ajust_left)
+./srcs/get_str_int.c:18:		print->arg->sign = 0;
+./srcs/get_str_int.c:19:	if (!print->arg->precision && !print->arg->minimum_width &&
+./srcs/get_str_int.c:20:		print->arg->precision_exist && str[0] == '0')
+./srcs/get_str_int.c:22:		printf("%d\n", print->arg->htag);
+./srcs/get_str_int.c:23:		if (print->arg->htag)
+./srcs/get_str_str.c:22:	if (print->arg->precision_exist)
+./srcs/get_str_str.c:23:		size = print->arg->precision;
+./srcs/init.c:23:	print->arg->space_filled = ' ';
+./srcs/parsing.c:17:	if (print->arg->modifier_l == 1)
+./srcs/parsing.c:19:	else if (print->arg->modifier_l == 2)
+./srcs/parsing.c:21:	else if (print->arg->modifier_h == 1)
+./srcs/parsing.c:23:	else if (print->arg->modifier_h == 2)
+./srcs/parsing.c:32:	if (print->arg->modifier_l == 1)
+./srcs/parsing.c:34:	else if (print->arg->modifier_l == 2)
+./srcs/parsing.c:36:	else if (print->arg->modifier_h == 1)
+./srcs/parsing.c:38:	else if (print->arg->modifier_h == 2)
+./srcs/parsing.c:47:	if (print->arg->type == 'f')
+./srcs/parsing.c:54:	if (ft_char_srch(print->arg->type, "di"))
+./srcs/parsing.c:56:	else if (ft_char_srch(print->arg->type, "ouxX"))
+./srcs/parsing.c:58:	else if (ft_char_srch(print->arg->type, "feEgG"))
+./srcs/parsing.c:60:	else if (print->arg->type == 's')
+./srcs/parsing.c:62:	else if (print->arg->type == 'c')
+./srcs/parsing.c:64:	else if (print->arg->type == 'p')
+./srcs/parsing.c:69:		print_character(print, print->arg->type);
+./srcs/type_character.c:19:	if ((int)box->len_str >= print->arg->precision)
+./srcs/type_character.c:22:		box->size_p = print->arg->precision - box->len_str;
+./srcs/type_character.c:24:	if ((int)box->len_str + (int)box->size_p >= print->arg->minimum_width)
+./srcs/type_character.c:27:		box->size_m = print->arg->minimum_width - (box->len_str + box->size_p);
+./srcs/type_character.c:39:	if (print->arg->ajust_left)
+./srcs/type_character.c:42:		ft_memset(tmp + box->len_str + box->size_p + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+./srcs/type_character.c:47:	ft_memset(tmp + box->neg, (int)print->arg->space_filled, box->size_m); //add minimum_width
+./srcs/type_character.c:60:	if (!print->arg->precision && !print->arg->minimum_width)
+./srcs/type_float.c:37:	if (arg->precision_exist)
+./srcs/type_float.c:38:		precision = arg->precision;
+./srcs/type_unsigned_integer.c:69:	if (print->arg->type == 'o')
+./srcs/type_unsigned_integer.c:71:	else if (print->arg->type == 'x' || print->arg->type == 'X')
+./srcs/type_unsigned_integer.c:75:	if (print->arg->type == 'X')
+./srcs/type_unsigned_integer.c:79:		print->arg->htag = 0;

@@ -75,9 +75,8 @@ int				print_unsigned_integer(t_printf *print, uintmax_t nb)
 	if (print->arg->type == 'X')
 		while (print->last_type[++i])
 			print->last_type[i] = ft_toupper(print->last_type[i]);
-	//printf("|%s|\n", print->last_type);
-	//print->last_type[i] = 0;
-	//printf("MINW: %d\n", print->arg->minimum_width);
+	if (print->last_type[0] == '0' && (print->arg->type == 'x' || print->arg->type == 'X'))
+		print->arg->htag = 0;
 	paste_int_in_printf(print, print->last_type);
 	return (0);
 }

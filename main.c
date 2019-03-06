@@ -34,9 +34,9 @@ void test0(int nb)
 	int		r_v;
 	int		r_valu;
 
-	r_valu = printf("->truprintf: %d%c%d", nb, '\0', nb);
+	r_valu = printf("->truprintf: %03.2d", -1);
 	printf("\n");
-	r_v = ft_printf("->ft_printf: %d%c%d", nb, '\0', nb);
+	r_v = ft_printf("->ft_printf: %03.2d", -1);
 	printf("\n");
 
 	printf("\n");
@@ -228,6 +228,8 @@ void test6(void)
 	ft_printf("%#6o", 2500);
 	ft_putendl("");
 	ft_printf("%-#6o", 2500);
+	ft_putendl("vlobk,gmfy6bhds5zvgwyahvhyahyvy");
+	ft_printf("------------------@moulitest: %#.o %#.0o", 0, 0);
 	ft_putendl("");
 	ft_printf("@moulitest: %.o %.0o", 0, 0);
 	ft_putendl("");
@@ -348,9 +350,9 @@ void test8(char **av)
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
 	lol = atoi(av[1]);
-	r_valu = printf("->truprintf: %015#x|", 542);
+	r_valu = printf("->truprintf: %#015x|", 542);
 	printf("\n");
-	r_v = ft_printf("->ft_printf: %015#x|", 542);
+	r_v = ft_printf("->ft_printf: %#015x|", 542);
 	printf("\n");
 
 	printf("\n");

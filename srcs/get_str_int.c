@@ -14,8 +14,21 @@
 
 int			paste_int_in_printf(t_printf *print, char *str)
 {
-
-	if (!(add_precision_minwidth(print, &str)))
+	if (str[0] == '-')
+		print->arg->sign = 0;
+	if (!print->arg->precision && !print->arg->minimum_width &&
+		print->arg->precision_exist && str[0] == '0')
+	{
+		//printf("%d\n", print->arg->htag);
+		if (print->arg->htag)
+		{
+			//printf("%s\n", "coucou");
+			if (!(get_printf(print, &str, ft_strlen(str))))
+				return (-1);
+		}
+		return (1);
+	}
+	if (!(ajust_flags(print, &str)))
 		return (-1);
 	if (!(get_printf(print, &str, ft_strlen(str))))
 		return (-1);
