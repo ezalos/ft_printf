@@ -19,7 +19,8 @@ int			print_string(t_printf *print, char *str)
 		paste_str_in_printf(print, ft_strdup("(null)"));
 		return (0);
 	}
-	ajust_flags(print, &str);
-	paste_str_in_printf(print, ft_strdup(str));
+	str = ft_strdup(str);
+	//ajust_flags(print, &str);
+	paste_str_in_printf(print, str);
 	return (0);
 }

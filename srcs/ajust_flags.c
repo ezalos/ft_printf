@@ -362,7 +362,11 @@ int		type_s(t_printf *print, char **str)
 	if (print->arg->precision < len && print->arg->precision_exist)
 		*str[print->arg->precision] = 0;
 	if (!**str)
+	{
+		if (type_empty(print, str) == -1)
+			return (-1);
 		return (1);
+	}
 	if (print->arg->zero_exist && !print->arg->ajust_left)
 		print->arg->space_filled = '0';
 	if (add_minimum_width(print, str) == -1)
