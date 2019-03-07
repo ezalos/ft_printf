@@ -1,4 +1,4 @@
 int 	main()
 {
-	printf("|% c|\n", 'a');
+	printf("|%020.15s|\n", "coucou");
 }

@@ -19,7 +19,7 @@
 
 typedef struct		s_arg
 {
-	int				neg;
+	int				zero_exist;
 	char			type;
 	int				minimum_width;
 	int				ajust_left;

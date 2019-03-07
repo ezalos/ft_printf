@@ -350,7 +350,23 @@ int		type_empty(t_printf *print, char **str)
 		*str = tmp;
 		ft_strdel(&tmp2);
 	}
-	//printf("\nspace_filled : %c\n", print->arg->space_filled);
+	return (1);
+}
+
+int		type_s(t_printf *print, char **str)
+{
+	int		len;
+	char	*tmp;
+
+	len = ft_strlen(*str);
+	if (print->arg->precision < len && print->arg->precision_exist)
+		*str[print->arg->precision] = 0;
+	if (!**str)
+		return (1);
+	if (print->arg->zero_exist && !print->arg->ajust_left)
+		print->arg->space_filled = '0';
+	if (add_minimum_width(print, str) == -1)
+			return (-1);
 	return (1);
 }
 
@@ -358,7 +374,6 @@ int		ajust_flags(t_printf *print, char **str)
 {
 	if (!print->arg->precision && print->arg->precision_exist && *str[0] == '0')
 	{
-		//ft_putstr_color("coucou", -1, -1, -1);
 		if (type_empty(print, str) == -1)
 			return (-1);
 	}
@@ -370,6 +385,11 @@ int		ajust_flags(t_printf *print, char **str)
 	else if (ft_char_srch(print->arg->type, "dic"))
 	{
 		if (type_dic(print, str) == -1)
+			return (-1);
+	}
+	else if (print->arg->type == 's')
+	{
+		if (type_s(print, str) == -1)
 			return (-1);
 	}
 	return (1);

@@ -14,15 +14,12 @@
 
 int			paste_str_in_printf(t_printf *print, char *str)
 {
-	int		size;
-	size_t	len;
+	int		len;
 
-	size = -1;
+	if (!(ajust_flags(print, &str)))
+		return (-1);
 	len = ft_strlen(str);
-	if (print->arg->precision_exist)
-		size = print->arg->precision;
-	if (size >= 0 && size < (int)len)
-		str[size] = '\0';
-	get_printf(print, &str, len);
+	if (len)
+		get_printf(print, &str, len);
 	return (1);
 }
