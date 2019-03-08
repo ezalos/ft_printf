@@ -26,7 +26,6 @@ int			paste_float_in_printf(t_printf *print, char *str)
 		if (!(fill_str = ft_strnew(fill)))
 			return (-1);
 		ft_memset(fill_str, (int) print->arg->space_filled, fill);
-		//printf("%s\n", fill_str);
 		tmp = str;
 		if (print->arg->ajust_left)
 		{
@@ -39,8 +38,6 @@ int			paste_float_in_printf(t_printf *print, char *str)
 		ft_strdel(&fill_str);
 		ft_strdel(&tmp);
 	}
-	//if (!(add_precision_minwidth_float(print, &str)))
-	//	return (-1);
 	if (!(get_printf(print, &str, ft_strlen(str))))
 		return (-1);
 	return (1);

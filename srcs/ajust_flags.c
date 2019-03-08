@@ -323,15 +323,15 @@ int		type_dic(t_printf *print, char **str)
 	if (print->arg->precision_exist)
 			if (add_precison(print, str) == -1)
 				return (-1);
-	if (print->arg->sign && print->arg->type != 'c')
+	if (print->arg->sign && (print->arg->type == 'd' || print->arg->type == 'i'))
 		if (!(add_sign(str)))
 			return (-1);
 	if (add_minimum_width(print, str) == -1)
 			return (-1);
-	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' ' && *str[0] != '-')
+	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' ' && *str[0] != '-' && ft_char_srch(print->arg->type, "dic"))
 		if (!(add_space(str)))
 			return (-1);
-	if (*str[0] == '0')
+	if (*str[0] == '0'  && (print->arg->type == 'd' || print->arg->type == 'i'))
 		reajust_sign(*str);
 	return (1);	
 }
@@ -360,7 +360,7 @@ int		type_s(t_printf *print, char **str)
 
 	len = ft_strlen(*str);
 	if (print->arg->precision < len && print->arg->precision_exist)
-		*str[print->arg->precision] = 0;
+		(*str)[print->arg->precision] = '\0';
 	if (!**str)
 	{
 		if (type_empty(print, str) == -1)
@@ -396,6 +396,12 @@ int		ajust_flags(t_printf *print, char **str)
 		if (type_s(print, str) == -1)
 			return (-1);
 	}
+	else
+	{
+		if (type_dic(print, str) == -1)
+			return (-1);
+	}
+
 	return (1);
 }
 

@@ -63,7 +63,8 @@ int			ft_printf(const char *format, ...)
 			init_struct_arg(&print, format);
 			print.format++;
 			check_arg(&print.format , print.arg);
-			parsing(&print);
+			if (print.arg->type != '\0')
+				parsing(&print);
 		}
 		if (print.format[print.i] != '%' && print.format[print.i])
 			print.i++;

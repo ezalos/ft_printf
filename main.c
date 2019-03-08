@@ -34,9 +34,13 @@ void test0(int nb)
 	int		r_v;
 	int		r_valu;
 
-	r_valu = printf("->truprintf: %03.2d", -1);
+	r_valu = printf("%f", 10.49711);
 	printf("\n");
-	r_v = ft_printf("->ft_printf: %03.2d", -1);
+	r_v = ft_printf("%f", 10.49711);
+	printf("\n");
+	r_valu = printf("%.10f", 10.49711);
+	printf("\n");
+	r_v = ft_printf("%.10f", 10.49711);
 	printf("\n");
 
 	printf("\n");

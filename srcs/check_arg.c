@@ -16,7 +16,7 @@ void	check_flags(const char c, t_arg *arg)
 {
 	if (c == '0')
 	{
-		if (!arg->ajust_left || !arg->precision)
+		if (!arg->ajust_left && !arg->precision_exist)
 			arg->space_filled = '0';
 	}
 	else if (c == '+')
@@ -40,6 +40,7 @@ void	check_flags(const char c, t_arg *arg)
 void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 {
 	int		*tmp;
+
 	if (**f == '.')
 	{
 		tmp = &arg->precision;
@@ -53,6 +54,7 @@ void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 	}
 	else
 		tmp = &arg->minimum_width;
+	*tmp = 0;
 	while (**f >= '0' && **f<= '9')
 		*tmp = *tmp * 10 + *(*f)++ - 48;
 	if (arg->precision)
@@ -86,8 +88,15 @@ void	check_arg(const char **f, t_arg *arg)
 			(*f)++;
 		}
 		else if (**f == 'c' || **f == 's' || **f == 'p' || **f == 'd' ||
-		**f == 'o' || **f == 'u' || **f == 'x' || **f == 'X' || **f == 'f')
+		**f == 'o' || **f == 'u' || **f == 'x' || **f == 'X' || **f == 'f' || **f == 'U')
+		{
 			arg->type = *(*f)++;
+			if (arg->type == 'U')
+			{
+				arg->modifier_l = 2;
+				arg->type = 'u';
+			}
+		}
 		else
 		{
 			arg->type = *(*f);

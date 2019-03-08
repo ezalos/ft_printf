@@ -12,7 +12,14 @@
 
 #include "./../includes/head.h"
 
-/*ft_lstadd_end(print->lst_to_print, ft_lstnew(*str, content_size));*/
+void		add_minimum_width_0(t_printf *print)
+{
+	if (print->arg->minimum_width > 1)
+	{
+		write(1, &print->arg->space_filled, print->arg->minimum_width - 1);
+		print->size_all += print->arg->minimum_width - 1;
+	}
+}
 
 int			get_printf(t_printf *print, char **str, size_t content_size)
 {
@@ -23,9 +30,16 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 	if (**str == 0)
 	{
 		output_string(print);
-		write(1, "\0", 1);
-		//print->size_all++;
-//		ft_strdel(&print->printf);
+		if (print->arg->ajust_left)
+		{
+			write(1, "\0", 1);
+			add_minimum_width_0(print);
+		}
+		else
+		{
+			add_minimum_width_0(print);
+			write(1, "\0", 1);
+		}
 		ft_strdel(str);
 		return (1);
 	}
@@ -34,13 +48,11 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 		if (!(print->printf = ft_strjoin(tmp, *str)))
 			return (0);
 		ft_strdel(&tmp);
-		//print->size_all += ft_strlen(*str);
 		ft_strdel(str);
 	}
 	else
 	{
 		print->printf = *str;
-		//print->size_all = ft_strlen(*str);
 	}
 	return (1);
 }
