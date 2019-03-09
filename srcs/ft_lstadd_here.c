@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstadd_here.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 11:06:53 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/08 20:35:26 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/02/16 13:56:12 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/02/16 14:02:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void	ft_lstadd_here(t_list *alst, t_list *new)
 {
-	char	*exact;
+	t_list		*tmp;
 
-	if ((size < 1) || !(exact = (char*)P_MALLOC(size)))
-		return (NULL);
-	while (size > 0)
-		exact[--size] = 0;
-	exact[0] = 0;
-	return (exact);
+	if (alst != NULL)
+	{
+		tmp = alst->next;
+		alst->next = new;
+		ft_lst_reach_end(new)->next = tmp;
+	}
 }

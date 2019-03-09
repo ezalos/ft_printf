@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_clean_garbage.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 11:06:53 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/08 20:35:26 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/03/04 20:21:44 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/03/09 01:14:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void			ft_clean_garbage(void)
 {
-	char	*exact;
+	t_list	*garbage;
 
-	if ((size < 1) || !(exact = (char*)P_MALLOC(size)))
-		return (NULL);
-	while (size > 0)
-		exact[--size] = 0;
-	exact[0] = 0;
-	return (exact);
+	garbage = *ft_garbage_collector();
+	// ft_putstr("\n\t");
+	// ft_putendl(__func__);
+	ft_lst_free(&garbage);
+	//if (garbage)
+	//	free(&garbage);
+	ft_memdel((void**)ft_garbage_collector());
+	// ft_putendl("\tDONE\n\n");
 }

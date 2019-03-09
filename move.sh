@@ -1,0 +1,14 @@
+cp ../libft/ft_char_srch.c ./srcs/
+cp ../libft/ft_isdigit.c ./srcs/
+cp ../libft/ft_islower.c ./srcs/
+cp ../libft/ft_memalloc.c ./srcs/
+cp ../libft/ft_memmove.c ./srcs/
+cp ../libft/ft_memset.c ./srcs/
+cp ../libft/ft_strdel.c ./srcs/
+cp ../libft/ft_memdel.c ./srcs/
+cp ../libft/ft_strdup.c ./srcs/
+cp ../libft/ft_strjoin.c ./srcs/
+cp ../libft/ft_strlen.c ./srcs/
+cp ../libft/ft_strnew.c ./srcs/
+cp ../libft/ft_strsub.c ./srcs/
+cp ../libft/ft_toupper.c ./srcs/

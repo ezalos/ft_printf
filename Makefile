@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/01 16:01:08 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/09 02:04:41 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRCS		=	ft_printf\
 				type_unsigned_integer type_others type_character\
 				get_str_int get_str_str get_str_float get_printf\
 				get_str_char\
-				ft_bzero ft_char_srch ft_isdigit ft_memalloc ft_memmove ft_memset ft_strdel  ft_strdup ft_strjoin ft_strlen ft_strnew ft_strsub ft_islower ft_toupper
+				ft_putchar ft_putendl ft_putstr ft_lst_reach_end ft_lstadd_start ft_lstadd ft_lstadd_here ft_lstfind_th ft_burn_garbage ft_lstadd_end ft_putstr_fd ft_clean_garbage ft_garbage_collector ft_lst_free ft_memdel ft_nalloc ft_bzero ft_char_srch ft_isdigit ft_memalloc ft_memmove ft_memset ft_strdel  ft_strdup ft_strjoin ft_strlen ft_strnew ft_strsub ft_islower ft_toupper
 
 MAIN		= main.c
 
@@ -149,7 +149,7 @@ $(NAME): $(A_OBJ) $(HEAD_PATH)
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 
 $(EXEC): $(NAME) $(MAIN)
-		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(MAIN) $(LIB) -o $(EXEC))
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(LIB) $(MAIN) -o $(EXEC))
 
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
@@ -193,6 +193,8 @@ t	:	$(EXEC)
 tv	:	$(EXEC)
 		$(VALGRIND) ./$(EXEC) "$(MSG)"
 
+check :
+		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
 
 ##########################
 ##						##

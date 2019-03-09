@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 14:26:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/09 01:41:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			paste_format_in_printf(t_printf *print)
 {
 	char			*tmp;
 	char			*tmp2;
-	
+
 	// C_BROWN
 	// ft_putstr(__func__);
 	// C_YELLOW
@@ -47,6 +47,7 @@ int			paste_format_in_printf(t_printf *print)
 int			ft_printf(const char *format, ...)
 {
 	static t_printf		print;
+	int					r_val;
 
 	if (!(init_struct(&print, format)))
 		return (-1);
@@ -74,5 +75,7 @@ int			ft_printf(const char *format, ...)
 	//if (print.lets_print)
 	output_string(&print);
 //	free_all(print);
-	return (print.size_all);
+	r_val = print.size_all;
+	// ft_clean_garbage();
+	return (r_val);
 }

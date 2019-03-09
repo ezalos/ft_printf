@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/25 22:12:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/09 01:42:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ typedef	struct		s_tab
 
 # define BUFF_SIZE 256
 
+# ifndef P_MALLOC
+#  define P_MALLOC malloc
+# endif
 
 //# define LINUX
 
@@ -200,11 +203,31 @@ void				ft_tabiter(t_tab *tab, size_t dir, int(*f)(t_tab *, size_t, int), size_t
 t_tab				*ft_tabnew_ptr(void const *content, size_t content_size);
 size_t				ft_tab_lendir(t_tab *tab, size_t dir);
 t_tab				*ft_tab_dirth(t_tab *tab, size_t dir, size_t umpteenth);
-size_t				ft_tab_dir_clock(size_t dir, size_t move);
+size_t				ft_tab_dir_clock(size_t dir);
+size_t				ft_tab_dir_nclock(size_t dir, size_t move);
 size_t				ft_tab_dir_rclock(size_t dir);
 size_t				ft_tab_dir_reverse(size_t dir);
 t_tab				*ft_tabnew_dir(size_t len, size_t dir);
 int					ft_tab_connect_dir(size_t dir_line, t_tab *line_one, t_tab *line_two, size_t dir_connec);
 t_tab				*ft_tab_square_it(t_tab *tab, size_t dir);
+void				*nalloc(size_t size_content);
+void				*cnalloc(const void *content, size_t size_content);
+void				ft_clean_garbage(void);
+void				ft_burn_garbage(char *str);
+size_t				ft_lst_free(t_list **delete_me);
+t_list				**ft_garbage_collector(void);
+void				ft_tabadd(t_tab	**tab, t_tab *new, size_t dir, int umpteenth);
+void				ft_tabadd_here(t_tab *alst, t_tab *new, size_t dir);
+void				ft_tabadd_end(t_tab *alst, t_tab *new, size_t dir);
+void				ft_tabadd_start(t_tab **alst, t_tab *new, size_t dir);
+t_tab				*ft_tab_reach_end(t_tab *tab, size_t dir);
+t_tab				*ft_tabnew_rectangle(size_t x_axis, size_t y_axis, size_t x_dir);
+t_tab				*ft_tab_access(t_tab *tab, int dir_y, int dir_x, int rot);
+size_t				ft_tab_delete_row_len(t_tab *tab, size_t dir, size_t len);
+size_t				ft_tab_delete_row(t_tab *tab, size_t dir);
+void				ft_tab_connect_structs(t_tab *tab_one, t_tab *tab_two, size_t dir_one);
+t_tab				*ft_tab_cutone(t_tab *to_cut);
+size_t				ft_tabloop_lendir(t_tab *tab, size_t dir);
+size_t				ft_tabloop_it(t_tab *tab, size_t dir);
 
 #endif
