@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/01 15:44:11 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/09 19:44:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include "../../libft/libft.h"
+
+typedef struct		s_printfesse
+{
+	char			exist;
+	char			background;
+	int				red;
+	int				green;
+	int				blue;
+	int				line;
+	int				column;
+	char			*base_in;
+	char			*base_out;
+	char			*rand_str;
+	int				rand_nb;
+
+}					t_printfesse;
 
 typedef struct		s_arg
 {
@@ -46,6 +62,7 @@ typedef struct			s_printf
 	int					i;
 	size_t				size_all;
 	t_arg				arg[1];
+	t_printfesse		bonus[1];
 }						t_printf;
 
 typedef struct		s_float
@@ -128,11 +145,16 @@ int			paste_char_in_printf(t_printf *print, char str);
 
 //CHEACK_ARGS
 void		check_flags(const char c, t_arg *arg);
-void		check_minimum_width_or_precision(const char **f, t_arg *arg);
+void		check_minimum_width_or_precision(t_printf *print, const char **f);
 void		check_modifier(const char **f, t_arg *arg);
-void		check_arg(const char **f, t_arg *arg);
+void		check_arg(t_printf *print, const char **f);
+char		*get_value_of_star_or_str(t_printf *print, const char **f, char **tmp);
+int			get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp);
 
 //OUTPUT
 int			output_string(t_printf *print);
+
+//BONUS GESTION
+int		bonus_gestion(t_printf *print, const char **f);
 
 #endif

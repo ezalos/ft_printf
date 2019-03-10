@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/01 15:59:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/10 01:22:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,50 @@ void	check_flags(const char c, t_arg *arg)
 		arg->space_filled = ' ';
 }
 
-void	check_minimum_width_or_precision(const char **f, t_arg *arg)
+int		get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp)
+{
+	if (**f == '*')
+	{
+		*tmp = (int)va_arg(print->ap, int);
+		(*f)++;
+	}
+	else if (ft_isdigit(**f))
+		while (ft_isdigit(**f))
+			*tmp = *tmp * 10 + *(*f)++ - 48;
+	if (*tmp < 0)
+		*tmp = -*tmp;
+	return (*tmp);
+}
+
+char	*get_value_of_star_or_str(t_printf *print, const char **f, char **tmp)
+{
+	size_t		len;
+
+	len = 0;
+	if (**f == '*')
+	{
+		*tmp = va_arg(print->ap, char*);
+		(*f)++;
+	}
+	else
+	{
+		while ((*f)[len] != '}')
+			len++;
+		*tmp = ft_memalloc(len + 1);
+		ft_memmove(*tmp, (*f), len);
+		(*f) += len;
+	}
+	return (*tmp);
+}
+
+void	check_minimum_width_or_precision(t_printf *print, const char **f)
 {
 	int		*tmp;
 
 	if (**f == '.')
 	{
-		tmp = &arg->precision;
-		arg->precision_exist = 1;
+		tmp = &print->arg->precision;
+		print->arg->precision_exist = 1;
 		(*f)++;
 		if (**f == '0')
 		{
@@ -53,12 +89,11 @@ void	check_minimum_width_or_precision(const char **f, t_arg *arg)
 		}
 	}
 	else
-		tmp = &arg->minimum_width;
+		tmp = &print->arg->minimum_width;
 	*tmp = 0;
-	while (**f >= '0' && **f<= '9')
-		*tmp = *tmp * 10 + *(*f)++ - 48;
-	if (arg->precision)
-		arg->space_filled = ' ';
+	get_value_of_star_or_nb(print, f, tmp);
+	if (print->arg->precision)
+		print->arg->space_filled = ' ';
 }
 
 void	check_modifier(const char **f, t_arg *arg)
@@ -72,34 +107,37 @@ void	check_modifier(const char **f, t_arg *arg)
 	(*f)++;
 }
 
-void	check_arg(const char **f, t_arg *arg)
+void	check_arg(t_printf *print, const char **f)
 {
-	while (!arg->type)
+	while (!print->arg->type)
 	{
+		if (**f == '~')
+			if (0 >= bonus_gestion(print, f))
+				return ;
 		if (**f == '#' || **f == '-' || **f == '+' || **f == '0' || **f == ' ')
-			check_flags(*(*f)++, arg);
-		else if (ft_isdigit(**f) || **f == '.')
-			check_minimum_width_or_precision(f, arg);
+			check_flags(*(*f)++, print->arg);
+		else if (ft_isdigit(**f) || **f == '.' || **f == '*')
+			check_minimum_width_or_precision(print, f);
 		else if (**f == 'h' || **f == 'l' || **f == 'L')
-			check_modifier(f, arg);
+			check_modifier(f, print->arg);
 		else if (**f == 'j' || **f == 'z')
 		{
-			arg->modifier_l = 2;
+			print->arg->modifier_l = 2;
 			(*f)++;
 		}
 		else if (**f == 'c' || **f == 's' || **f == 'p' || **f == 'd' ||
 		**f == 'o' || **f == 'u' || **f == 'x' || **f == 'X' || **f == 'f' || **f == 'U')
 		{
-			arg->type = *(*f)++;
-			if (arg->type == 'U')
+			print->arg->type = *(*f)++;
+			if (print->arg->type == 'U')
 			{
-				arg->modifier_l = 2;
-				arg->type = 'u';
+				print->arg->modifier_l = 2;
+				print->arg->type = 'u';
 			}
 		}
 		else
 		{
-			arg->type = *(*f);
+			print->arg->type = *(*f);
 			break;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 02:24:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/10 01:55:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,17 +193,41 @@ void test8(float nd)
 
 int		main(int ac, char **av)
 {
+	char	***str;
 	int		test;
+	int		i;
+	int		j;
 	int		nb;
 	float	nd;
+	char	c;
 
+	ac--;
 	if (ac <= 1)
 		return (0);
 	test = atoi(av[2]);
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
 
-	ft_rgb_color(ft_random(200, 255, test + 10, nb + 5), ft_random(200, 255, test + 1, (nb + 1) / 2), ft_random(200, 255, (test + 1) * 2, (nb + 3)));
+	str = malloc(sizeof(char**) * (ac));
+	i = 0;
+	c = '.';
+	while (++i < ac)
+		str[i - 1] = ft_strsplit(av[i], c);
+	str[i - 1] = NULL;
+	printf("[%d;%d]\n", ac + 10, ft_atoi(av[ac]));
+	// i = -1;
+	// while (++i < ac - 1)
+	// {
+	// 	j = -1;
+	// 	while (++j < ft_atoi(av[ac]))
+	// 	{
+	// 		ft_putendl(str[i][j]);
+	// 	}
+	// }
+	ft_printf("%~[*;*]s", ac + 10, ft_atoi(av[ac]), str);
+	//printf("%p\t%d\n%p\t%d\n", &nb, (int)&nb, &nd, (int)&nd);
+//	ft_printf("%~{200;255;155}1\n2\n%~{}%*.*d%~{100;255;155}Louis%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{b?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\n", 10, 5, 123, (int)&test, &test, (int)&nd, &nd, (int)&nb, &nb, (int)&nb, &nb);
+/*	ft_rgb_color(ft_random(200, 255, test + 10, nb + 5), ft_random(200, 255, test + 1, (nb + 1) / 2), ft_random(200, 255, (test + 1) * 2, (nb + 3)));
 	if (test == 0)
 		test0(nd);
 	else if (test == 1)
@@ -223,7 +247,8 @@ int		main(int ac, char **av)
 	else if (test == 8)
 		test8(nd);
 	C_RESET
-	ft_clean_garbage();
+	ft_clean_garbage();*/
+	C_RESET
 	return (0);
 }
 

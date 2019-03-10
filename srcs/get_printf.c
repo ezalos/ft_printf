@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:18:43 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 12:28:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/09 22:39:06 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 {
 	char	*tmp;
 
+	if (!str || !*str)
+		return (1);
 	tmp = print->printf;
 	print->size_all += content_size;
 	if (**str == 0)

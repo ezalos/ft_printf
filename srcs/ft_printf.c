@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 01:41:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/09 17:47:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			ft_printf(const char *format, ...)
 				return (-1);
 			init_struct_arg(&print, format);
 			print.format++;
-			check_arg(&print.format , print.arg);
+			check_arg(&print, &print.format);
 			if (print.arg->type != '\0')
 				parsing(&print);
 		}
