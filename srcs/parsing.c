@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 18:35:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 15:04:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 19:22:11 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			parsing_float(t_printf *print)
 
 int			parsing(t_printf *print)
 {
+	//printf("~>%c\n", print->arg->type);
 	if (ft_char_srch(print->arg->type, "di"))
 		parsing_integer(print);
 	else if (ft_char_srch(print->arg->type, "ouxX"))
@@ -63,6 +64,8 @@ int			parsing(t_printf *print)
 		print_character(print, (char)va_arg(print->ap, int));
 	else if (print->arg->type == 'p')
 		print_pointer(print, va_arg(print->ap, void*));
+	else if (print->arg->type == 'b')
+		print_binary(print, va_arg(print->ap, void*));
 	else
 	{
 		print->format++;

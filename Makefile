@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/10 01:09:20 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/11 20:16:26 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,10 @@ SRCS		=	ft_printf\
 				ft_printf_options parsing check_arg ajust_flags\
 				init output bonus_gestion\
 				type_float type_integer type_pointer type_string\
-				type_unsigned_integer type_others type_character\
+				type_unsigned_integer type_others type_character type_binary\
 				get_str_int get_str_str get_str_float get_printf\
 				get_str_char\
-				ft_random ft_rgb_color ft_rgb_bcolor ft_place_cursor ft_putchar ft_putendl ft_putstr ft_lst_reach_end ft_lstadd_start ft_lstadd ft_lstadd_here ft_lstfind_th ft_burn_garbage ft_lstadd_end ft_putstr_fd ft_clean_garbage ft_garbage_collector ft_lst_free ft_memdel ft_nalloc ft_bzero ft_char_srch ft_isdigit ft_memalloc ft_memmove ft_memset ft_strdel  ft_strdup ft_strjoin ft_strlen ft_strnew ft_strsub ft_islower ft_toupper
+				ft_memcmp ft_atoi ft_strsplit ft_lstnew ft_strchr ft_get_next_line ft_power ft_strjoin_multi ft_strnlen ft_swap ft_isprint ft_random ft_rgb_color ft_rgb_bcolor ft_place_cursor ft_putchar ft_putendl ft_putstr ft_lst_reach_end ft_lstadd_start ft_lstadd ft_lstadd_here ft_lstfind_th ft_burn_garbage ft_lstadd_end ft_putstr_fd ft_clean_garbage ft_garbage_collector ft_lst_free ft_memdel ft_nalloc ft_bzero ft_char_srch ft_isdigit ft_memalloc ft_memmove ft_memset ft_strdel  ft_strdup ft_strjoin ft_strlen ft_strnew ft_strsub ft_islower ft_toupper
 
 MAIN		= main.c
 
@@ -149,7 +149,7 @@ $(NAME): $(A_OBJ) $(HEAD_PATH)
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 
 $(EXEC): $(NAME) $(MAIN)
-		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(LIB) $(MAIN) -o $(EXEC))
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(NAME) $(MAIN) -o $(EXEC))
 
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c

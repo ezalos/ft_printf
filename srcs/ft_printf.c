@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 17:47:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 21:00:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ int			ft_printf(const char *format, ...)
 	static t_printf		print;
 	int					r_val;
 
+	// ft_putendl(__func__);
 	if (!(init_struct(&print, format)))
 		return (-1);
 	va_start(print.ap, format);
 	print.i = 0;
 	while (print.format[print.i])
 	{
+		// ft_putendl("PBM?");
 		if (ft_char_srch(print.format[print.i], "%"))
 		{
 			//ft_putchar(print.format[print.i + 1]);
@@ -64,6 +66,7 @@ int			ft_printf(const char *format, ...)
 			init_struct_arg(&print, format);
 			print.format++;
 			check_arg(&print, &print.format);
+			//printf("{%c}\n", print.arg->type);
 			if (print.arg->type != '\0')
 				parsing(&print);
 		}
@@ -76,6 +79,7 @@ int			ft_printf(const char *format, ...)
 	output_string(&print);
 //	free_all(print);
 	r_val = print.size_all;
-	// ft_clean_garbage();
+	// ft_putendl("PBM?");
+	ft_clean_garbage();
 	return (r_val);
 }

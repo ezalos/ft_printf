@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean_garbage.c                                 :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 20:21:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:03:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 17:13:03 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/03/11 20:35:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_clean_garbage(void)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_list	*garbage;
+	size_t	i;
 
-	garbage = *ft_garbage_collector();
-	// ft_putstr("\n\t");
 	// ft_putendl(__func__);
-	ft_lst_free(&garbage);
-	//if (garbage)
-	//	free(&garbage);
-	//ft_memdel((void**)ft_garbage_collector());
-	// ft_putendl("\tDONE\n\n");
+	// ft_putchar(*(char*)s1);
+	// ft_putchar(*(char*)s2);
+	// ft_putendl("");
+	i = 0;
+	while (i < n && ((char*)s1)[i] == ((char*)s2)[i])
+		i++;
+	if (i == n)
+		return (0);
+	return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
 }

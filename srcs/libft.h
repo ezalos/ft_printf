@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 01:42:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 20:23:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ typedef	struct		s_tab
 # define BUFF_SIZE 256
 
 # ifndef P_MALLOC
-#  define P_MALLOC malloc
+#  define P_MALLOC nalloc
 # endif
+#  define NREE 1
 
 //# define LINUX
 

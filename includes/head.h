@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 19:44:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 18:46:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct			s_printf
 	char				lets_print;
 	int					i;
 	size_t				size_all;
+	size_t				fd;
+	char				invisible;
 	t_arg				arg[1];
 	t_printfesse		bonus[1];
 }						t_printf;
@@ -134,6 +136,7 @@ char		*ft_nb_to_a(intmax_t n, size_t base);
 int			print_integer(t_printf *print, intmax_t nb);
 int			print_character(t_printf *print, char str);
 int			print_others(t_printf *print, void *str);
+int			print_binary(t_printf *print, void* bin);
 
 //MALLOC AND MOVE
 int			get_printf(t_printf *print, char **str, size_t content_size);

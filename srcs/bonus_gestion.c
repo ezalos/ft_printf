@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:44:59 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/10 02:01:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 21:00:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			*ft_str_place_cursor(size_t line, size_t column)
 	char		*tmp;
 	char		*nb;
 
-	if (!(nb = ft_itoa(line)))
+	if (!(nb = ft_nb_to_a(line, 10)))
 		return (0);
 	if (!(string = ft_strjoin("\033[", nb)))
 		return (0);
@@ -46,7 +46,7 @@ char			*ft_str_place_cursor(size_t line, size_t column)
 	if (!(tmp = ft_strjoin(string, ";")))
 		return (0);
 	ft_strdel(&string);
-	if (!(nb = ft_itoa(column)))
+	if (!(nb = ft_nb_to_a(column, 10)))
 		return (0);
 	if (!(string = ft_strjoin(tmp, nb)))
 		return (0);
@@ -71,11 +71,11 @@ char			*ft_str_rgbcolor(char background, int red, int green, int blue)
 		green = ft_random(0, 255, clock(), 10);
 	if (blue < 0)
 		blue = ft_random(0, 255, clock(), 10);*/
-	if (!(s_red = ft_itoa(red)))
+	if (!(s_red = ft_nb_to_a(red, 10)))
 		return (NULL);
-	if (!(s_green = ft_itoa(green)))
+	if (!(s_green = ft_nb_to_a(green, 10)))
 		return (NULL);
-	if (!(s_blue = ft_itoa(blue)))
+	if (!(s_blue = ft_nb_to_a(blue, 10)))
 		return (NULL);
 	if (background)
 	{
@@ -325,6 +325,7 @@ char	*get_string_from_str_tab(t_printf *print, char ***str, int longest)
 	int		i;
 	int		j;
 
+	// ft_putendl(__func__);
 	i = (print->bonus->line * print->bonus->column * longest) + print->bonus->line;
 	to_print = ft_memalloc(i + 1);
 	ft_memset(to_print, ' ', i);
@@ -339,7 +340,7 @@ char	*get_string_from_str_tab(t_printf *print, char ***str, int longest)
 			{
 				if (str[i][j])
 				{
-					ft_memcpy(to_print + (i * print->bonus->column * longest) + (j * longest) + i,
+					ft_memmove(to_print + (i * print->bonus->column * longest) + (j * longest) + i,
 				 	str[i][j], ft_strlen(str[i][j]));
 				}
 				else
@@ -365,6 +366,7 @@ int		tab_gestion(t_printf *print, const char **f)
 
 	str = NULL;
 	(*f)++;
+	// ft_putendl(__func__);
 	get_value_of_star_or_nb(print, f, &print->bonus->line);
 	while (**f != ';')
 		(*f)++;
@@ -374,7 +376,12 @@ int		tab_gestion(t_printf *print, const char **f)
 	longest = -1;
 	if (**f == 's' && print->bonus->line && print->bonus->column)
 	{
+		// printf("[%d:%d]\n", 0, 0);
 		str = va_arg(print->ap, char***);
+		// printf("va_arg: %p\n", str);
+		// printf("va_arg: %p\n", *str);
+		if (!str)
+			return (0);
 		i = -1;
 		while (++i < print->bonus->line)
 		{
@@ -382,6 +389,7 @@ int		tab_gestion(t_printf *print, const char **f)
 			if (str[i])
 				while (++j < print->bonus->column)
 				{
+					// printf("[%d:%d]\n", i, j);
 					if (str[i][j])
 					{
 						if (longest <= (int)ft_strlen(str[i][j]))

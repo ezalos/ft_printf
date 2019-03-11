@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/10 01:22:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 19:18:00 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,13 @@ void	check_arg(t_printf *print, const char **f)
 			print->arg->modifier_l = 2;
 			(*f)++;
 		}
-		else if (**f == 'c' || **f == 's' || **f == 'p' || **f == 'd' ||
+		else if (**f == 'r')
+		{
+			print->invisible = 1;
+			(*f)++;
+			break;
+		}
+		else if (**f == 'c' || **f == 's' || **f == 'p' || **f == 'd' || **f == 'b' ||
 		**f == 'o' || **f == 'u' || **f == 'x' || **f == 'X' || **f == 'f' || **f == 'U')
 		{
 			print->arg->type = *(*f)++;

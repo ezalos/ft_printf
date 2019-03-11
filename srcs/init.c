@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 16:01:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/12 14:49:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 19:21:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int			init_struct(t_printf *print, const char *format)
 		print->start_format = (char*)print->format;
 		return (0);
 	}
+	print->fd = 1;
+	print->invisible = 0;
 	return (1);
 }

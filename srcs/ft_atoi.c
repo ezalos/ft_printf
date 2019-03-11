@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean_garbage.c                                 :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 20:21:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:03:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 17:13:53 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/03/07 23:15:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void			ft_clean_garbage(void)
+int		ft_atoi(const char *src)
 {
-	t_list	*garbage;
+	int		i;
+	int		sign;
+	int		res;
 
-	garbage = *ft_garbage_collector();
-	// ft_putstr("\n\t");
-	// ft_putendl(__func__);
-	ft_lst_free(&garbage);
-	//if (garbage)
-	//	free(&garbage);
-	//ft_memdel((void**)ft_garbage_collector());
-	// ft_putendl("\tDONE\n\n");
+	i = 0;
+	sign = 1;
+	res = 0;
+	if (!src)
+		return (0);
+	while (((src[i] >= 8 && src[i] <= 13) || src[i] == ' ') && src[i])
+		i++;
+	if (src[i] == '-' || src[i] == '+')
+	{
+		if (src[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (src[i] >= '0' && src[i] <= '9')
+		res = res * 10 + src[i++] - 48;
+	return (res * sign);
 }

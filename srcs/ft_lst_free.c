@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:22:07 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 01:30:11 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/11 21:04:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,27 @@ size_t			ft_lst_free(t_list **delete_me)
 
 	if (!delete_me)
 		return (0);
-	ft_putendl(__func__);
+	// ft_putendl(__func__);
 	tmp = *delete_me;
-	//tmp = tmp->next;
 	i = 0;
 	while (tmp)
 	{
-		// ft_putstr("{");
-		// ft_print_address_color((intmax_t)tmp);
-		// C_RESET
-	//	ft_putstr("->");
-		// ft_nb_to_a(i, 0);
-		// ft_putstr("}");
 		next = tmp->next;
-//		if (tmp->content)
 		leaks = tmp->content;
-		C_YELLOW
-		printf("\t\t%p\n", tmp);
-		C_GREEN
-		printf("\t\t%p\n", leaks);
-		//if (leaks && leaks->content)
-		//	ft_memdel((void**)&leaks->content);
-		// if (tmp->content_size)
-		// 	ft_strdel((char**)tmp->content);
-		// ft_strdel((char**)&tmp->content);
-		// ft_strdel((char**)&tmp);
-		C_RED
-		printf("\t\t\t%p\n", tmp);
-		C_CYAN
-		printf("\t\t\t%p\n", leaks);
-		C_RESET
-		printf("\t\t%p\n\n", next);
+		// C_YELLOW
+		// printf("\t\tstruct: %p\n", tmp);
+		// C_GREEN
+		// printf("\t\tcontent: %p\n", tmp->content);
+		ft_strdel((char**)&leaks);
+		ft_strdel((char**)&tmp);
+		// C_RED
+		// printf("\t\t\tstruct: %p\n", tmp);
+		// C_CYAN
+		// printf("\t\t\tcontent: %p\n", leaks);
+		// C_RESET
+		// printf("\t\tnext: %p\n\n", next);
 		i++;
 		tmp = next;
 	}
-	//ft_memdel((void**)delete_me);
-	//ft_memdel((void**)delete_me);
 	return (i);
 }

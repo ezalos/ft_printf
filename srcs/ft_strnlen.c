@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clean_garbage.c                                 :+:      :+:    :+:   */
+/*   ft_strnlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 20:21:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:03:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/02/14 13:47:45 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/03/07 22:15:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "libft.h"
 
-void			ft_clean_garbage(void)
+size_t		ft_strnlen(const char *s, size_t size)
 {
-	t_list	*garbage;
+	size_t i;
 
-	garbage = *ft_garbage_collector();
-	// ft_putstr("\n\t");
-	// ft_putendl(__func__);
-	ft_lst_free(&garbage);
-	//if (garbage)
-	//	free(&garbage);
-	//ft_memdel((void**)ft_garbage_collector());
-	// ft_putendl("\tDONE\n\n");
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] && i < size)
+		i++;
+	return (i);
 }
