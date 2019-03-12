@@ -34,11 +34,14 @@ int			parsing_unsigned_integer(t_printf *print)
 	else if (print->arg->modifier_l == 2)
 		print_unsigned_integer(print, va_arg(print->ap, unsigned long long));
 	else if (print->arg->modifier_h == 1)
-		print_unsigned_integer(print, (unsigned short int)va_arg(print->ap, unsigned int));
+		print_unsigned_integer(print,
+		(unsigned short int)va_arg(print->ap, unsigned int));
 	else if (print->arg->modifier_h == 2)
-		print_unsigned_integer(print, (unsigned char)va_arg(print->ap, unsigned int));
+		print_unsigned_integer(print,
+		(unsigned char)va_arg(print->ap, unsigned int));
 	else
-		print_unsigned_integer(print, (unsigned int)va_arg(print->ap, unsigned int));
+		print_unsigned_integer(print,
+		(unsigned int)va_arg(print->ap, unsigned int));
 	return (0);
 }
 

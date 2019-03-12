@@ -25,16 +25,12 @@ int			paste_float_in_printf(t_printf *print, char *str)
 		fill = (size_t)print->arg->minimum_width - len_str;
 		if (!(fill_str = ft_strnew(fill)))
 			return (-1);
-		ft_memset(fill_str, (int) print->arg->space_filled, fill);
+		ft_memset(fill_str, (int)print->arg->space_filled, fill);
 		tmp = str;
-		if (print->arg->ajust_left)
-		{
-			if (!(str = ft_strjoin(tmp, fill_str)))
-				return (-1);
-		}
-		else
-			if (!(str = ft_strjoin(fill_str, tmp)))
-				return (-1);
+		if (print->arg->ajust_left && !(str = ft_strjoin(tmp, fill_str)))
+			return (-1);
+		else if (!(str = ft_strjoin(fill_str, tmp)))
+			return (-1);
 		ft_strdel(&fill_str);
 		ft_strdel(&tmp);
 	}

@@ -62,7 +62,8 @@ int		add_minimum_width(t_printf *print, char **str)
 	{
 		if (!(tmp = ft_strnew(print->arg->minimum_width - len)))
 			return (-1);
-		ft_memset(tmp, print->arg->space_filled, print->arg->minimum_width - len);
+		ft_memset(tmp, print->arg->space_filled,
+		print->arg->minimum_width - len);
 	}
 	if (print->arg->ajust_left && tmp)
 		if (!(*str = ft_strjoin(*str, tmp)))

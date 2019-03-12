@@ -19,7 +19,7 @@ void	check_modifier(const char **f, t_arg *arg)
 	else if (**f == 'l')
 		arg->modifier_l++;
 	else if (**f == 'L')
-		arg->modifier_L++;
+		arg->modifier_ll++;
 	(*f)++;
 }
 

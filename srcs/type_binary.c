@@ -12,7 +12,7 @@
 
 #include "./../includes/head.h"
 
-char	*s_to_bin(unsigned char *str, int length)
+char		*s_to_bin(unsigned char *str, int length)
 {
 	char	*binary;
 	int		actual_char;
@@ -66,7 +66,7 @@ char		*print_string_to_binary(unsigned char *converter, size_t size_thing)
 	return (tmp1);
 }
 
-int			print_binary(t_printf *print, void* bin)
+int			print_binary(t_printf *print, void *bin)
 {
 	char		*tmp1;
 	char				*tmp2;
@@ -79,7 +79,8 @@ int			print_binary(t_printf *print, void* bin)
 	{
 		if (!print->arg->precision)
 			print->arg->precision = 1;
-		tmp1 = print_string_to_binary((unsigned char*)bin, (size_t)print->arg->precision);
+		tmp1 = print_string_to_binary((unsigned char*)bin,
+		(size_t)print->arg->precision);
 		tmp2 = (char*)tmp1;
 	}
 	get_printf(print, &tmp2, ft_strlen(tmp2));

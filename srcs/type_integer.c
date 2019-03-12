@@ -14,8 +14,8 @@
 
 size_t		ft_nb_len(intmax_t n, size_t base)
 {
-	size_t size;
-	uintmax_t nb;
+	size_t		size;
+	uintmax_t	nb;
 
 	if (n == 0)
 		return (1);
@@ -37,7 +37,7 @@ size_t		ft_nb_len(intmax_t n, size_t base)
 	return (size);
 }
 
-static void		ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
+void		ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
 {
 	char	*base_smbl;
 
@@ -54,10 +54,10 @@ static void		ft_putnbr_str(int i, uintmax_t n, char *nb, size_t base)
 
 char		*ft_nb_to_a(intmax_t n, size_t base)
 {
-	char	*nb_str;
-	size_t	size;
-	int		neg;
-	uintmax_t nb;
+	char		*nb_str;
+	size_t		size;
+	int			neg;
+	uintmax_t	nb;
 
 	neg = 1;
 	if (n >= 0)
