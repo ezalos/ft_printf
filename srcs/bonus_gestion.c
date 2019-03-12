@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:44:59 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 21:00:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 17:15:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,32 @@ int		cursor_gestion(t_printf *print, const char **f)
 	str = NULL;
 	(*f)++;
 	if (**f == 's')
-		CURSOR_SAVE
+	{
+		if (!(str = ft_strdup("\033[s")))
+			return (-1);
+		(*f)++;
+		if (!get_printf(print, &str, ft_strlen(str)))
+			return (-1);
+		return (0);
+	}
 	else if (**f == 'l')
-		CURSOR_LOAD
+	{
+		if (!(str = ft_strdup("\033[u")))
+			return (-1);
+		(*f)++;
+		if (!get_printf(print, &str, ft_strlen(str)))
+			return (-1);
+		return (0);
+	}
 	else if (**f == 'r')
-		CURSOR_RESET
+	{
+		if (!(str = ft_strdup("\033[0;0H")))
+			return (-1);
+		(*f)++;
+		if (!get_printf(print, &str, ft_strlen(str)))
+			return (-1);
+		return (0);
+	}
 	else if (**f == '|')
 		we_need_to_move_cursor(print, f, -1);
 	else if (ft_char_srch(**f, "^v<>"))
@@ -281,6 +302,7 @@ size_t	ft_strputtab(const char *s, size_t separation)
 		return (0);
 	return (ft_strputtab_len(ft_strlen(s), separation, 1));
 }
+
 char	*get_string_from_str_tab(t_printf *print, char ***str, int longest)
 {
 	char	*to_print;
@@ -369,6 +391,8 @@ int		tab_gestion(t_printf *print, const char **f)
 
 int		bonus_gestion(t_printf *print, const char **f)
 {
+	int		fd;
+
 	ft_bzero(print->bonus, sizeof(print->bonus));
 	(*f)++;
 	print->bonus->exist = **f;
@@ -378,5 +402,10 @@ int		bonus_gestion(t_printf *print, const char **f)
 		color_gestion(print, f);
 	else if (**f == '[')
 		tab_gestion(print, f);
+	else if (**f == '.')
+	{
+		(*f)++;
+		print->fd = (size_t)get_value_of_star_or_nb(print, f, &fd);
+	}
 	return (0);
 }

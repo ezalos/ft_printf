@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:23:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 17:09:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-
-
 typedef	struct		s_tab
 {
 	struct s_tab	*dir[4];
@@ -50,38 +48,30 @@ typedef	struct		s_tab
 # ifndef P_MALLOC
 #  define P_MALLOC nalloc
 # endif
-#  define NREE 1
 
-//# define LINUX
-
+# define NREE 1
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 100
 # endif
 
-
-# ifdef LINUX
-#  define intmax_t long long
-#  define uintmax_t unsigned long long
-# endif
-
-#  define C_RED			write(1, "\x1b[31m", 5);
-#  define C_GREEN		write(1, "\x1b[32m", 5);
-#  define C_BLUE		write(1, "\x1b[34m", 5);
-#  define C_YELLOW		write(1, "\x1b[33m", 5);
-#  define C_BLUE		write(1, "\x1b[34m", 5);
-#  define C_MAGENTA		write(1, "\x1b[35m", 5);
-#  define C_CYAN		write(1, "\x1b[36m", 5);
-#  define C_RESET		write(1, "\x1b[0m", 5);
-#  define C_BROWN		write(1, "\x1b[38;2;238;205;163m", 19);
-#  define C_PINK		write(1, "\x1b[38;2;239;100;100m", 19);
-#  define C_PURPLE		write(1, "\x1b[38;2;101;78;163m", 18);
-#  define C_ORANGE		write(1, "\x1b[38;2;155;75;43m", 17);
-#  define C_TURQUOISE	write(1, "\x1b[38;2;68;140;121m", 18);
-#  define CURSOR_RESET	write(1, "\033[0;0H", 6);
-#  define CURSOR_LOAD	write(1, "\033[u", 3);
-#  define CURSOR_SAVE	write(1, "\033[s", 3);
-#  define CLEAR_SCREEN	write(1, "\033[2J", 4);
+# define C_RED			write(1, "\x1b[31m", 5);
+# define C_GREEN		write(1, "\x1b[32m", 5);
+# define C_BLUE			write(1, "\x1b[34m", 5);
+# define C_YELLOW		write(1, "\x1b[33m", 5);
+# define C_BLUE			write(1, "\x1b[34m", 5);
+# define C_MAGENTA		write(1, "\x1b[35m", 5);
+# define C_CYAN			write(1, "\x1b[36m", 5);
+# define C_RESET		write(1, "\x1b[0m", 5);
+# define C_BROWN		write(1, "\x1b[38;2;238;205;163m", 19);
+# define C_PINK			write(1, "\x1b[38;2;239;100;100m", 19);
+# define C_PURPLE		write(1, "\x1b[38;2;101;78;163m", 18);
+# define C_ORANGE		write(1, "\x1b[38;2;155;75;43m", 17);
+# define C_TURQUOISE	write(1, "\x1b[38;2;68;140;121m", 18);
+# define CURSOR_RESET	write(1, "\033[0;0H", 6);
+# define CURSOR_LOAD	write(1, "\033[u", 3);
+# define CURSOR_SAVE	write(1, "\033[s", 3);
+# define CLEAR_SCREEN	write(1, "\033[2J", 4);
 
 int					get_next_line(const int fd, char **line);
 
@@ -198,9 +188,11 @@ void				ft_putstr_color(char const *s, int r, int g, int b);
 int					ft_rgb_bcolor(int red, int green, int blue);
 void				ft_wait_pls(uintmax_t wait);
 void				ft_print_address_color(intmax_t nb);
-int					ft_tab_print_one_elmnt(t_tab *tmp, size_t lin, size_t col, int structh);
+int					ft_tab_print_one_elmnt(t_tab *tmp, size_t lin, size_t col,
+	int structh);
 int					ft_tab_print_dir(t_tab *tab, size_t dir, int lin);
-void				ft_tabiter(t_tab *tab, size_t dir, int(*f)(t_tab *, size_t, int), size_t dirf);
+void				ft_tabiter(t_tab *tab, size_t dir,
+	int(*f)(t_tab *, size_t, int), size_t dirf);
 t_tab				*ft_tabnew_ptr(void const *content, size_t content_size);
 size_t				ft_tab_lendir(t_tab *tab, size_t dir);
 t_tab				*ft_tab_dirth(t_tab *tab, size_t dir, size_t umpteenth);
@@ -209,7 +201,8 @@ size_t				ft_tab_dir_nclock(size_t dir, size_t move);
 size_t				ft_tab_dir_rclock(size_t dir);
 size_t				ft_tab_dir_reverse(size_t dir);
 t_tab				*ft_tabnew_dir(size_t len, size_t dir);
-int					ft_tab_connect_dir(size_t dir_line, t_tab *line_one, t_tab *line_two, size_t dir_connec);
+int					ft_tab_connect_dir(size_t dir_line, t_tab *line_one,
+	t_tab *line_two, size_t dir_connec);
 t_tab				*ft_tab_square_it(t_tab *tab, size_t dir);
 void				*nalloc(size_t size_content);
 void				*cnalloc(const void *content, size_t size_content);
@@ -217,16 +210,19 @@ void				ft_clean_garbage(void);
 void				ft_burn_garbage(char *str);
 size_t				ft_lst_free(t_list **delete_me);
 t_list				**ft_garbage_collector(void);
-void				ft_tabadd(t_tab	**tab, t_tab *new, size_t dir, int umpteenth);
+void				ft_tabadd(t_tab	**tab, t_tab *new, size_t dir,
+	int umpteenth);
 void				ft_tabadd_here(t_tab *alst, t_tab *new, size_t dir);
 void				ft_tabadd_end(t_tab *alst, t_tab *new, size_t dir);
 void				ft_tabadd_start(t_tab **alst, t_tab *new, size_t dir);
 t_tab				*ft_tab_reach_end(t_tab *tab, size_t dir);
-t_tab				*ft_tabnew_rectangle(size_t x_axis, size_t y_axis, size_t x_dir);
+t_tab				*ft_tabnew_rectangle(size_t x_axis, size_t y_axis,
+	size_t x_dir);
 t_tab				*ft_tab_access(t_tab *tab, int dir_y, int dir_x, int rot);
 size_t				ft_tab_delete_row_len(t_tab *tab, size_t dir, size_t len);
 size_t				ft_tab_delete_row(t_tab *tab, size_t dir);
-void				ft_tab_connect_structs(t_tab *tab_one, t_tab *tab_two, size_t dir_one);
+void				ft_tab_connect_structs(t_tab *tab_one, t_tab *tab_two,
+	size_t dir_one);
 t_tab				*ft_tab_cutone(t_tab *to_cut);
 size_t				ft_tabloop_lendir(t_tab *tab, size_t dir);
 size_t				ft_tabloop_it(t_tab *tab, size_t dir);
