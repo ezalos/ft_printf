@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:10:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:37:47 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:37:16 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_lstfind_and_free(void **ap)
 	}
 }
 
-void	ft_memdel(void **ap)
+void		ft_memdel(void **ap)
 {
 	if (!ap)
 		if (!*ap)

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 21:00:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:48:16 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			paste_format_in_printf(t_printf *print)
 	char			*tmp;
 	char			*tmp2;
 
- 	if (print->i <= 0)
+	if (print->i <= 0)
 		return (1);
 	if (!(tmp = ft_strsub(print->format, 0, print->i)))
 		return (0);
@@ -37,9 +37,21 @@ int			paste_format_in_printf(t_printf *print)
 	return (1);
 }
 
+int			we_just_found_a_percent(t_printf *print, const char *format)
+{
+	if (!(paste_format_in_printf(print)))
+		return (-1);
+	init_struct_arg(print, format);
+	print->format++;
+	check_arg(print, &print->format);
+	if (print->arg->type != '\0')
+		parsing(print);
+	return (0);
+}
+
 int			ft_printf(const char *format, ...)
 {
-	static t_printf		print;
+	t_printf			print;
 	int					r_val;
 
 	if (!(init_struct(&print, format)))
@@ -49,19 +61,11 @@ int			ft_printf(const char *format, ...)
 	while (print.format[print.i])
 	{
 		if (ft_char_srch(print.format[print.i], "%"))
-		{
-			if(!(paste_format_in_printf(&print)))
-				return (-1);
-			init_struct_arg(&print, format);
-			print.format++;
-			check_arg(&print, &print.format);
-			if (print.arg->type != '\0')
-				parsing(&print);
-		}
+			we_just_found_a_percent(&print, format);
 		if (print.format[print.i] != '%' && print.format[print.i])
 			print.i++;
 	}
-	if(!(paste_format_in_printf(&print)))
+	if (!(paste_format_in_printf(&print)))
 		return (-1);
 	output_string(&print);
 	r_val = print.size_all;

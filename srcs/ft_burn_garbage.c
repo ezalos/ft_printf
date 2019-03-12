@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:21:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/08 22:30:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:35:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void			ft_burn_garbage(char *str)
 		ft_putstr_fd(str, 2);
 	}
 	ft_putstr_fd("\n", 2);
-	exit (0);
+	exit(0);
 }

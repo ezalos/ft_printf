@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:18:57 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:36:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:37:43 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			*nalloc(size_t size_content)
 		return (NULL);
 	if (!*ft_garbage_collector()
 	&& !((*ft_garbage_collector()) = ft_nalloc_lstnew_ptr(NULL, 0)))
-			ft_burn_garbage(NULL);
+		ft_burn_garbage(NULL);
 	if (!(new_malloc = malloc(size_content)))
 		ft_burn_garbage(NULL);
 	if (!(garbage = ft_nalloc_lstnew_ptr(new_malloc, sizeof(*new_malloc))))

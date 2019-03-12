@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/11 20:16:26 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/12 16:40:51 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 
 SRCS		=	ft_printf\
-				ft_printf_options parsing check_arg check_arg2 ajust_flags tools_flag tools_flag2\
+				parsing check_arg check_arg2 ajust_flags tools_flag tools_flag2\
 				init output bonus_gestion\
 				type_float type_integer type_pointer type_string\
 				type_unsigned_integer type_others type_character type_binary\

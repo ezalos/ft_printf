@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:03:34 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/06 15:57:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:36:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		send_line(char **line, t_list *gnl)
 	if (!(*line = ft_strsub((char*)gnl->content, 0, size_line)))
 		return (-1);
 	ft_memmove((char*)gnl->content, (char*)gnl->content + size_line + 1,
-			   ft_strlen((char*)gnl->content + size_line + 1) + 1);
+				ft_strlen((char*)gnl->content + size_line + 1) + 1);
 	return (1);
 }
 

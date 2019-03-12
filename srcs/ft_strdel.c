@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:18:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 20:37:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:51:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_lstfind_and_free(void **ap)
+static void		ft_lstfind_and_free(void **ap)
 {
 	t_list		*tmp;
 
@@ -29,7 +29,7 @@ static void	ft_lstfind_and_free(void **ap)
 	}
 }
 
-void	ft_strdel(char **as)
+void			ft_strdel(char **as)
 {
 	if (as && *as)
 	{
