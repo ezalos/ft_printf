@@ -19,10 +19,8 @@ int			paste_int_in_printf(t_printf *print, char *str)
 	if (!print->arg->precision && !print->arg->minimum_width &&
 		print->arg->precision_exist && str[0] == '0')
 	{
-		//printf("%d\n", print->arg->htag);
 		if (print->arg->htag)
 		{
-			//printf("%s\n", "coucou");
 			if (!(get_printf(print, &str, ft_strlen(str))))
 				return (-1);
 		}

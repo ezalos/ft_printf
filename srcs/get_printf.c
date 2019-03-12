@@ -21,6 +21,22 @@ void		add_minimum_width_0(t_printf *print)
 	}
 }
 
+void		write_0(t_printf *print, char **str)
+{
+	output_string(print);
+	if (print->arg->ajust_left)
+	{
+		write(1, "\0", 1);
+		add_minimum_width_0(print);
+	}
+	else
+	{
+		add_minimum_width_0(print);
+		write(1, "\0", 1);
+	}
+	ft_strdel(str);
+}
+
 int			get_printf(t_printf *print, char **str, size_t content_size)
 {
 	char	*tmp;
@@ -31,18 +47,7 @@ int			get_printf(t_printf *print, char **str, size_t content_size)
 	print->size_all += content_size;
 	if (**str == 0)
 	{
-		output_string(print);
-		if (print->arg->ajust_left)
-		{
-			write(1, "\0", 1);
-			add_minimum_width_0(print);
-		}
-		else
-		{
-			add_minimum_width_0(print);
-			write(1, "\0", 1);
-		}
-		ft_strdel(str);
+		write_0(print, str);
 		return (1);
 	}
 	if (tmp)

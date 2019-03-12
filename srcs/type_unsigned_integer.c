@@ -61,7 +61,6 @@ char			*ft_u_nb_to_a(uintmax_t n, size_t base)
 
 int				print_unsigned_integer(t_printf *print, uintmax_t nb)
 {
-	//char	*tmp;
 	int 	base;
 	int		i;
 
@@ -75,7 +74,8 @@ int				print_unsigned_integer(t_printf *print, uintmax_t nb)
 	if (print->arg->type == 'X')
 		while (print->last_type[++i])
 			print->last_type[i] = ft_toupper(print->last_type[i]);
-	if (print->last_type[0] == '0' && (print->arg->type == 'x' || print->arg->type == 'X'))
+	if (print->last_type[0] == '0' && (print->arg->type == 'x' ||
+		print->arg->type == 'X'))
 		print->arg->htag = 0;
 	paste_int_in_printf(print, print->last_type);
 	return (0);

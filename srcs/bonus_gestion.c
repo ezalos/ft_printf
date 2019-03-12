@@ -12,26 +12,6 @@
 
 #include "./../includes/head.h"
 
-/*
-** - Move the cursor up N lines:
-**   \033[<N>A
-** - Move the cursor down N lines:
-**   \033[<N>B
-** - Move the cursor forward N columns:
-**   \033[<N>C
-** - Move the cursor backward N columns:
-**   \033[<N>D
-*/
-
-/*
-** - Erase to end of line:
-**   \033[K
-*/
-
-
-
-
-
 char			*ft_str_place_cursor(size_t line, size_t column)
 {
 	char		*string;
@@ -65,12 +45,6 @@ char			*ft_str_rgbcolor(char background, int red, int green, int blue)
 	char		*s_green;
 	char		*s_blue;
 
-/*	if (red < 0)
-		red = ft_random(0, 255, clock(), 10);
-	if (green < 0)
-		green = ft_random(0, 255, clock(), 10);
-	if (blue < 0)
-		blue = ft_random(0, 255, clock(), 10);*/
 	if (!(s_red = ft_nb_to_a(red, 10)))
 		return (NULL);
 	if (!(s_green = ft_nb_to_a(green, 10)))
@@ -177,7 +151,6 @@ int		we_need_to_move_cursor(t_printf *print, const char **f, int mode)
 int		cursor_gestion(t_printf *print, const char **f)
 {
 	char	*str;
-//	int		tmp;
 
 	str = NULL;
 	(*f)++;
@@ -218,12 +191,12 @@ int		color_gestion(t_printf *print, const char **f)
 
 	str = NULL;
 	(*f)++;
-	if (**f == 'b')//for background
+	if (**f == 'b')
 	{
 		print->bonus->background = 1;
 		(*f)++;
 	}
-	if (**f == '}')//reset
+	if (**f == '}')
 	{
 		if (!(str = ft_strdup("\x1b[0m")))
 			return (-1);
@@ -232,10 +205,10 @@ int		color_gestion(t_printf *print, const char **f)
 			return (-1);
 		return (0);
 	}
-	if (**f == '?')//pseudo_random
+	if (**f == '?')
 	{
 		(*f)++;
-		if (**f == 's')//for string
+		if (**f == 's')
 		{
 			(*f)++;
 			get_value_of_star_or_str(print, f, &print->bonus->rand_str);
@@ -247,12 +220,11 @@ int		color_gestion(t_printf *print, const char **f)
 			print->bonus->blue = ft_random(0, 255, 0, 0);
 			if (!(str = ft_str_rgbcolor(print->bonus->background, print->bonus->red, print->bonus->green, print->bonus->blue)))
 				return (-1);
-			//printf("\n%s\n", str);
 			(*f)++;
 			if (!get_printf(print, &str, ft_strlen(str)))
 				return (-1);
 		}
-		else//for uintmax_t
+		else
 		{
 			get_value_of_star_or_nb(print, f, &print->bonus->rand_nb);
 			if (!print->bonus->rand_nb)
@@ -260,24 +232,14 @@ int		color_gestion(t_printf *print, const char **f)
 			print->bonus->red = ft_random(0, 255, (print->bonus->rand_nb * 3), 25);
 			print->bonus->green = ft_random(0, 255, (print->bonus->rand_nb * 5), 2);
 			print->bonus->blue = ft_random(0, 255, (print->bonus->rand_nb * 7), 5);
-			//printf("?: %d\nR: %d\tG: %d\tB: %d\n", print->bonus->rand_nb, print->bonus->red, print->bonus->blue, print->bonus->green);
-/*			if (print->bonus->red < 0)
-				print->bonus->red = -print->bonus->red;
-			print->bonus->green = (print->bonus->rand_nb * 5) % 256;
-			if (print->bonus->green < 0)
-				print->bonus->green = -print->bonus->green;
-			print->bonus->blue = (print->bonus->rand_nb * 7) % 256;
-			if (print->bonus->blue < 0)
-				print->bonus->blue = -print->bonus->blue;*/
 			if (!(str = ft_str_rgbcolor(print->bonus->background, print->bonus->red, print->bonus->green, print->bonus->blue)))
 				return (-1);
-			//printf("\n%s\n", str);
 			(*f)++;
 			if (!get_printf(print, &str, ft_strlen(str)))
 				return (-1);
 		}
 	}
-	else //rgb value
+	else
 	{
 		get_value_of_star_or_nb(print, f, &print->bonus->red);
 		while (**f != ';')
@@ -325,7 +287,6 @@ char	*get_string_from_str_tab(t_printf *print, char ***str, int longest)
 	int		i;
 	int		j;
 
-	// ft_putendl(__func__);
 	i = (print->bonus->line * print->bonus->column * longest) + print->bonus->line;
 	to_print = ft_memalloc(i + 1);
 	ft_memset(to_print, ' ', i);
@@ -359,14 +320,12 @@ int		tab_gestion(t_printf *print, const char **f)
 {
 	char	*to_print;
 	char	***str;
-	// int		**nbs;
 	int		longest;
 	int		i;
 	int		j;
 
 	str = NULL;
 	(*f)++;
-	// ft_putendl(__func__);
 	get_value_of_star_or_nb(print, f, &print->bonus->line);
 	while (**f != ';')
 		(*f)++;
@@ -376,10 +335,7 @@ int		tab_gestion(t_printf *print, const char **f)
 	longest = -1;
 	if (**f == 's' && print->bonus->line && print->bonus->column)
 	{
-		// printf("[%d:%d]\n", 0, 0);
 		str = va_arg(print->ap, char***);
-		// printf("va_arg: %p\n", str);
-		// printf("va_arg: %p\n", *str);
 		if (!str)
 			return (0);
 		i = -1;
@@ -389,19 +345,16 @@ int		tab_gestion(t_printf *print, const char **f)
 			if (str[i])
 				while (++j < print->bonus->column)
 				{
-					// printf("[%d:%d]\n", i, j);
 					if (str[i][j])
 					{
 						if (longest <= (int)ft_strlen(str[i][j]))
 							longest = ft_strlen(str[i][j]);
 					}
 					else
-						j = print->bonus->column; //is disguting when wrong values
-						// print->bonus->column = j; //isnt disgusting but wont shoz out value
+						j = print->bonus->column;
 				}
 			else
-				i = print->bonus->line; //is disguting when wrong values
-				// print->bonus->line = i;//isnt disgusting but wont shoz out value
+				i = print->bonus->line;
 		}
 		to_print = get_string_from_str_tab(print, str, longest + 1);
 		(*f)++;
@@ -409,18 +362,6 @@ int		tab_gestion(t_printf *print, const char **f)
 			return (-1);
 		return (0);
 	}
-	// else if (**f == 'd')
-	// {
-	// 	nbs = va_arg(print->ap, int**);
-	// 	while (++i < print->bonus->line)
-	// 	{
-	// 		j = -1;
-	// 		while (++j < print->bonus->column)
-	// 			if (longest <= (int)ft_nb_len(nbs[i][j], 10))
-	// 				longest = ft_nb_len(nbs[i][j], 10);
-	// 	}
-	// 	to_print = get_string_from_str_tab(print, str, longest);
-	// }
 	(*f)++;
 	return (0);
 
@@ -428,21 +369,14 @@ int		tab_gestion(t_printf *print, const char **f)
 
 int		bonus_gestion(t_printf *print, const char **f)
 {
-	//printf("%s\n", "WASSUP");
 	ft_bzero(print->bonus, sizeof(print->bonus));
 	(*f)++;
 	print->bonus->exist = **f;
-	if (**f == '>')//cursor bonus
+	if (**f == '>')
 		cursor_gestion(print, f);
-	else if (**f == '{')//color bonus
+	else if (**f == '{')
 		color_gestion(print, f);
-	// else if (**f == '"')//itoa base
-	// {
-	// }
-	else if (**f == '[')//tab display for intmax_t and strings
+	else if (**f == '[')
 		tab_gestion(print, f);
-	// else if (**f == '?')//random nb
-	// {
-	// }
 	return (0);
 }

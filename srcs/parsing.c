@@ -51,7 +51,6 @@ int			parsing_float(t_printf *print)
 
 int			parsing(t_printf *print)
 {
-	//printf("~>%c\n", print->arg->type);
 	if (ft_char_srch(print->arg->type, "di"))
 		parsing_integer(print);
 	else if (ft_char_srch(print->arg->type, "ouxX"))
@@ -71,6 +70,5 @@ int			parsing(t_printf *print)
 		print->format++;
 		print_character(print, print->arg->type);
 	}
-	//	print_others(print, va_arg(print->ap, void*));
 	return (0);
 }

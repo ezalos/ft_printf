@@ -34,9 +34,7 @@ int			output_invisible_char(size_t fd, char *str, size_t size)
 		else
 		{
 			ft_memdel((void**)&character);
-			//printf("ICI\n");
 			character = ft_nb_to_a(str[i], 10);
-			//printf("%d=%s\n", str[i], character);
 			now = ft_strlen(character);
 			write(fd, &backslash, 1);
 			write(fd, character, now);
@@ -50,28 +48,15 @@ int			output_invisible_char(size_t fd, char *str, size_t size)
 
 int			output_string(t_printf *print)
 {
-	// t_list	*thomtolebg;
-	//
-	// thomtolebg = print->lst_to_print;
-	// while (thomtolebg)
-	// {
-	// 	write(1, thomtolebg->content, thomtolebg->content_size);
-	// 	thomtolebg = thomtolebg->next;
-	// }
-	//printf("%s\n", __func__);
-	//printf("%s\n", print->printf);
-	// if (print->printf)
-	// 	write(print->fd, print->printf, ft_strlen(print->printf));
+	
 	if (print->printf)
 	{
 		if (!print->invisible)
-		{
-			//printf("OUTPUT:fd:%zu-%s-len:%zu\n", print->fd, print->printf, ft_strlen(print->printf));
 			write(print->fd, print->printf, ft_strlen(print->printf));
-		}
 		else
 		{
-			print->size_all = output_invisible_char(print->fd, print->printf, ft_strlen(print->printf));
+			print->size_all = output_invisible_char(print->fd,
+			print->printf, ft_strlen(print->printf));
 		}
 	}
 	print->lets_print = 0;

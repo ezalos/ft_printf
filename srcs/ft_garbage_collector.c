@@ -15,9 +15,5 @@
 t_list			**ft_garbage_collector(void)
 {
 	static t_list	*garbage;
-
-	// C_RED
-	// ft_putendl(__func__);
-	// C_RESET
 	return (&garbage);
 }

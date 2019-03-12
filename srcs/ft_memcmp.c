@@ -16,10 +16,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;
 
-	// ft_putendl(__func__);
-	// ft_putchar(*(char*)s1);
-	// ft_putchar(*(char*)s2);
-	// ft_putendl("");
 	i = 0;
 	while (i < n && ((char*)s1)[i] == ((char*)s2)[i])
 		i++;

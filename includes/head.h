@@ -153,6 +153,13 @@ void		check_modifier(const char **f, t_arg *arg);
 void		check_arg(t_printf *print, const char **f);
 char		*get_value_of_star_or_str(t_printf *print, const char **f, char **tmp);
 int			get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp);
+int			add_htag(t_printf *print, char **str);
+int			add_sign(char **str);
+int			add_space(char **str);
+void		reajust_sign(char *str);
+void		reajust_hatg(t_printf *print, char *str);
+int			add_minimum_width(t_printf *print, char **str);
+int			add_precison(t_printf *print, char **str);
 
 //OUTPUT
 int			output_string(t_printf *print);

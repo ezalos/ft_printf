@@ -17,13 +17,6 @@ int			paste_format_in_printf(t_printf *print)
 	char			*tmp;
 	char			*tmp2;
 
-	// C_BROWN
-	// ft_putstr(__func__);
-	// C_YELLOW
-	// ft_putstr(": ");
-	// ft_putnbr(print->i);
-	// ft_putendl("");
-	// C_RESET
  	if (print->i <= 0)
 		return (1);
 	if (!(tmp = ft_strsub(print->format, 0, print->i)))
@@ -49,24 +42,19 @@ int			ft_printf(const char *format, ...)
 	static t_printf		print;
 	int					r_val;
 
-	// ft_putendl(__func__);
 	if (!(init_struct(&print, format)))
 		return (-1);
 	va_start(print.ap, format);
 	print.i = 0;
 	while (print.format[print.i])
 	{
-		// ft_putendl("PBM?");
 		if (ft_char_srch(print.format[print.i], "%"))
 		{
-			//ft_putchar(print.format[print.i + 1]);
-			//ft_putendl("");
 			if(!(paste_format_in_printf(&print)))
 				return (-1);
 			init_struct_arg(&print, format);
 			print.format++;
 			check_arg(&print, &print.format);
-			//printf("{%c}\n", print.arg->type);
 			if (print.arg->type != '\0')
 				parsing(&print);
 		}
@@ -75,11 +63,8 @@ int			ft_printf(const char *format, ...)
 	}
 	if(!(paste_format_in_printf(&print)))
 		return (-1);
-	//if (print.lets_print)
 	output_string(&print);
-//	free_all(print);
 	r_val = print.size_all;
-	// ft_putendl("PBM?");
 	ft_clean_garbage();
 	return (r_val);
 }

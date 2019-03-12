@@ -42,7 +42,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 
 SRCS		=	ft_printf\
-				ft_printf_options parsing check_arg ajust_flags\
+				ft_printf_options parsing check_arg check_arg2 ajust_flags tools_flag tools_flag2\
 				init output bonus_gestion\
 				type_float type_integer type_pointer type_string\
 				type_unsigned_integer type_others type_character type_binary\
