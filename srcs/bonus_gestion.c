@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:44:59 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/12 17:15:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/14 15:19:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ int		cursor_gestion(t_printf *print, const char **f)
 
 int		color_gestion(t_printf *print, const char **f)
 {
+	long long	color_me;
 	char	*str;
 
 	str = NULL;
@@ -226,7 +227,33 @@ int		color_gestion(t_printf *print, const char **f)
 			return (-1);
 		return (0);
 	}
-	if (**f == '?')
+	if (**f == '!')
+	{
+		color_me = va_arg(print->ap, long long);
+
+		get_value_of_star_or_nb(print, f, &print->bonus->rand_nb);
+		if (!color_me)
+			color_me++;
+		print->bonus->red = ft_random(0, 255, (color_me * 3), 25);
+		print->bonus->green = ft_random(0, 255, (color_me * 5), 2);
+		print->bonus->blue = ft_random(0, 255, (color_me * 7), 5);
+		if (!(str = ft_str_rgbcolor(print->bonus->background, print->bonus->red, print->bonus->green, print->bonus->blue)))
+			return (-1);
+		(*f)++;
+		if (!get_printf(print, &str, ft_strlen(str)))
+			return (-1);
+//		print_pointer(print, (void*)color_me);
+		print_integer(print, color_me);
+		print->bonus->red = ft_random(0, 255, 0, 0);
+		print->bonus->green = ft_random(0, 255, 0, 0);
+		print->bonus->blue = ft_random(0, 255, 0, 0);
+		if (!(str = ft_str_rgbcolor(print->bonus->background, print->bonus->red, print->bonus->green, print->bonus->blue)))
+			return (-1);
+		(*f)++;
+		if (!get_printf(print, &str, ft_strlen(str)))
+			return (-1);
+	}
+	else if (**f == '?')
 	{
 		(*f)++;
 		if (**f == 's')
@@ -386,7 +413,6 @@ int		tab_gestion(t_printf *print, const char **f)
 	}
 	(*f)++;
 	return (0);
-
 }
 
 int		bonus_gestion(t_printf *print, const char **f)

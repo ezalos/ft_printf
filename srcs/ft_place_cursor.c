@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 18:27:47 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/19 15:01:11 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/13 22:32:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			place_cursor(size_t line, size_t column)
 	char		*tmp;
 	char		*nb;
 
-	if (!(nb = ft_itoa(line)))
+	if (!(nb = ft_nb_to_a(line, 10)))
 		return (0);
 	if (!(string = ft_strjoin("\033[", nb)))
 		return (0);
@@ -26,7 +26,7 @@ int			place_cursor(size_t line, size_t column)
 	if (!(tmp = ft_strjoin(string, ";")))
 		return (0);
 	ft_strdel(&string);
-	if (!(nb = ft_itoa(column)))
+	if (!(nb = ft_nb_to_a(column, 10)))
 		return (0);
 	if (!(string = ft_strjoin(tmp, nb)))
 		return (0);

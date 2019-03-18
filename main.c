@@ -6,12 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 21:01:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/14 12:35:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "./srcs/libft.h"
 #include "./includes/head.h"
 
+/*
 void	ft_erur(int r_v, int r_valu)
 {
 	if (r_valu != r_v)
@@ -189,7 +191,7 @@ void test8(float nd)
 	ft_putendl("");
 	ft_erur(r_v, r_valu);
 }
-
+*/
 
 int		main(int ac, char **av)
 {
@@ -207,12 +209,12 @@ int		main(int ac, char **av)
 	nb = atoi(av[1]);
 	nd = atof(av[1]);
 
-	str = P_MALLOC(sizeof(char**) * (ac));
+	//str = P_MALLOC(sizeof(char**) * (ac));
 	i = 0;
 	c = '.';
-	while (++i < ac)
-		str[i - 1] = ft_strsplit(av[i], c);
-	str[i - 1] = NULL;
+	//while (++i < ac)
+	//	str[i - 1] = ft_strsplit(av[i], c);
+	//str[i - 1] = NULL;
 	//printf("[%d;%d]\n", ac + 10, ft_atoi(av[ac]));
 	// i = -1;
 	// while (++i < ac - 1)
@@ -229,17 +231,19 @@ int		main(int ac, char **av)
 	// printf("%d\n", (int)ft_strlen(str[0][0]));
 	nb = 10;
 	// ft_putendl("0");
-	ft_printf("%.*b\n", (int)ft_strlen(str[0][0]), str[0][0]);
+	//ft_printf("%.*b\n", (int)ft_strlen(str[0][0]), str[0][0]);
 	// ft_putendl("1");
-	ft_printf("%d\n", nb);
+	ft_printf("Welcone\n");
+	ft_printf("%~{?}%d\n", nb);
 	// ft_putendl("2");
-	ft_printf("YO\tPROBLEM%r\n");
+//	ft_printf("YO\tPROBLEM%r\n");
 	// ft_putendl("3");
-	ft_printf("->%.*b\n", sizeof(nb), test);
+	ft_printf("->%.*b\n", sizeof(test), &test);
 	// ft_putendl("5");
 	// printf("%p\t%d\n%p\t%d\n", &nb, (int)&nb, &nd, (int)&nd);
 	// ft_putendl("6");
-	ft_printf("%~{200;255;155}1\n2\n%~{}%*.*d%~{100;255;155}Louis%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{b?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\n", 10, 5, 123, (int)&test, &test, (int)&nd, &nd, (int)&nb, &nb, (int)&nb, &nb);
+	ft_printf("%~{!}\n%~{!}\n%~{!}\n%~{!}\n%~{!}\n", (long long)&av, (long long)&ac, (long long)&nd, (long long)&nb, (long long)&test);
+//	ft_printf("%~{200;255;155}1\n2\n%~{}%*.*d%~{100;255;155}Louis%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{b?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\naddress:%~{?*}%p%~{}%~{?}\n", 10, 5, 123, (int)&test, &test, (int)&nd, &nd, (int)&nb, &nb, (int)&nb, &nb);
 /*	ft_rgb_color(ft_random(200, 255, test + 10, nb + 5), ft_random(200, 255, test + 1, (nb + 1) / 2), ft_random(200, 255, (test + 1) * 2, (nb + 3)));
 	if (test == 0)
 		test0(nd);

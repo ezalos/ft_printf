@@ -6,12 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:22:07 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 21:04:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/14 15:45:24 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t			ft_lst_free(t_list **delete_me)
 {
