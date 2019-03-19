@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 17:20:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 20:23:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define HEAD_H
 
 # include <stdarg.h>
-# include <stdio.h>
 # include "libft.h"
 
 typedef struct			s_printfesse

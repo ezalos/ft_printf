@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   check_arg2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 19:18:00 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 20:11:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	check_flags(const char c, t_arg *arg)
 
 int		get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp)
 {
+	*tmp = 0;
 	if (**f == '*')
 	{
 		*tmp = (int)va_arg(print->ap, int);

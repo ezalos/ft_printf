@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/19 17:39:50 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/19 20:26:30 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-#CFLAGS = -Weverything
+#CFLAGS =
 
 ##############################################################################
 ##############################################################################
@@ -184,14 +184,6 @@ git :
 
 t	:	$(EXEC)
 		./$(EXEC) "$(MSG)" 0
-		./$(EXEC) "$(MSG)" 1
-		./$(EXEC) "$(MSG)" 2
-		./$(EXEC) "$(MSG)" 3
-		./$(EXEC) "$(MSG)" 4
-		./$(EXEC) "$(MSG)" 5
-		./$(EXEC) "$(MSG)" 6
-		./$(EXEC) "$(MSG)" 7
-		./$(EXEC) "$(MSG)" 8
 
 tv	:	$(EXEC)
 		$(VALGRIND) ./$(EXEC) "$(MSG)"
