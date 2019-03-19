@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 int			parsing_integer(t_printf *print)
 {

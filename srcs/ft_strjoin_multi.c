@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 static int		transfer_tabtab_to_tab(char *dest, char **srcs, size_t *nb)
 {

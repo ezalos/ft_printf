@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 void	reajust_sign(char *str)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 void	check_modifier(const char **f, t_arg *arg)
 {

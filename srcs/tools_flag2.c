@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 int		add_htag(t_printf *print, char **str)
 {

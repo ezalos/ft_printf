@@ -6,12 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 20:18:57 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/12 16:37:43 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:31:21 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-#include <stdio.h>
+#include "libft.h"
 
 static t_list	*ft_nalloc_lstnew_ptr(void const *content, size_t content_size)
 {

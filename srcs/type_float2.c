@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 char		*get_int_from_float(intmax_t ldb, char neg)
 {

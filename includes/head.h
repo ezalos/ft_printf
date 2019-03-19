@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 13:56:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:25:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <stdio.h>
-# include "./../srcs/libft.h"
+# include "libft.h"
 
 typedef struct			s_printfesse
 {

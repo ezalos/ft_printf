@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 int			output_invisible_char(size_t fd, char *str, size_t size, int color)
 {

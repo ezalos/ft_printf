@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 size_t			ft_u_nb_len(uintmax_t nb, size_t base)
 {

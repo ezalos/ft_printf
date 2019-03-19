@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 char			*ft_str_rgbcolor(char background, int red, int green, int blue)
 {

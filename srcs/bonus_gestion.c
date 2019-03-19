@@ -6,11 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:44:59 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 13:58:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:33:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
+
+/*
+** if (**f == '>')
+** 	cursor_gestion(print, f);
+**
+** else if (**f == '[')
+** 	tab_gestion(print, f);
+*/
 
 int		bonus_gestion(t_printf *print, const char **f)
 {
@@ -19,12 +27,8 @@ int		bonus_gestion(t_printf *print, const char **f)
 	ft_bzero(print->bonus, sizeof(print->bonus));
 	(*f)++;
 	print->bonus->exist = **f;
-	if (**f == '>')
-		cursor_gestion(print, f);
-	else if (**f == '{')
+	if (**f == '{')
 		color_gestion(print, f);
-	else if (**f == '[')
-		tab_gestion(print, f);
 	else if (**f == '.')
 	{
 		(*f)++;

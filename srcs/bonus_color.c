@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 13:21:53 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 14:31:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:28:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/head.h"
+#include "head.h"
 
 int		color_reset(t_printf *print, const char **f, char *str)
 {
