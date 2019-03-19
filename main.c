@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 20:23:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 20:35:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 
 /*
 ** grep -n "[&|+-]$" srcs
-** srcs/ajust_flags.c:31:		if (print->arg->space_filled == '0' && print->arg->htag &&
-** srcs/ajust_flags.c:43:	if (print->arg->sign && (print->arg->type == 'd' ||
-** srcs/ajust_flags.c:49:	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' ' &&
-** srcs/get_str_int.c:19:	if (!print->arg->precision && !print->arg->minimum_width &&
-** srcs/type_float.c:98:	if (!(int_part = get_int_from_float((intmax_t)ldb, neg)) ||
-** srcs/type_unsigned_integer.c:77:	if (print->last_type[0] == '0' && (print->arg->type == 'x' ||
 */
 
 /*
@@ -47,6 +41,7 @@
 ** ft_printf("ft_: |% -0100.50d|\n", 123);
 ** ft_printf("ft_: |%0100.d|\n", 123);
 */
+
 int		errors_pr_p_o(void)
 {
 	ft_putendl("Errors: p");
@@ -64,6 +59,7 @@ int		errors_pr_p_o(void)
 	printf("tru: |%#o|\n", 0);
 	ft_putendl("");
 }
+
 int		errors_pr_f(void)
 {
 	ft_putendl("Errors: f");
@@ -118,8 +114,8 @@ int		errors_pr_d_i(void)
 
 int		main(void)
 {
-	int r_v;
-	int r_valu;
+	int		r_v;
+	int		r_valu;
 
 	errors_pr_c();
 	errors_pr_d_i();

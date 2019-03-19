@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 20:12:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 20:43:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@
 # include <stdint.h>
 # include <stdarg.h>
 
-typedef	struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
-typedef	struct		s_tab
-{
-	struct s_tab	*dir[4];
-	void			*content;
-	size_t			content_size;
-}					t_tab;
-
-/*
-**	dir[0] : up;
-**	dir[1] : right;
-**	dir[2] : down;
-**	dir[3] : left;
-*/
-
 # define BUFF_SIZE 256
 
 # ifndef P_MALLOC
@@ -50,6 +29,13 @@ typedef	struct		s_tab
 # endif
 
 # define NREE 1
+
+# define ILLEGAL 145612
+
+# ifndef ILLEGAL
+#  include <time.h>
+#  define ILLEGAL clock()
+# endif
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 100
@@ -72,6 +58,27 @@ typedef	struct		s_tab
 # define CURSOR_LOAD	write(1, "\033[u", 3);
 # define CURSOR_SAVE	write(1, "\033[s", 3);
 # define CLEAR_SCREEN	write(1, "\033[2J", 4);
+
+typedef	struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+typedef	struct		s_tab
+{
+	struct s_tab	*dir[4];
+	void			*content;
+	size_t			content_size;
+}					t_tab;
+
+/*
+**	dir[0] : up;
+**	dir[1] : right;
+**	dir[2] : down;
+**	dir[3] : left;
+*/
 
 int					get_next_line(const int fd, char **line);
 
