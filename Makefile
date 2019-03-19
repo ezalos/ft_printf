@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/19 16:33:32 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/19 17:39:50 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ EXEC = ft_printf
 
 CC = gcc
 
-CFLAGS = #-Wall -Wextra -Werror
-#CFLAGS = -Weverything
+CFLAGS = -Wall -Wextra -Werror
 
 DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
@@ -30,7 +29,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-#CFLAGS = $(DFLAGS)
+#CFLAGS = -Weverything
 
 ##############################################################################
 ##############################################################################
@@ -46,7 +45,7 @@ SRCS		=	ft_printf\
 				parsing check_arg check_arg2 ajust_flags tools_flag tools_flag2\
 				init output\
 				type_float type_float2 type_integer type_pointer type_string\
-				type_unsigned_integer type_others type_character type_binary\
+				type_unsigned_integer type_character type_binary\
 				get_str_int get_str_str get_str_float get_printf\
 				get_str_char\
 				bonus_gestion bonus_color\
@@ -70,10 +69,10 @@ A_OBJ		= $(patsubst %,$(DIR_OBJ)%.o,$(SRCS))
 OBJ 		= $(patsubst %,%.o,$(SRCS))
 
 LIB_DIR		= ./../libft
-HEAD		= head.h
+HEAD		= head.h libft.h
 HEAD_DIR	= ./includes
-HEAD_PATH	= $(HEAD_DIR)/$(HEAD)
-SECOND_LIB	= ./srcs/libft.h
+
+HEAD_PATH	= $(patsubst %,$(HEAD_DIR)/%,$(HEAD))
 
 LIB			= $(LIB_DIR)/libft.a
 
@@ -147,7 +146,7 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(A_OBJ) $(HEAD_DIR)/libft.h $(HEAD_DIR)/head.h Makefile
+$(NAME): $(A_OBJ) $(HEAD_PATH) Makefile
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 
 $(EXEC): $(NAME) $(MAIN)
@@ -156,9 +155,6 @@ $(EXEC): $(NAME) $(MAIN)
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) -o $@ -c $<)
-
-$(LIB_REFRESH) : FORCE
-		@$(MAKE) -C $(LIB_DIR)
 
 clean :
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
@@ -211,4 +207,4 @@ FORCE :
 ##						##
 ##########################
 
-.PHONY : clean fclean re all git aclean afclean are
+.PHONY : clean fclean re all git aclean afclean are ex t tv check FORCE

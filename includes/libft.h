@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 14:29:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:50:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef	struct		s_tab
 #  define P_MALLOC nalloc
 # endif
 
-# define NREE 1
+#  define NREE 1
 
 # ifndef OPEN_MAX
 #  define OPEN_MAX 100

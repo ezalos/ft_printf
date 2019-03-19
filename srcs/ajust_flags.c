@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:45:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/01 16:49:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:30:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		type_oux(t_printf *print, char **str)
 			return (-1);
 		if (add_minimum_width(print, str) == -1)
 			return (-1);
-		if (print->arg->space_filled == '0' && print->arg->htag &&
-			ft_char_srch(print->arg->type, "xX"))
+		if (print->arg->space_filled == '0' && print->arg->htag
+		&& ft_char_srch(print->arg->type, "xX"))
 			reajust_hatg(print, *str);
 	}
 	return (1);
@@ -40,14 +40,14 @@ int		type_dic(t_printf *print, char **str)
 	if (print->arg->precision_exist)
 		if (add_precison(print, str) == -1)
 			return (-1);
-	if (print->arg->sign && (print->arg->type == 'd' ||
-		print->arg->type == 'i'))
+	if (print->arg->sign && (print->arg->type == 'd'
+	|| print->arg->type == 'i'))
 		if (!(add_sign(str)))
 			return (-1);
 	if (add_minimum_width(print, str) == -1)
 		return (-1);
-	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' ' &&
-		*str[0] != '-' && ft_char_srch(print->arg->type, "dic"))
+	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' '
+	&& *str[0] != '-' && ft_char_srch(print->arg->type, "dic"))
 		if (!(add_space(str)))
 			return (-1);
 	if (*str[0] == '0' && (print->arg->type == 'd' || print->arg->type == 'i'))
@@ -75,7 +75,6 @@ int		type_empty(t_printf *print, char **str)
 int		type_s(t_printf *print, char **str)
 {
 	int		len;
-	char	*tmp;
 
 	len = ft_strlen(*str);
 	if (print->arg->precision < len && print->arg->precision_exist)

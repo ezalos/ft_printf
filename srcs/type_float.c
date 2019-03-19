@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 12:46:21 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:36:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ int			print_float(t_printf *print, long double ldb)
 	if (float_exception(print, ldb))
 		return (0);
 	neg_gestion(&neg, &ldb);
-	if (!(int_part = get_int_from_float((intmax_t)ldb, neg)) ||
-	!(decimal_part = get_decimal_from_float(print->arg, ldb - (intmax_t)ldb)))
+	if (!(int_part = get_int_from_float((intmax_t)ldb, neg))
+	|| !(decimal_part = get_decimal_from_float(print->arg,
+		ldb - (intmax_t)ldb)))
 		return (-1);
 	if (print->arg->htag)
 	{

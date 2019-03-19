@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 16:30:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:43:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int		main(void)
 {
 	int r_v;
 	int r_valu;
-	r_v = ft_printf("ft_: |%0100.d|\n", 123);
+	r_v = ft_printf("ft_: |%0100.d%s%10s%.5s%1000swrofihwelfihwleifhwleif|\n", 123, NULL, NULL, "hey", "wouhou");
 	//r_valu = printf("tru: |%0100.d|\n", 123);
 	//printf("printf: = %d, ft_printf = %d\n", r_valu, r_v);
-	while (1);
 	C_RESET
 	return (0);
 }
+
+//while 1; do leaks a.out; sleep 1; clear; done

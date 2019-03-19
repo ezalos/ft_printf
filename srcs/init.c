@@ -6,18 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 16:01:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/13 22:38:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:20:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-int			init_for_new_turn(t_printf *print, int i)
-{
-	return (0);
-}
-
-void		init_struct_arg(t_printf *print, const char *format)
+void		init_struct_arg(t_printf *print)
 {
 	ft_bzero(print->arg, sizeof(t_arg));
 	print->arg->space_filled = ' ';

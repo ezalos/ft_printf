@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 16:35:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/01 15:44:24 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:31:11 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int			paste_int_in_printf(t_printf *print, char *str)
 {
 	if (str[0] == '-')
 		print->arg->sign = 0;
-	if (!print->arg->precision && !print->arg->minimum_width &&
-		print->arg->precision_exist && str[0] == '0')
+	if (!print->arg->precision && !print->arg->minimum_width
+	&& print->arg->precision_exist && str[0] == '0')
 	{
 		if (print->arg->htag)
 		{

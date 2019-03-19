@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 16:25:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:20:37 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int						ft_printf(const char *format, ...);
 /*
 ** INIT
 */
-void					init_struct_arg(t_printf *print, const char *format);
+void					init_struct_arg(t_printf *print);
 int						init_struct(t_printf *print, const char *format);
 
 /*
