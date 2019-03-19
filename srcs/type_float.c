@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/09 03:30:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:46:21 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int			float_exception(t_printf *print, double ldb)
 {
-	unsigned char		*conv;
-	char				*str;
-	int					i;
+	unsigned char	*conv;
+	char			*str;
+	int				i;
 
 	conv = (unsigned char*)&ldb;
 	i = -1;
@@ -34,72 +34,10 @@ int			float_exception(t_printf *print, double ldb)
 	return (1);
 }
 
-char	*get_int_from_float(intmax_t ldb, char neg)
-{
-	char	*int_part;
-	char	*tmp;
-
-	if (!(int_part = ft_nb_to_a(ldb, 10)))
-		return (NULL);
-	tmp = int_part;
-	if (neg)
-	{
-		int_part = ft_strjoin("-", tmp);
-		ft_strdel(&tmp);
-	}
-	return (int_part);
-}
-
-char	*get_decimal_from_float(t_arg *arg, long double ldb)
-{
-	char	*decimal_part;
-	int		precision;
-	int		i;
-
-	if (arg->precision_exist)
-		precision = arg->precision;
-	else
-		precision = 6;
-	if (!(decimal_part = ft_strnew((size_t) precision + 1 + 1)))
-		return (NULL);
-	decimal_part[0] = '.';
-	i = 0;
-	while (++i <= precision + 1)
-	{
-		ldb = ldb * 10;
-		if (((intmax_t)ldb % 10) >= 0 && ((intmax_t)ldb % 10) <= 9)
-			decimal_part[i] = ((intmax_t)ldb % 10) + '0';
-		else
-			decimal_part[i] = '0';
-		ldb -= (intmax_t)ldb;
-	}
-	return (decimal_part);
-}
-
-char		*round_move_nb(char *str, size_t len)
-{
-	int		i;
-
-	i = 0;
-	str[i] = '1';
-	while (++i <= (int)len)
-	{
-		if (str[i] == '.')
-		{
-			str[i] = '0';
-			str[i + 1] = '.';
-			return (str);
-		}
-		else
-			str[i] = '0';
-	}
-	return (str);
-}
-
 char		*round_float_str(char *str)
 {
-	size_t	len;
-	int		i;
+	size_t			len;
+	int				i;
 
 	len = ft_strlen(str);
 	len--;
@@ -126,7 +64,6 @@ char		*round_float_str(char *str)
 
 void		float_no_htag(t_printf *print, char *int_part, char *decimal_part)
 {
-
 	if (ft_strlen(decimal_part) > 3
 	|| (!print->arg->precision && print->arg->precision_exist))
 	{
@@ -139,20 +76,25 @@ void		float_no_htag(t_printf *print, char *int_part, char *decimal_part)
 		print->last_type = ft_strdup(int_part);
 }
 
+void		neg_gestion(char *neg, long double *ldb)
+{
+	*neg = 0;
+	if (*ldb < 0)
+	{
+		*neg = 1;
+		*ldb = -*ldb;
+	}
+}
+
 int			print_float(t_printf *print, long double ldb)
 {
-	char		neg;
-	char		*int_part;
-	char		*decimal_part;
+	char			neg;
+	char			*int_part;
+	char			*decimal_part;
 
 	if (float_exception(print, ldb))
 		return (0);
-	neg = 0;
-	if (ldb < 0)
-	{
-		neg = 1;
-		ldb = -ldb;
-	}
+	neg_gestion(&neg, &ldb);
 	if (!(int_part = get_int_from_float((intmax_t)ldb, neg)) ||
 	!(decimal_part = get_decimal_from_float(print->arg, ldb - (intmax_t)ldb)))
 		return (-1);

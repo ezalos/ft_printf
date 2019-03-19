@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 15:54:50 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/27 18:04:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:24:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			print_pointer(t_printf *print, void* ptr)
+int			print_pointer(t_printf *print, void *ptr)
 {
 	char		*tmp1;
 	char		*tmp2;

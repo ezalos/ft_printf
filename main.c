@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:36 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/14 12:35:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 14:21:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,16 +229,18 @@ int		main(int ac, char **av)
 	// printf("char***: %p\n", str);
 	// ft_printf("%~[2;2]s", ac + 10, ft_atoi(av[ac]), str);
 	// printf("%d\n", (int)ft_strlen(str[0][0]));
-	nb = 10;
 	// ft_putendl("0");
 	//ft_printf("%.*b\n", (int)ft_strlen(str[0][0]), str[0][0]);
 	// ft_putendl("1");
 	ft_printf("Welcone\n");
-	ft_printf("%~{?}%d\n", nb);
+	ft_printf("%~{!}\n", &nb);
 	// ft_putendl("2");
-//	ft_printf("YO\tPROBLEM%r\n");
-	// ft_putendl("3");
-	ft_printf("->%.*b\n", sizeof(test), &test);
+	ft_printf("YO\tPROBLEM%r\n");
+	ft_putendl("");
+	ft_printf("YO\tPROBLEM%.r\n");
+	ft_putendl("");
+	 ft_putendl("");
+	ft_printf("->%.*b\n", sizeof(nb), &nb);
 	// ft_putendl("5");
 	// printf("%p\t%d\n%p\t%d\n", &nb, (int)&nb, &nd, (int)&nd);
 	// ft_putendl("6");

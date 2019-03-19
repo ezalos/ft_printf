@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ajust_flags.c                                      :+:      :+:    :+:   */
+/*   tools_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:45:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/01 16:49:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:15:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int		add_minimum_width(t_printf *print, char **str)
 
 	tmp = NULL;
 	tmp2 = *str;
-	len = ft_strlen(*str);
-	if (print->arg->minimum_width > len)
+	if (print->arg->minimum_width > (len = ft_strlen(*str)))
 	{
 		if (!(tmp = ft_strnew(print->arg->minimum_width - len)))
 			return (-1);

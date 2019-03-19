@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 18:06:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/13 17:30:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 13:56:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,9 @@ int						print_integer(t_printf *print, intmax_t nb);
 int						print_character(t_printf *print, char str);
 int						print_others(t_printf *print, void *str);
 int						print_binary(t_printf *print, void *bin);
+char					*get_int_from_float(intmax_t ldb, char neg);
+char					*get_decimal_from_float(t_arg *arg, long double ldb);
+char					*round_move_nb(char *str, size_t len);
 
 /*
 ** MALLOC AND MOVE
@@ -158,5 +161,8 @@ int						output_string(t_printf *print);
 ** BONUS GESTION
 */
 int						bonus_gestion(t_printf *print, const char **f);
+int						color_gestion(t_printf *print, const char **f);
+int						tab_gestion(t_printf *print, const char **f);
+int						cursor_gestion(t_printf *print, const char **f);
 
 #endif

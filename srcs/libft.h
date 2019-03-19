@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/12 17:09:15 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 14:29:36 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,5 +226,7 @@ void				ft_tab_connect_structs(t_tab *tab_one, t_tab *tab_two,
 t_tab				*ft_tab_cutone(t_tab *to_cut);
 size_t				ft_tabloop_lendir(t_tab *tab, size_t dir);
 size_t				ft_tabloop_it(t_tab *tab, size_t dir);
+char				*ft_str_rgbcolor(char background, int red, int green,
+	int blue);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 17:51:54 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/11 19:23:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 12:15:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char		*s_to_bin(unsigned char *str, int length)
 {
-	char	*binary;
-	int		actual_char;
-	int		power;
+	char		*binary;
+	int			actual_char;
+	int			power;
 
 	if (!(binary = ft_strnew(length * (8 + 1))))
 		return (NULL);
@@ -36,9 +36,9 @@ char		*s_to_bin(unsigned char *str, int length)
 
 char		*ft_strrev(char *str, size_t size)
 {
-	char	tmp;
-	int		i;
-	int		j;
+	char		tmp;
+	int			i;
+	int			j;
 
 	i = 0;
 	if (size != 0)
@@ -69,7 +69,7 @@ char		*print_string_to_binary(unsigned char *converter, size_t size_thing)
 int			print_binary(t_printf *print, void *bin)
 {
 	char		*tmp1;
-	char				*tmp2;
+	char		*tmp2;
 
 	if (!bin)
 	{

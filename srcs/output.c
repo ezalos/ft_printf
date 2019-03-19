@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 16:26:13 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/12 17:18:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/19 14:28:12 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/head.h"
 
-int			output_invisible_char(size_t fd, char *str, size_t size)
+int			output_invisible_char(size_t fd, char *str, size_t size, int color)
 {
 	char		*character;
 	size_t		written;
@@ -28,10 +28,13 @@ int			output_invisible_char(size_t fd, char *str, size_t size)
 		else
 		{
 			character = ft_nb_to_a(str[i], 10);
+			if (color)
+				write(1, "\x1b[31m", 5);
 			write(fd, "\\", 1);
-			write(fd, character, now = ft_strlen(character));
+			write(fd, character, now = ft_strlen(character) + 1);
 			ft_memdel((void**)&character);
-			now++;
+			if (color)
+				write(1, "\x1b[0m", 5);
 		}
 		written += now;
 	}
@@ -47,7 +50,8 @@ int			output_string(t_printf *print)
 		else
 		{
 			print->size_all = output_invisible_char(print->fd,
-			print->printf, ft_strlen(print->printf));
+			print->printf, ft_strlen(print->printf),
+			print->arg->precision_exist);
 		}
 	}
 	print->lets_print = 0;
