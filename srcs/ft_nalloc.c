@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 #include <stdio.h>
 
 static t_list	*ft_nalloc_lstnew_ptr(void const *content, size_t content_size)

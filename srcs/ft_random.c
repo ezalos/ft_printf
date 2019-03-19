@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 #include <time.h>
 
 static void			ft_if_random(intmax_t min, intmax_t max, intmax_t *rando,
