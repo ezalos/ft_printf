@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:20:40 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 12:45:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:23:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char		*get_decimal_from_float(t_arg *arg, long double ldb)
 		precision = arg->precision;
 	else
 		precision = 6;
+	arg->precision = precision;
 	if (!(decimal_part = ft_strnew((size_t)precision + 1 + 1)))
 		return (NULL);
 	decimal_part[0] = '.';
