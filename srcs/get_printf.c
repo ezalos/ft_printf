@@ -14,9 +14,13 @@
 
 void		add_minimum_width_0(t_printf *print)
 {
+	int		i;
+
+	i = print->arg->minimum_width;
 	if (print->arg->minimum_width > 1)
 	{
-		write(1, &print->arg->space_filled, print->arg->minimum_width - 1);
+		while (--i > 0)
+			write(1, &print->arg->space_filled, 1);
 		print->size_all += print->arg->minimum_width - 1;
 	}
 }

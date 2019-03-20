@@ -29,7 +29,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-#CFLAGS =
+CFLAGS =
 
 ##############################################################################
 ##############################################################################
@@ -158,7 +158,7 @@ $(NAME): $(A_OBJ) $(HEAD_PATH) Makefile
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 
 $(EXEC): $(NAME) $(MAIN)
-		@$(call run_and_test, $(CC) $(CFLAGS) $(NAME) $(A_OBJ) $(MAIN) -I$(HEAD_DIR) -o $(EXEC))
+		@$(call run_and_test, $(CC) $(NAME) $(CFLAGS) $(A_OBJ) $(MAIN) -I$(HEAD_DIR) -o $(EXEC))
 
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c

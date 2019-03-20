@@ -42,14 +42,14 @@
 ** ft_printf("ft_: |%0100.d|\n", 123);
 */
 
-int		errors_pr_p_o(void)
+void	errors_pr_p_o(void)
 {
 	ft_putendl("Errors: p");
-	ft_printf("ft_: |%-hh50p|\n", INT_MAX);
-	printf("tru: |%-hh50p|\n", INT_MAX);
+	ft_printf("ft_: |%-hh.10p|\n", INT_MAX);
+	printf("tru: |%-hh.10p|\n", INT_MAX);
 	ft_putendl("");
-	ft_printf("ft_: |%#.p|\n", 0);
-	printf("tru: |%#.p|\n", 0);
+	ft_printf("%.4d\n", -42);
+	printf("%.4d\n", -42);
 	ft_putendl("");
 	ft_putendl("Errors: o");
 	ft_printf("ft_: |%-#50.5o|\n", 50);
@@ -60,7 +60,7 @@ int		errors_pr_p_o(void)
 	ft_putendl("");
 }
 
-int		errors_pr_f(void)
+void		errors_pr_f(void)
 {
 	ft_putendl("Errors: f");
 	ft_printf("ft_: |%.f|\n", 0.5);
@@ -80,7 +80,7 @@ int		errors_pr_f(void)
 	ft_putendl("");
 }
 
-int		errors_pr_c(void)
+void	errors_pr_c(void)
 {
 	ft_putendl("Errors: c");
 	ft_printf("ft_: |%-3c|\n", 0);
@@ -97,15 +97,15 @@ int		errors_pr_c(void)
 	ft_putendl("");
 }
 
-int		errors_pr_d_i(void)
+void		errors_pr_d_i(void)
 {
 	ft_putendl("Errors: i");
 	ft_printf("ft_: |%hh#.2i|\n", 500);
 	printf("tru: |%hh#.2i|\n", 500);
 	ft_putendl("");
 	ft_putendl("Errors: d");
-	ft_printf("ft_: |% -0100.50d|\n", 123);
-	printf("tru: |% -0100.50d|\n", 123);
+	ft_printf("ft_: |% -051.50d|\n", 123);
+	printf("tru: |% -051.50d|\n", 123);
 	ft_putendl("");
 	ft_printf("ft_: |%0100.d|\n", 123);
 	printf("tru: |%0100.d|\n", 123);
@@ -114,9 +114,6 @@ int		errors_pr_d_i(void)
 
 int		main(void)
 {
-	int		r_v;
-	int		r_valu;
-
 	errors_pr_c();
 	errors_pr_d_i();
 	errors_pr_f();

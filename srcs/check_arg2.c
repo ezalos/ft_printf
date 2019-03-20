@@ -16,6 +16,7 @@ void	check_flags(const char c, t_arg *arg)
 {
 	if (c == '0')
 	{
+		arg->zero_exist = 1;
 		if (!arg->ajust_left && !arg->precision_exist)
 			arg->space_filled = '0';
 	}
@@ -82,6 +83,7 @@ void	check_minimum_width_or_precision(t_printf *print, const char **f)
 	{
 		tmp = &print->arg->precision;
 		print->arg->precision_exist = 1;
+		print->arg->space_filled = ' ';
 		(*f)++;
 		if (**f == '0')
 		{

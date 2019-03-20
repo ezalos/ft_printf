@@ -26,6 +26,8 @@ int			paste_int_in_printf(t_printf *print, char *str)
 		}
 		return (1);
 	}
+	if (str[0] == '-')
+		print->arg->neg == 1;
 	if (!(ajust_flags(print, &str)))
 		return (-1);
 	if (!(get_printf(print, &str, ft_strlen(str))))

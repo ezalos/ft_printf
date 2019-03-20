@@ -14,6 +14,8 @@
 
 int		type_oux(t_printf *print, char **str)
 {
+	if (print->arg->type == 'o' &&  *str[0] == '0')
+		print->arg->htag = 0;
 	if (!print->arg->precision_exist && !print->arg->minimum_width)
 	{
 		if (add_htag(print, str) == -1)
@@ -21,6 +23,9 @@ int		type_oux(t_printf *print, char **str)
 	}
 	else
 	{
+		if (print->arg->type == 'o' && print->arg->precision_exist
+			&& print->arg->htag)
+			print->arg->precision--;
 		if (print->arg->precision_exist)
 			if (add_precison(print, str) == -1)
 				return (-1);
@@ -37,13 +42,18 @@ int		type_oux(t_printf *print, char **str)
 
 int		type_dic(t_printf *print, char **str)
 {
-	if (print->arg->precision_exist)
+	if (print->arg->precision_exist && *str[0] != '%' && print->arg->type != 'c')
 		if (add_precison(print, str) == -1)
 			return (-1);
 	if (print->arg->sign && (print->arg->type == 'd'
 	|| print->arg->type == 'i'))
 		if (!(add_sign(str)))
 			return (-1);
+	if (print->arg->type != 'd' && print->arg->type != 'i'
+		&& print->arg->zero_exist && !print->arg->ajust_left)
+		print->arg->space_filled = '0';
+	if (print->arg->space && print->arg->ajust_left)
+		print->arg->minimum_width--;
 	if (add_minimum_width(print, str) == -1)
 		return (-1);
 	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' '

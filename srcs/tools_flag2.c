@@ -58,3 +58,35 @@ int		add_space(char **str)
 	ft_strdel(&tmp);
 	return (1);
 }
+
+void	reajust_p(char *str)
+{
+	int		i;
+
+	i = 0;
+	if (str[1] == '0' && str[0] == '0')
+	{
+		while (str[i] != 'x')
+			i++;
+		str[i] = '0';
+		str[1] = 'x';
+	}
+}
+
+int		type_p(char **str, t_printf *print)
+{
+	
+	if (print->arg->precision_exist)
+	{
+		print->arg->precision += 2;
+		if (add_precison(print, str) == -1)
+			return (-1);
+	}
+	if (add_minimum_width(print, str) == -1)
+			return (-1);
+	if (print->arg->precision_exist && print->arg->precision == 2
+		&& (*str)[2] == '0' && (*str)[3] == 0)
+		(*str)[2] = 0;
+	reajust_p(*str);
+	return (1);
+}

@@ -22,6 +22,7 @@ int			print_pointer(t_printf *print, void *ptr)
 	if (!(tmp2 = ft_strjoin("0x", tmp1)))
 		return (-1);
 	ft_strdel(&tmp1);
+	type_p(&tmp2, print);
 	get_printf(print, &tmp2, ft_strlen(tmp2));
 	return (0);
 }
