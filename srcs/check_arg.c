@@ -41,6 +41,8 @@ void	add_type(const char **f, t_printf *print)
 
 void	check_arg(t_printf *print, const char **f)
 {
+	char	*c;
+
 	while (!print->arg->type)
 	{
 		if (**f == '~')
@@ -57,6 +59,12 @@ void	check_arg(t_printf *print, const char **f)
 			print->invisible = 1;
 			(*f)++;
 			break ;
+		}
+		else if (ft_char_srch(**f, "SDOCF"))
+		{
+			print->arg->type = **f + 32;
+			c = **f + 32;
+			add_type(&c, print);
 		}
 		else if (ft_char_srch(**f, "cspidbouxXfUzj"))
 			add_type(f, print);

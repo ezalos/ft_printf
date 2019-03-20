@@ -48,10 +48,15 @@ int		add_sign(char **str)
 	return (1);
 }
 
-int		add_space(char **str)
+int		add_space(t_printf *print, char **str)
 {
 	char	*tmp;
 
+	if (!print->arg->precision_exist && print->arg->minimum_width)
+	{
+		**str = ' ';
+		return (1);
+	}
 	tmp = *str;
 	if (!(*str = ft_strjoin(" ", *str)))
 		return (-1);

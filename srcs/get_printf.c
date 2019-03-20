@@ -28,6 +28,8 @@ void		add_minimum_width_0(t_printf *print)
 void		write_0(t_printf *print, char **str)
 {
 	output_string(print);
+	if (print->arg->zero_exist)
+		print->arg->space_filled = '0';
 	if (print->arg->ajust_left)
 	{
 		write(1, "\0", 1);

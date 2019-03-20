@@ -34,7 +34,6 @@ typedef struct			s_printfesse
 
 typedef struct			s_arg
 {
-	int					neg;
 	int					zero_exist;
 	char				type;
 	int					minimum_width;
@@ -146,11 +145,12 @@ int						get_value_of_star_or_nb(t_printf *print,
 	const char **f, int *tmp);
 int						add_htag(t_printf *print, char **str);
 int						add_sign(char **str);
-int						add_space(char **str);
+int						add_space(t_printf *print, char **str);
 void					reajust_sign(char *str);
 void					reajust_hatg(t_printf *print, char *str);
 int						add_minimum_width(t_printf *print, char **str);
 int						add_precison(t_printf *print, char **str);
+int						type_p(char **str, t_printf *print);
 
 /*
 ** OUTPUT

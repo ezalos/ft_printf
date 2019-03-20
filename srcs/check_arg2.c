@@ -43,14 +43,16 @@ int		get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp)
 	*tmp = 0;
 	if (**f == '*')
 	{
+		if (print->arg->zero_exist)
+			print->arg->space_filled = '0';
 		*tmp = (int)va_arg(print->ap, int);
 		(*f)++;
 	}
 	else if (ft_isdigit(**f))
 		while (ft_isdigit(**f))
 			*tmp = *tmp * 10 + *(*f)++ - 48;
-	if (*tmp < 0)
-		*tmp = -*tmp;
+	// if (*tmp < 0)
+	// 	*tmp = 0;
 	return (*tmp);
 }
 
@@ -78,7 +80,9 @@ char	*get_value_of_star_or_str(t_printf *print, const char **f, char **tmp)
 void	check_minimum_width_or_precision(t_printf *print, const char **f)
 {
 	int		*tmp;
+	int		pres;
 
+	pres = 0;
 	if (**f == '.')
 	{
 		tmp = &print->arg->precision;
@@ -90,11 +94,17 @@ void	check_minimum_width_or_precision(t_printf *print, const char **f)
 			(*f)++;
 			return ;
 		}
+		pres = 1;
 	}
 	else
 		tmp = &print->arg->minimum_width;
 	*tmp = 0;
 	get_value_of_star_or_nb(print, f, tmp);
+	if (!pres && *tmp < 0)
+	{
+		*tmp = -*tmp;
+		print->arg->ajust_left = 1;
+	}
 	if (print->arg->precision)
 		print->arg->space_filled = ' ';
 }

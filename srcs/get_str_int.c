@@ -14,6 +14,12 @@
 
 int			paste_int_in_printf(t_printf *print, char *str)
 {
+	if (print->arg->precision < 0)
+	{
+		print->arg->precision = 0;
+		if (print->arg->zero_exist)
+			print->arg->space_filled = '0';
+	}
 	if (str[0] == '-')
 		print->arg->sign = 0;
 	if (!print->arg->precision && !print->arg->minimum_width
@@ -26,8 +32,6 @@ int			paste_int_in_printf(t_printf *print, char *str)
 		}
 		return (1);
 	}
-	if (str[0] == '-')
-		print->arg->neg == 1;
 	if (!(ajust_flags(print, &str)))
 		return (-1);
 	if (!(get_printf(print, &str, ft_strlen(str))))

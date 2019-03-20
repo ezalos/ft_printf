@@ -48,8 +48,10 @@ void	errors_pr_p_o(void)
 	ft_printf("ft_: |%-hh.10p|\n", INT_MAX);
 	printf("tru: |%-hh.10p|\n", INT_MAX);
 	ft_putendl("");
-	ft_printf("%.4d\n", -42);
-	printf("%.4d\n", -42);
+	ft_printf("{% 03d}\n", 0);
+	printf("{% 03d}\n", 0);
+	ft_printf("{% 03d}\n", 10);
+	printf("{% 03d}\n", 10);
 	ft_putendl("");
 	ft_putendl("Errors: o");
 	ft_printf("ft_: |%-#50.5o|\n", 50);
@@ -104,11 +106,23 @@ void		errors_pr_d_i(void)
 	printf("tru: |%hh#.2i|\n", 500);
 	ft_putendl("");
 	ft_putendl("Errors: d");
-	ft_printf("ft_: |% -051.50d|\n", 123);
-	printf("tru: |% -051.50d|\n", 123);
+	ft_printf("ft_: |% -011.10d|\n", 123);
+	printf("tru: |% -011.10d|\n", 123);
 	ft_putendl("");
 	ft_printf("ft_: |%0100.d|\n", 123);
 	printf("tru: |%0100.d|\n", 123);
+	ft_putendl("");
+	ft_putendl("MOLITEST");
+	ft_putendl("");
+	ft_printf("{%.*s}\n", -1, "42");
+	printf("{%.*s}\n", -1, "42");
+	ft_putendl("");
+	ft_printf("{%05.*d}\n", -15, 42);
+	printf("{%05.*d}\n", -15, 42);
+	ft_putendl("");
+	ft_printf("{%*d}\n", -5, 42);
+	printf("{%*d}\n", -5, 42);
+	ft_putendl("");
 	ft_putendl("");
 }
 

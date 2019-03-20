@@ -16,6 +16,8 @@ int			paste_str_in_printf(t_printf *print, char *str)
 {
 	int		len;
 
+	if (print->arg->zero_exist && !print->arg->ajust_left)
+		print->arg->space_filled = '0';
 	if (!(ajust_flags(print, &str)))
 		return (-1);
 	len = ft_strlen(str);

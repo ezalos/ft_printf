@@ -49,19 +49,21 @@ int		type_dic(t_printf *print, char **str)
 	|| print->arg->type == 'i'))
 		if (!(add_sign(str)))
 			return (-1);
+	if (*str[0] == '0' && (print->arg->type == 'd' || print->arg->type == 'i'))
+		reajust_sign(*str);
 	if (print->arg->type != 'd' && print->arg->type != 'i'
 		&& print->arg->zero_exist && !print->arg->ajust_left)
 		print->arg->space_filled = '0';
 	if (print->arg->space && print->arg->ajust_left)
-		print->arg->minimum_width--;
+	 	print->arg->minimum_width--;
 	if (add_minimum_width(print, str) == -1)
 		return (-1);
-	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' '
-	&& *str[0] != '-' && ft_char_srch(print->arg->type, "dic"))
-		if (!(add_space(str)))
-			return (-1);
-	if (*str[0] == '0' && (print->arg->type == 'd' || print->arg->type == 'i'))
+	if (print->arg->space_filled == '0')
 		reajust_sign(*str);
+	if (print->arg->space && print->arg->type != 'c' && *str[0] != ' '
+	&& *str[0] != '-' && ft_char_srch(print->arg->type, "di"))
+		if (!(add_space(print, str)))
+			return (-1);
 	return (1);
 }
 
