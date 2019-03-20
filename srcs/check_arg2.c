@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 20:11:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:10:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	check_flags(const char c, t_arg *arg)
 {
 	if (c == '0')
 	{
+		arg->zero_exist = 1;
 		if (!arg->ajust_left && !arg->precision_exist)
 			arg->space_filled = '0';
 	}

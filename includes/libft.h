@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 20:43:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 14:44:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 #  define P_MALLOC nalloc
 # endif
 
-# define NREE 1
+# ifndef NREE
+#  define NREE 1
+# endif
 
-# define ILLEGAL 145612
+# define ILLEGAL (intmax_t)&rando
 
 # ifndef ILLEGAL
 #  include <time.h>

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:10:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/02/28 16:48:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 15:23:30 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ int			paste_float_in_printf(t_printf *print, char *str)
 		if (!(fill_str = ft_strnew(fill)))
 			return (-1);
 		ft_memset(fill_str, (int)print->arg->space_filled, fill);
+		if (print->arg->sign)
+			fill_str[fill - 1] = '+';
 		tmp = str;
 		if (print->arg->ajust_left && !(str = ft_strjoin(tmp, fill_str)))
 			return (-1);
-		else if (!(str = ft_strjoin(fill_str, tmp)))
+		else if (!print->arg->ajust_left && !(str = ft_strjoin(fill_str, tmp)))
 			return (-1);
 		ft_strdel(&fill_str);
 		ft_strdel(&tmp);

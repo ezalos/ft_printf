@@ -6,12 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 20:52:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 20:29:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 14:42:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <time.h>
 
 static void			ft_if_random(intmax_t min, intmax_t max, intmax_t *rando,
 					size_t *len)
