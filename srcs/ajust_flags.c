@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:45:45 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 17:30:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 19:46:26 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		type_oux(t_printf *print, char **str)
 {
-	if (print->arg->type == 'o' &&  *str[0] == '0')
+	if (print->arg->type == 'o' && *str[0] == '0')
 		print->arg->htag = 0;
 	if (!print->arg->precision_exist && !print->arg->minimum_width)
 	{
@@ -42,7 +42,8 @@ int		type_oux(t_printf *print, char **str)
 
 int		type_dic(t_printf *print, char **str)
 {
-	if (print->arg->precision_exist && *str[0] != '%' && print->arg->type != 'c')
+	if (print->arg->precision_exist && *str[0] != '%'
+	&& print->arg->type != 'c')
 		if (add_precison(print, str) == -1)
 			return (-1);
 	if (print->arg->sign && (print->arg->type == 'd'
@@ -55,7 +56,7 @@ int		type_dic(t_printf *print, char **str)
 		&& print->arg->zero_exist && !print->arg->ajust_left)
 		print->arg->space_filled = '0';
 	if (print->arg->space && print->arg->ajust_left)
-	 	print->arg->minimum_width--;
+		print->arg->minimum_width--;
 	if (add_minimum_width(print, str) == -1)
 		return (-1);
 	if (print->arg->space_filled == '0')

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/19 20:38:29 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/20 20:42:58 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ CFLAGS =
 ##############################################################################
 
 SRCS		=	ft_printf\
-				parsing check_arg check_arg2 ajust_flags tools_flag tools_flag2\
+				parsing check_arg check_arg2 ajust_flags\
+				tools_flag tools_flag2\
 				init output\
 				type_float type_float2 type_integer type_pointer type_string\
 				type_unsigned_integer type_character type_binary\
@@ -64,6 +65,7 @@ MAIN		= main.c
 SRC_PATH	= ./srcs
 
 DIR_OBJ 	= ./objs/
+DIR_OBJ 	= ./
 
 ##########################
 ##						##
@@ -90,7 +92,10 @@ LIB			= $(LIB_DIR)/libft.a
 ##						##
 ##########################
 
-VALGRIND = valgrind --track-origins=yes --leak-check=full --show-leak-kinds=definite
+VALGRIND =	valgrind\
+			--track-origins=yes\
+			--leak-check=full\
+			--show-leak-kinds=definite
 
 ##########################
 ##						##
@@ -125,11 +130,14 @@ printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
 	$(1) 2> $@.log; \
 	RESULT=$$?; \
 	if [ $$RESULT -ne 0 ]; then \
-	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(ERROR_COLOR)$(ERROR_STRING)$(NO_COLOR)\n"   ; \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR)\
+	$@" "$(ERROR_COLOR)$(ERROR_STRING)$(NO_COLOR)\n"   ; \
 	elif [ -s $@.log ]; then \
-	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(WARN_COLOR)$(WARN_STRING)$(NO_COLOR)\n"   ; \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR)\
+	$@" "$(WARN_COLOR)$(WARN_STRING)$(NO_COLOR)\n"   ; \
 	else  \
-	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $(@F)" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"   ; \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR)\
+	$(@F)" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"   ; \
 	fi; \
 	cat $@.log; \
 	rm -f $@.log; \
@@ -158,18 +166,21 @@ $(NAME): $(A_OBJ) $(HEAD_PATH) Makefile
 		@$(call run_and_test, ar -rcs $(NAME) $(A_OBJ))
 
 $(EXEC): $(NAME) $(MAIN)
-		@$(call run_and_test, $(CC) $(NAME) $(CFLAGS) $(A_OBJ) $(MAIN) -I$(HEAD_DIR) -o $(EXEC))
+		@$(call run_and_test, $(CC) $(CFLAGS) $(NAME) $(A_OBJ) $(MAIN)\
+		-I$(HEAD_DIR) -o $(EXEC))
 
 
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) -o $@ -c $<)
 
 clean :
-		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@echo "\$(YELLOW)$(NAME) objects \$(END)\\thas been \
+		\$(GREEN)\\t  $@\$(END)"
 		@rm -f $(A_OBJ)
 
 fclean : clean
-		@echo "\$(YELLOW)$(NAME) \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@echo "\$(YELLOW)$(NAME) project \$(END)\\thas been \
+		\$(GREEN)\\t  $@\$(END)"
 		@rm -rf $(NAME) $(EXEC)
 
 aclean : clean

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/19 17:23:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 20:19:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ void	check_modifier(const char **f, t_arg *arg)
 
 void	add_type(const char **f, t_printf *print)
 {
+	if (ft_char_srch(**f, "SDOCF"))
+	{
+		if (ft_char_srch(**f, "DO"))
+			print->arg->modifier_l = 2;
+		print->arg->type = **f + 32;
+		(*f)++;
+		return ;
+	}
 	if (**f == 'j' || **f == 'z')
 	{
 		print->arg->modifier_l = 2;
@@ -41,8 +49,6 @@ void	add_type(const char **f, t_printf *print)
 
 void	check_arg(t_printf *print, const char **f)
 {
-	char	*c;
-
 	while (!print->arg->type)
 	{
 		if (**f == '~')
@@ -60,13 +66,7 @@ void	check_arg(t_printf *print, const char **f)
 			(*f)++;
 			break ;
 		}
-		else if (ft_char_srch(**f, "SDOCF"))
-		{
-			print->arg->type = **f + 32;
-			c = **f + 32;
-			add_type(&c, print);
-		}
-		else if (ft_char_srch(**f, "cspidbouxXfUzj"))
+		else if (ft_char_srch(**f, "cspidbouxXfUzjSDOCF"))
 			add_type(f, print);
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/07 18:57:12 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/20 15:10:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/20 19:48:47 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int		get_value_of_star_or_nb(t_printf *print, const char **f, int *tmp)
 	else if (ft_isdigit(**f))
 		while (ft_isdigit(**f))
 			*tmp = *tmp * 10 + *(*f)++ - 48;
-	// if (*tmp < 0)
-	// 	*tmp = 0;
 	return (*tmp);
 }
 
@@ -77,6 +75,19 @@ char	*get_value_of_star_or_str(t_printf *print, const char **f, char **tmp)
 	return (*tmp);
 }
 
+void	check_min_or_pre2(t_printf *print, const char **f, int *tmp, int pres)
+{
+	*tmp = 0;
+	get_value_of_star_or_nb(print, f, tmp);
+	if (!pres && *tmp < 0)
+	{
+		*tmp = -*tmp;
+		print->arg->ajust_left = 1;
+	}
+	if (print->arg->precision)
+		print->arg->space_filled = ' ';
+}
+
 void	check_minimum_width_or_precision(t_printf *print, const char **f)
 {
 	int		*tmp;
@@ -98,13 +109,5 @@ void	check_minimum_width_or_precision(t_printf *print, const char **f)
 	}
 	else
 		tmp = &print->arg->minimum_width;
-	*tmp = 0;
-	get_value_of_star_or_nb(print, f, tmp);
-	if (!pres && *tmp < 0)
-	{
-		*tmp = -*tmp;
-		print->arg->ajust_left = 1;
-	}
-	if (print->arg->precision)
-		print->arg->space_filled = ' ';
+	check_min_or_pre2(print, f, tmp, pres);
 }
