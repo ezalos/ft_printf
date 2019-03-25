@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "ft_printf.h"
 
 int		color_reset(t_printf *print, const char **f, char *str)
 {

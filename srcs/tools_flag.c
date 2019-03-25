@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "ft_printf.h"
 
 void	reajust_sign(char *str)
 {

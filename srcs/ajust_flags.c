@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "ft_printf.h"
 
 int		type_oux(t_printf *print, char **str)
 {

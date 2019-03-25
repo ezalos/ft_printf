@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/03/20 14:44:56 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:07:21 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@
 #  define NREE 1
 # endif
 
-# define ILLEGAL (intmax_t)&rando
+/*
+** # define ILLEGAL (intmax_t)&rando
+*/
 
 # ifndef ILLEGAL
 #  include <time.h>
@@ -173,7 +175,7 @@ int					ft_round(float i);
 char				*ft_pstrnstr(const char *m, const char *a, size_t len);
 int					ft_patoi(const char *str);
 int					ft_nb_char_to_int(char c);
-int					place_cursor(size_t line, size_t column);
+int					ft_place_cursor(size_t line, size_t column);
 intmax_t			ft_random(intmax_t min, intmax_t max, intmax_t rando,
 					size_t len);
 void				ft_swap(void *one, void *two, size_t size);

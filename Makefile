@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/20 20:42:58 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/22 18:03:20 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ A_OBJ		= $(patsubst %,$(DIR_OBJ)%.o,$(SRCS))
 OBJ 		= $(patsubst %,%.o,$(SRCS))
 
 LIB_DIR		= ./../libft
-HEAD		= head.h libft.h
+HEAD		= ft_printf.h libft.h
 HEAD_DIR	= ./includes
 
 HEAD_PATH	= $(patsubst %,$(HEAD_DIR)/%,$(HEAD))
